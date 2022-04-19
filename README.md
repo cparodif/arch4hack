@@ -71,6 +71,7 @@ cfdisk
 - New 
 - Partition size: 512M
 - Primary
+- Bootable 
 - Añade= /dev/sda1
 
 - Ir a free space
@@ -137,26 +138,60 @@ mount /dev/sda1 /mnt/boot/efi
 ```
 pacstrap /mnt linux linux-firmware networkmanager grub wpa_supplicant base base-devel
 ```
-Si efi
-ver
+Si efi, ver:
+
 https://bbs.archlinux.org/viewtopic.php?id=252051
 
 https://wiki.archlinux.org/title/EFI_system_partition
 
 https://wiki.archlinux.org/title/GRUB
 
-si efi
-```
+<s>si efi 
+ ```
 pacstrap /mnt efibootmgr
 ```
 
 si efi --------------
-```
+ ```
 mkinitcpio -p linux
 ```
+
 ```
 grub-install /dev/sda
 grub-install --target=x86_64-efi /dev/sda
 grub-install --efi-directory=/boot/efi --target=x86_64-efi /dev/sda
-´´´
+```
+ 
 fin si efi --------
+ </s>
+ 
+### 20:23 - Creamos un archivo fstab
+
+```
+genfstab -U /mnt
+```
+crea un archivo con el siguiente contenido
+
+/dev/sda2 UUID=ee....ee /   ext4  rw,relatime 0,1 
+
+/dev/sda1 UUID=ee....ee /boot   vfat  rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,error=remount-ro 0,2 
+
+
+Esto lo guardamos en el archivo /nmt/etc/fstab
+```
+genfstab -U /mnt > /mnt/etc/fstab
+
+cat !$
+```
+cat /mnt/etc/fstab
+
+### 20:58 - Ingresamos a nuestro sistema con arch-chroot
+
+```
+arch-chroot /mnt
+```
+[root@archiso /]#
+
+Este va a ser nuestro sistema
+
+### 21:12 - Creamos y definimos las contraseñas de nuestros usuarios
