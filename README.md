@@ -132,3 +132,31 @@ mkdir /mnt/boot/efi
 mount /dev/sda1 /mnt/boot/efi 
 ```
 
+### 19:45 - Instalamos una serie de paquetes necesarios con pacstrap
+
+```
+pacstrap /mnt linux linux-firmware networkmanager grub wpa_supplicant base base-devel
+```
+Si efi
+ver
+https://bbs.archlinux.org/viewtopic.php?id=252051
+
+https://wiki.archlinux.org/title/EFI_system_partition
+
+https://wiki.archlinux.org/title/GRUB
+
+si efi
+```
+pacstrap /mnt efibootmgr
+```
+
+si efi --------------
+```
+mkinitcpio -p linux
+```
+```
+grub-install /dev/sda
+grub-install --target=x86_64-efi /dev/sda
+grub-install --efi-directory=/boot/efi --target=x86_64-efi /dev/sda
+´´´
+fin si efi --------
