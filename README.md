@@ -195,3 +195,380 @@ arch-chroot /mnt
 Este va a ser nuestro sistema
 
 ### 21:12 - Creamos y definimos las contraseñas de nuestros usuarios
+
+```
+passwd 
+```
+
+New password: 
+Retype new password: 
+
+introducimos el password para el usuario root
+
+Ahora nos creamos nuestro usuario:
+```
+ls /home/
+```
+
+en home no hay ningún directorio
+
+Al crear el usuario también nos crea su directorio personal 
+
+```
+useradd -m s4vitar
+ls /home/ -l
+```
+
+drwx------ 2 s4vitar s4vitar
+
+```
+passwd s4vitar
+```
+diamondjackson
+
+### 21:51 - Asignamos a nuestro usuario al grupo wheel e instalamos el paquete de sudo
+
+``` 
+usermod -aG wheel s4vitar
+groups s4vitar
+```
+wheel s4vitar
+```
+pacman -S sudo
+pacman -S vim nano
+```
+teclear Y
+
+### 22:47 - Asignamos un privilegio a nivel de sudoers para nuestro usuario
+
+```
+cp /etc/sudoers /home/solrac/Desktop/solrac/repos/arch4hack/etc/sudoers 
+
+nano /etc/sudoers
+```
+Descomentamos la línea:
+
+- ## Uncomment to allow members of group wheel to execute any command
+
+%wheel ALL=(ALL:ALL) ALL
+
+si hacemos 
+```
+sudo su 
+```
+pide la contraseñas
+
+Si descomentamos la línea
+- ## Same thing without a passord
+%wheel ALL=(ALL:ALL) NOPASSWD: ALL
+cuando hacemos 
+```
+sudo su 
+```
+No pide la contraseñas
+
+Guardamos Ctrl+O y Salimos Ctrl+X
+
+
+[s4vitar@archiso /]$
+Cambiamos a usuario s4vitar
+```
+su s4vitar
+id
+```
+uid=1000(s4vitar) gid=1000(s4vitar) groups=1000(svitar),998(wheel)
+```
+sudo su
+```
+[root@archiso /]#
+
+```
+exit
+exit
+```
+
+### 23:27 - Configuramos las regiones
+
+```
+nano /etc/locale.gen
+```
+
+ctrl+w y filtrar por en_US y 
+descomentamos
+
+en_US.UTF-8 UTF-8
+
+ctrl+w y filtrar por es_ES y descomentamos
+
+es_ES.UTF-8 UTF-8
+
+Guardamos Ctrl+O y Salimos Ctrl+X
+
+```
+locale-gen
+loadkeys es
+nano /etc/vconsole.conf
+```
+Añado
+
+KEYMAP=es
+
+Guardamos Ctrl+O y Salimos Ctrl+X
+
+La proxima vez que se reinicie estará bien el teclado
+
+### 24:20 - Instalamos el bootloader (GRUB)
+
+```
+grub-install /dev/sda
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+### 24:52 - Definimos un par de archivos necesarios en el sistema
+
+```
+cat /etc/hostname
+```
+no existe
+
+```
+echo hack4u > /etc/hostname
+```
+mir4me
+```
+cat !$
+nano /etc/hosts
+```
+127.0.0.1		localhost
+::1				localhost
+127.0.0.1		hack4u.localhost hack4u
+mir4me.localhost mir4me
+Guardamos Ctrl+O y Salimos Ctrl+X
+
+```
+ls
+pacman -S neofetch
+neofetch
+exit
+```
+
+
+### 26:06 - Verificamos que el GRUB ha sido instalado correctamente
+
+Reiniciar
+
+```
+reboot now
+```
+...
+Selec=Arch Linux
+
+Enter
+
+login: savitar
+
+passord: ...
+
+Enter
+
+[s4vitar@hack4u ~]$
+
+### 26:40 - Habilitamos el servicio que nos permitirá tener conexión a internet
+
+[s4vitar@hack4u ~]$ 
+
+```
+ping -c 1 google.es
+```
+
+failure
+
+```
+sudo systemctl star NetworkManager.service
+```
+[sudo] password for s4vitar:
+
+```
+sudo su
+systemctl enable NetworkManager
+ping -c 1 google.com
+```
+1 packets transmitted, 1 received
+
+```
+ systemctl start wpa_supplicant.service
+
+systemctl enable wpa_supplicant.service
+```
+
+### 27:33 - Habilitamos AUR para tener acceso a una mayor cantidad de paquetes
+
+Repositorio de la cdad arch-chroot
+```
+pacman -S git
+```
+
+(Yes/No) 
+
+Y 
+
+Enter
+
+```
+pwd
+```
+/home/s4vitar
+```
+exit
+whoami
+cd
+pwd
+```
+/home/s4vitar
+
+```
+mkdir -p Desktop/s4vitar/repos
+cd !$
+```
+cd Desktop/s4vitar/repos
+```
+ls
+git clone https://aur.archlinux.org/paru-bin.git
+ls
+cd paru-bin/
+ls
+```
+PKGBUILD
+
+```
+makepkg -si 
+```
+[sudo] password for s4vitar:
+
+(Yes/No) Y
+
+### 28:57 - Instalamos los repositorios de BlackArch en Arch Linux
+
+[s4vitar@hack4u repos]$
+```
+mkdir blackarch
+pwd
+```
+/home/s4vitar/Desktop/s4vitar/repos
+```
+ls
+blackarch paru-bin
+cd blackarch
+ls
+curl
+curl -O https://blackarch.org/strap.sh
+ls -l
+```
+veremos strap.sh (-rw-r--r-- sin permisos de ejecución)
+```
+chmod +x strap.sh
+```
+(hemos dado permisos de ejecución)
+```
+sudo su
+./strap.sh 
+pacman -Sy
+```
+:: Sinchronizing package 
+- databases
+- core
+- extra
+- community
+- blackarch
+
+### 30:46 - ¿Cómo podemos instalar herramientas de pentesting?
+
+Para listar todas las herramientas contempladas por blackarch (a la izquierda son las categorías y a la derecha son las herramientas)
+```
+pacman -Sgg | grep blackarch 
+```
+
+pacman -S crackmapexec
+
+:: Proceed with installation? [Y/n] n
+
+no instalar
+
+Para instalar toda la suite de impacket:
+```
+pacman -S impacket
+:: Proceed with installation? [Y/n] Y 
+```
+Para listar las categorías: 
+```
+pacman -Sgg | grep blackarch 
+pacman -Sgg | grep blackarch | awk '{print $1}'
+```
+lista de categorías
+al filtrar por el primer elemento:
+```
+pacman -Sgg | grep blackarch | awk '{print $1}' | sort -u | less 
+```
+Para instalar todas las herramientas que involucren pentesting sobre bluetooth podríamos hacer:
+
+
+pacman -S blackarch-bluetooth 
+
+Enter
+
+Ctrl+C no instalar
+
+### 31:40 - Instalamos y cargamos una interfaz gráfica en nuestro sistema
+
+```
+pacman -S xorg xorg-server
+```
+Enter a selection (default=all): 
+Enter
+
+:: Proceed with installation? [Y/n]  
+
+Enter
+```
+pacman -S gnome
+```
+Enter Enter Enter Enter Enter Enter
+
+```
+systemctl start gdm.service 
+```
+
+Arranca la interfaz gráfica y podemos hacer login
+
+La proporción de pantalla es incorrecta
+
+Nos logueamos y estamos con gnome
+Terminal no abre
+
+Ctrl + Alt + F3
+
+Nos abre otra ventana linux
+
+Nos logueamos con nuestro usuario
+
+Nos hacemos root con
+```
+sudo su
+systemctl enable gdm.service 
+```
+
+### 33:42 - Instalamos la Kitty (La configuraremos después)
+
+```
+pacman -S kitty
+```
+:: Proceed with installation? [Y/n]
+  
+Enter
+
+```
+reboot now
+```
+Se reinicia
+
+Nos logueamos
