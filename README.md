@@ -224,7 +224,7 @@ drwx------ 2 s4vitar s4vitar
 ```
 passwd s4vitar
 ```
-diamondjackson
+dmndjcksn
 
 ### 21:51 - Asignamos a nuestro usuario al grupo wheel e instalamos el paquete de sudo
 
@@ -242,7 +242,7 @@ teclear Y
 ### 22:47 - Asignamos un privilegio a nivel de sudoers para nuestro usuario
 
 ```
-cp /etc/sudoers /home/solrac/Desktop/solrac/repos/arch4hack/etc/sudoers 
+cp /etc/sudoers /home/s4vitar/Desktop/s4vitar/repos/arch4hack/etc/sudoers 
 
 nano /etc/sudoers
 ```
@@ -334,15 +334,19 @@ no existe
 ```
 echo hack4u > /etc/hostname
 ```
-mir4me
+hack4u
 ```
 cat !$
 nano /etc/hosts
 ```
 127.0.0.1		localhost
+
 ::1				localhost
-127.0.0.1		hack4u.localhost hack4u
-mir4me.localhost mir4me
+
+127.0.0.1		
+
+hack4u.localhost hack4u
+
 Guardamos Ctrl+O y Salimos Ctrl+X
 
 ```
@@ -497,8 +501,9 @@ no instalar
 Para instalar toda la suite de impacket:
 ```
 pacman -S impacket
-:: Proceed with installation? [Y/n] Y 
 ```
+:: Proceed with installation? [Y/n] Y 
+
 Para listar las categorías: 
 ```
 pacman -Sgg | grep blackarch 
