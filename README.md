@@ -1419,7 +1419,9 @@ rm Hack.zip
 ### 59:54 - Cargamos un archivo de configuración para la Kitty
 ```
 cd ~/.config/kitty/
+```
 <s>
+```
 wget https://raw.githubusercontent.com/rxyhn/bspdots/main/config/kitty/kitty.conf
 ```
 *** hecho ya  ***
