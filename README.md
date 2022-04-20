@@ -577,3 +577,1066 @@ reboot now
 Se reinicia
 
 Nos logueamos
+
+### 34:02 - Procedemos a instalar las VMWare-Tools
+
+Abrimos ventana linux Ctrl + Alt + F3
+
+Nos logueamos 
+```
+sudo su
+sudo systemctl star NetworkManager.service
+```
+[sudo] password for s4vitar:
+```
+sudo su
+systemctl enable NetworkManager
+ping -c 1 google.com
+```
+1 packets transmitted, 1 received
+
+```
+pacman -S gtkmm 
+```
+:: Proceed with installation? [Y/n]  
+Enter
+
+### Alternativa si usamos VMWare
+
+
+```
+pacman -S open-vm-tools
+```
+:: Proceed with installation? [Y/n]  
+Enter
+
+```
+pacman -S xf86-video-vmware xf86-input-vmmouse
+```
+:: Proceed with installation? [Y/n]  
+Enter
+Enter
+```
+systemctl enable vmtoolsd
+```
+### Alternativa si usamos VirtualBox
+
+Buscamos y descargamos la iso: virtualbox-guest-iso
+
+Ver en youtube [Como Instalar Guest Additions En Archlinux, por Tuxer 76:](https://www.youtube.com/watch?v=Es_L34N6TP4) 
+
+
+```
+sudo pacman -S locate 
+locate virtualbox-guest-iso
+sudo pacman -S virtualbox-guest-iso
+locate virtualbox 
+```
+
+buscamos donde está la iso y la montamos en  /mnt/VBoxGuestAdditions
+```
+cd /usr/lib/virtualbox/additions
+ls
+mkdir /mnt/VBoxGuestAdditions
+sudo mount VBoxGuestAdditions.iso /mnt/VBoxGuestAdditions
+sudo chmod +x  VBoxGuestAdditions.iso 
+sudo chmod 777  VBoxGuestAdditions.iso 
+sudo mount VBoxGuestAdditions.iso /mnt/VBoxGuestAdditions
+```
+ejecutamos  VBoxLinuxAdditions.run y reiniciamos 
+```
+ls 
+cd /mnt/VBoxGuestAdditions
+sudo chmod +x  VBoxLinuxAdditions.run  
+sudo su
+su 
+./VBoxLinuxAdditions.run
+reboot now 
+```
+
+### 35:18 - Cargamos el sistema operativo con las proporciones correctas
+
+Nos logueamos y accedemos al entorno
+
+En type to search buscamos kitty
+ 
+Abrimos la kitty (terminal linux)
+
+En kitty 
+```
+whoami
+```
+s4vitar
+
+El guión no funcion
+ 
+Click en botón Activities
+
+En type to search buscamos Keyboard
+
+Abrimos Keyboard Change 
+
+Settings - Keyboard
+
+En input source click en +
+
+Add an Input Source
+
+Spanish [Add]
+
+y vamos a borrar el English (tres puntos y remove)
+
+Volvemos a kitty probamos el guión y cerramos kitty con 
+
+```
+exit
+```
+
+Clip derecho -> Maquina virtual Arch linux (Tutorial)-> Snapshot -> Take Snapshot ->poner nombre= Base
+
+Click en botón Activities
+
+En type to search buscamos kitty 
+
+Abrimos la kitty y con 
+```
+sudo su
+```
+nos ponemos como root
+
+
+### 36:40 - Instalamos el navegador Firefox
+
+```
+pacman -S firefox
+```
+Enter
+```
+exit
+```
+
+Click en botón Activities
+
+En type to search buscamos firefox 
+
+Abrimos firefox 
+
+### 37:54 - Instalamos AwesomeWM junto con PICOM y otros requerimientos
+
+
+navegar a https://github.com/rxyhn/dotfiles
+Leemos readme.md y vamos a setup
+
+Click en botón Activities
+
+En type to search buscamos kitty 
+
+Abrimos la kitty
+
+```
+paru -S awesome-git 
+```
+PKGBUILDs
+
+Podemos copiar y pegar en kitty con: ctrl+Mayus+C y ctrl+Mayus+V
+
+En otros sistemas, normalmente para copiar y pegar se utiliza: ctrl+C y ctrl+V
+
+
+Versión web: 
+```
+paru -S awesome-git  picom-git alacritty rofi todo-bin acpi acpid \ wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim \ brightnessctl alsa-utils alsa-tools pulseaudio lm_sensors \ mpd mpc mpdris2 ncmpcpp playerctl redshift ffmpeg bluez-utils --needed 
+```
+Versión s4vitar:
+```
+paru -S awesome-git picom-git alacritty rofi todo-bin acpi acpid  \     wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim \ brightnessctl alsa-utils alsa-tools pulseaudio lm_sensors \ mpd mpc mpdris2 ncmpcpp playerctl --needed 
+```
+
+Como obtenemos errores en instalación de cmake, brightnessctl, y mpd, para evitarlos podemos utilizar pacman -Syu cmake , paru -S brightnessctl --need y paru -S mpd --need como vemos a continuación :
+```
+sudo pacman -Syu cmake 
+```
+
+[sudo] passwd for s4vitar:
+
+tecleamos passord
+
+:: Proceed with installation? [Y/n]  
+
+Enter
+
+Repository AUR:
+
+1 picon-git Enter
+
+Repository AUR:
+
+1 mpdris2 Enter
+
+ :: Proceed to review? [Y/n]  
+
+Enter
+
+Todo por default
+
+pkgname=$(_pkgname)-git 
+
+:: Proceed with installation? [Y/n]  
+Enter
+
+Total Installed Size: ... 125.06 MiB
+
+:: Proceed with installation? [Y/n]  
+Enter
+
+```
+paru -S brightnessctl --need 
+```
+
+```
+paru -S mpd --need 
+```
+Queda instalado sin ningún error
+
+En la kitty
+
+ctrl + Shift
+
+For automatically launching mpd on login
+
+```
+systemctl --user enable mpd.service
+systemctl --user start mpd.service
+```
+For charger plug/unplug events (if you have a battery)
+
+```
+sudo systemctl enable acpid.service
+sudo systemctl start acpid.service
+```
+
+### 39:21 - Procedemos con la instalación de algunas fuentes necesarias
+
+```
+sudo pacman -S wget
+```
+:: Proceed with installation? [Y/n]  
+
+Enter
+```
+cd /usr/share/fonts
+ls
+sudo su
+ls
+wget http://fontlot.com/downfile/5baeb08d06494fc84dbe36210f6f0ad5.105610 
+```
+Enter
+```
+file 5baeb08d06494fc84dbe36210f6f0ad5.105610 
+```
+Zip ar
+```
+zip
+```
+está instalado
+```
+unzip
+```
+está instalado
+```
+tar
+```
+está instalado 
+```
+7z
+```
+no está instalado
+
+[root@hack4u fonts]#
+
+Instalamos 7z
+```
+pacman -S p7zip
+```
+:: Proceed with installation? [Y/n]  
+
+Enter
+
+```
+ls
+7z l 5baeb08d06494fc84dbe36210f6f0ad5.105610 
+```
+vemos varias fuentes .ttf
+
+```
+mv 5baeb08d06494fc84dbe36210f6f0ad5.105610 comprimido.zip
+unzip comprimido.zip  
+ls
+rm comprimido.zip
+find .
+```
+Encontramos los recursos
+```
+find . | grep "\.ttf$" 
+pwd 
+/usr/share/fonts 
+```
+[root@hack4u fonts]#
+
+```
+find . | grep "\.ttf$" | while read line; do cp $line .; done
+rm -r iosevka-2.2.1/
+rm -r iosevka-slab-2.2.1/
+ls
+```
+En firefox descargar icomoon.zip desde el siguiente enlace:
+
+[https://dropbox.com/s/hrkub2yo9iapljz/icomoon.zip?dl=0](https://dropbox.com/s/hrkub2yo9iapljz/icomoon.zip?dl=0)
+```
+mv /home/s4vitar/Downloads/icomoon.zip .
+unzip icomoon.zip
+mv icomoon/*.ttf .
+rm -rf icomoon
+ls 
+exit
+paru -S nerd-fonts-jetbrains-mono ttf-font-awesome ttf-font-awesome-4 ttf-material-design-icons 
+```
+[sudo] password for s4vitar:
+
+:: Proceed with installation? [Y/n] 
+ 
+Enter
+
+:: Proceed with installation? [Y/n]  
+
+Enter
+
+:: Proceed with installation? [Y/n]  
+
+Enter
+
+### 44:00 - Cargamos la configuración de nuestro entorno en Awesome
+
+
+Click en botón Activities
+
+En type to search buscamos firefox 
+
+Abrimos firefox y vamos a la dirección:
+
+https://github.com/rxyhn/dotfiles
+
+En kitty
+
+[s4vitar@hack4u fonts]$
+```
+cd 
+```
+[s4vitar@hack4u ~]$
+```
+pwd 
+```
+/home/s4vitar
+```
+cd Desktop/s4vitar/repos 
+git clone https://github.com/rxyhn/dotfiles.git
+cd dotfiles
+mkdir /home/s4vitar/.local/bin/
+cp -r config/* ~/.config/
+cp -r bin/* ~/.local/bin/
+cp -r misc/. ~/
+sudo reboot now 
+```
+
+### 45:12 - Migramos a Awesome
+
+Arrancamos ArchLinux, hacemos click en usuario, y antes de loguearnos, en la rueda dentada abajo a la derecha podemos activar awesome:
+
+Seleccionaremos otro escritorio en la rueda dentada abajo a la derecha, donde haciendo click nos muestra cuatro escritorios:
+
+awesome
+
+GNOME
+
+GNOME Classic
+
+GNOME on Xorg
+
+Seleccionamos awesome y nos logueamos.
+
+Como no funciona bien el escritorio, continuamos haciendo modificaciones.
+
+### 45:44 - Arreglamos un pequeño problema en la visualización migrando a un commit
+
+
+Abrimos ventana de texto con
+```
+Alt + F3
+```
+Nos logueamos
+
+```
+cd Desktop/s4vitar/repos
+ls
+cd dotfiles
+git log
+```
+Vamos a volver al commit fix: ui and widgets
+
+```
+xclip
+git log | grep commit 
+git log | grep commit | grep "^c1" | awk 'NR==3'  
+git log | grep commit | grep "c1" | awk 'NR==3' 
+git log | grep commit | grep "c1" | awk 'NR==3' | awk 'NF{print $NF}'
+git log | grep commit | grep "c1" | awk 'NR==3' | awk 'NF{print $NF}' | xclip -sel clip  
+```
+error
+```
+git checkout $(git log | grep commit | grep "c1" | awk 'NR==3' | awk 'NF{print $NF}')
+```
+switching to 'c1e2...'.
+```
+ls 
+history 
+cp -r config/* ~/.config/
+cp -r bin/* ~/.local/bin/
+cp -r misc/ ~/
+sudo reboot now 
+```
+Reiniciamos
+```
+sudo pacman -S --needed base-devel git
+cd Desktop/s4vitar/repos
+git clone https://aur.archlinux.org/awesome-git.git 
+cd awesome-git
+makepkg -fsri
+```
+Obteniendo los paquetes...
+
+ERROR: «pacman» ha fallado al instalar las dependencias que faltaban.
+
+==> Dependencias que faltan:
+
+  -> asciidoctor
+
+  -> cmake
+
+  -> ldoc
+
+  -> xmlto
+
+==> ERROR: No se pudieron resolver todas las dependencias.
+
+
+no se pudo descargar cmake-3.23.0-1-x86_64.pkg.tar.zst
+
+Total (1/4)            10,5 MiB  1250 KiB/s 00:09 [#######################] 100%
+
+error: no se pudo obtener el archivo «cmake-3.23.0-1-x86_64.pkg.tar.zst
+
+pacman -S cmake
+
+no se pudo descargar cmake-3.23.0-1-x86_64.pkg.tar.zst
+
+
+```
+paru -S asciidoctor
+paru -S ldoc
+paru -S xmlto
+paru -S cmake
+sudo pacman -Syu cmake
+makepkg -fsri
+```
+ahora que hemos utilizamos 
+```
+sudo pacman -Syu cmake
+```
+si se instaló awesome-git 
+
+
+
+### 47:55 - Tenemos el entorno de AwesomeWM funcionando correctamente
+
+Nos logueamos
+
+Funciona el volumen
+
+Funciona el área de notificaciones
+
+Abrimos otra ventana con
+```
+Ctrl + Alt + F3
+```
+Nos logueamos como s4vitar
+
+### 48:35 - Cambiamos el tipo de terminal que se lanza por defecto
+```
+Windows + Enter
+```
+no abre consola de terminal
+```
+cd ~/.config/awesome
+ls
+nano rc.lua
+```
+cambiamos
+```
+terminal = "alacritty"
+por
+terminal = "kitty"
+```
+
+Guardamos Ctrl+O y Salimos Ctrl+X
+```
+Ctrl + Windows + R 
+```
+Recargamos la configuración de los terminales y
+```
+Windows + Enter
+```
+abre consola de terminal kitty 
+
+Vamos a la ventana 3
+```
+Ctrl + Alt + F3
+```
+Instalamos el lenguaje de scripts zsh 
+```
+sudo pacman -S zsh 
+```
+[sudo] password for s4vitar:
+
+:: Proceed with installation? [Y/n]  
+
+Enter
+
+Cambiamos termina kitty
+```
+echo $SHELL
+``` 
+/bin/bash
+```
+sudo su  
+```
+[sudo] password for s4vitar:
+
+Nos ponemos como root
+
+Configuramos zsh como lenguaje shell por defecto para el usuairo s4vitar
+```
+usermod --shell /usr/bin/zsh s4vitar 
+```
+
+### 49:49 - Configuramos una ZSH por defecto como tipo de Shell para el usuario no privilegiado
+
+Cerramos kitty y volvemos a abrir
+```
+Windows + Enter
+```
+abre consola de terminal kitty
+
+Y ahora ya está zsh por defecto
+```
+echo $SHELL
+``` 
+/bin/zsh 
+
+### 50:22 - Definimos la distribución del teclado con entorno gráfico
+
+En kitty
+```
+whoami
+```
+s4vitar
+```
+sudo su
+```
+[sudo] password:
+
+Nos ponemos como root
+```
+localectl set-x11-keymap es  
+```
+
+cerramos kitty tecleando:
+```
+Crtl + Win + Q 
+```
+
+Vamos al panel de bloqueo
+
+Nos indentificamos
+```
+Win+Enter
+```
+probamos que funciona el guión la coma y otros
+```
+cat ~/.zshrc 
+```
+
+### 51:01 - Configuramos el archivo zshrc de nuestro usuario
+
+Click en botón Activities
+
+En type to search buscamos firefox 
+
+Abrimos firefox 
+
+Win + 1
+
+Win + 2
+
+Win + 3 
+
+Nos movemos a la segunda pestaña con 
+```
+Win + 2
+```
+En firefox abrimos el sitio:
+
+https://s4vitar.github.io  
+
+En la segunda página vamos a 
+
+Archivos de configuración de Bspwm
+
+Buscamos zshrc 
+
+instalar ese archivo de configuración de zshrc 
+
+```
+vim ~/.zshrc 
+```
+10000 dd
+
+borra todas las líneas
+
+pegamos la nueva configuración
+
+Guardar y cerrar
+
+Cerrar kitty tecleando
+```
+Win + Q
+```
+
+### 52:54 - Instalamos una serie de plugins para la ZSH
+```
+paru -S zsh-syntax-highlighting zsh-autosuggestions 
+```
+passwd:
+```
+sudo pacman -S locate 
+```
+:: Proceed with installation? [Y/n]  
+
+Enter
+```
+sudo updatedb 
+```
+sincronizamos todos los ficheros para que locate funcione correctamente
+```
+locate zsh-syntax-highlighting.zsh 
+```
+/usr/share/zsh/plugins/zsh-sintax-highlighting/zsh-sintax-highlighting.zsh
+```
+locate zsh-autosuggestions.zsh 
+```
+/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+```
+nano ~/.zshrc 
+```
+filtramos por source (tres veces) y llegamos a 
+
+* Plugins
+
+cambiamos
+```
+source /usr/share/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+por 
+source /usr/share/zsh/plugins/zsh-sintax-highlighting/zsh-sintax-highlighting.zsh
+```
+y cambiamos 
+```
+source /usr/share/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+por 
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+```
+Salimos de kitty y abrimos una nueva terminal
+```
+whoami
+```
+y ahora hacemos 
+```
+who 
+```
+está detectando la palabra mediante autosugestion
+```
+cat /etc/passw | grep "osidnf" NO-ENTER 
+```
+tambien nos detecta los colorines
+```
+whoami ESC ESC 
+```
+se cambia a 
+```
+sudo su whoami
+```
+buscar en google el texto: zsh sudo github 
+
+y vamos a 
+
+https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/sudo/sudo.plugin.zsh
+
+vemos el archivo en raw y lo copiamos
+```
+cd /usr/share 
+sudo su 
+```
+passwd: 
+```
+pwd
+```
+/usr/share 
+
+[roo@hack4u share]# 
+```
+mkdir zsh-sudo
+chown s4vitar:s4vitar zsh-sudo/
+cd !$ 
+```
+cd zsh-sudo
+
+[roo@hack4u zsh-sudo]#
+```
+exit
+```
+s4vitar@hack4u /usr/share % 
+```
+cd zsh-sudo 
+```
+s4vitar@hack4u /usr/share/zsh-sudo %
+```
+wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh 
+```
+Cierro con Win + Q 
+
+y abro con Win + Enter
+
+tenemos una nueva terminal kitty
+```
+whoami 
+```
+Esc Esc
+
+y aparece sudo porque ya funciona
+```
+sudo whoami
+```
+
+###  56:42 - Instalamos lsd y bat
+
+```
+pacman -S lsd bat
+```
+ Esc Esc
+```
+sudo pacman -S lsd bat 
+```
+passwd:
+
+:: Proceed with installation? [Y/n]  
+
+Enter
+
+Ahora las cosas se ven mejor presentadas
+```
+cat /etc/passwd
+/bin/cat /etc/passwd 
+ls -l
+sudo su
+cat /etc/passwd
+```
+Una cosa es la zshrc de root y otra cosa es la zshrc de s4vitar
+
+Con un link simbolico vamos a lograr que la zsh de root sea la misma que la de s4vitar 
+```
+paru -S scrub
+```
+:: Proceed with installation? [Y/n]  
+
+Enter
+
+Sirve para borrar archivos con mayor seguridad. Más información:
+
+https://github.com/chaos/scrub/
+
+```
+wich rmk
+cd Desktop
+touch file.txt
+echo "hola" > file.txt
+rmk file.txt
+```
+scrub .... lo borra y es mejor que un rm
+
+### 58:43 - Instalamos y cargamos la fuente HackNerdFonts
+
+En firefox
+ 
+Buscamos en google
+
+HackNerdFonts
+
+y vamos a 
+
+https://www.nerdfonts.com/
+
+Es la fuente a configurar en la kitty
+
+https://www.nerdfonts.com/font-downloads
+
+Descargamos 
+
+https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
+
+Buscamos Hack Nerd Font
+
+Cambiamos a terminal kitty
+```
+sudo su
+cd /usr/share/fonts
+mv /home/s4vitar/Downloads/Hack.zip . 
+mv /home/s4vitar/Descargas/Hack.zip . 
+unzip Hack.zip
+```
+se han extraido en el directorio /usr/share/fonts 
+```
+rm Hack.zip
+```
+
+### 59:54 - Cargamos un archivo de configuración para la Kitty
+```
+cd ~/.config/kitty/
+<s>
+wget https://raw.githubusercontent.com/rxyhn/bspdots/main/config/kitty/kitty.conf
+```
+*** hecho ya  ***
+```
+nano ~/.config/kitty/kitty.conf
+```
+(que no existe)
+
+En firefox
+ 
+Buscamos en google rxyhn
+
+abrimos 
+
+https://github.com/rxyhn
+
+vamos a bspdots 
+
+https://github.com/rxyhn/bspdots
+
+vamos a kitty 
+
+https://github.com/rxyhn/bspdots/tree/main/config/kitty
+
+Abrimos 
+
+https://github.com/rxyhn/bspdots/blob/main/config/kitty/kitty.conf
+
+abrir en modo raw 
+
+Copiamos el contenido de 
+
+kitty.conf 
+
+***fin hecho ya ***
+</s>
+este es le contenido de kitty.conf 
+```
+
+enable_audio_bell no
+
+include color.ini
+
+font_family      Cartograph CF Italic
+
+font_size 11
+
+disable_ligatures never
+
+url_color #fff
+
+url_style curly
+
+shell zsh
+```
+
+Vamos al terminal kitty
+ 
+El contenido de kitty.conf lo pegamos en 
+```
+nano ~/.config/kitty/kitty.conf
+cd ~/.config/kitty 
+```
+Descargamos color.ini desde
+``` 
+wget https://github.com/rxyhn/bspdots/blob/main/config/kitty/color.ini 
+ls 
+```
+
+### 1:00:28 - Definimos una serie de configuraciones para la Kitty
+
+```
+nano kitty.conf 
+```
+cambiamos
+
+```
+font_family Cartograph CF Italic
+por 
+font_family HackNerdFonts 
+```
+cambiamos 
+```
+font_size 11
+por 
+font_size 13
+```
+cambiamos
+```
+url_color #fff
+por
+url_color #61afef  
+```
+En terminal kitty
+``` 
+Con Ctrl + Shif + Enter  Abrimos otro nuevo terminal
+Con Ctrl + Arriba (cambiar arriba)
+y Con Ctrl + Abajo (cambiar abajo)
+Ctrl + Shift + W cierra la ventana 
+Ctrl + Shift + R resizear la ventana 
+(Con s small hace más pequeña la ventana)
+Resize this windows
+Press one of the following keys:
+W - Wider
+N - Narrower
+T - Taller
+S - Shorter
+R - Reset 
+Press Esc to quit resize mode
+Hold donw Ctrl to double step size
+Con q paramos 
+
+Con Crtl + Shif + L reorganiza las ventanas
+```
+continuamos modificando kitty.conf 
+```
+nano kitty.conf 
+```
+debajo de 
+
+url_style curly 
+
+añadimos
+```
+map ctrl+left neighboring_window left 
+map ctrl+right neighboring_window right
+map ctrl+up neighboring_window up
+map ctrl+down neighboring_window down 
+ 
+map f1 copy_to_buffer a 
+map f2 paste_from_buffer a 
+
+map f3 copy_to_buffer b 
+map f4 paste_from_buffer b 
+ 
+cursor_shape beam
+cursor_beam_tickness 1.8
+ 
+mouse_hide_wait 3.0 
+detect_urls yes 
+
+repaint_delay 10
+input_delay 3
+sync_to_monitor yes 
+
+map ctrl+shif+z toggle_layout stack 
+tap_bar_style powerline
+
+inactive_tab_background #e06c75
+active_tab_background #98c379
+inactive_tab_foreground #000000 
+tap_bar_margin_color black
+```
+
+Ctrl + Shif + T
+```
+map ctrl+shift+enter new_window_width_cwd
+map ctrl+shift+t new_window_width_cwd
+```
+Cierro terminal y vuelvo a abrir nueva ventana
+
+Ctrl + Shif + Enter
+
+mantiene el directorio al abrir la nueva ventana
+```  
+background_opacity 0.95
+```
+
+Copiar/pegar
+Crtl + Shift + C 
+Crtl + Shift + V 
+
+Crtl+Shift+Alt+T cambiamos en nombre del terminal kitty  
+Ctrl+Shift+Izda Cambia de terminal
+Crtl+Shift+Dcha
+Crtl+Shift+punto
+``` 
+nano kitty.conf 
+```
+Añadir debajo de 
+
+url_style curly 
+```
+map ctrl+left neighboring_window left 
+map ctrl+right neighboring_window right
+map ctrl+up neighboring_window up
+map ctrl+down neighboring_window down 
+ 
+map f1 copy_to_buffer a 
+map f2 paste_from_buffer a 
+
+map f3 copy_to_buffer b 
+map f4 paste_from_buffer b 
+ 
+cursor_shape beam
+cursor_beam_tickness 1.8
+ 
+mouse_hide_wait 3.0 
+detect_urls yes 
+
+repaint_delay 10
+input_delay 3
+sync_to_monitor yes 
+
+map ctrl+shif+z toggle_layout stack 
+tap_bar_style powerline
+
+inactive_tab_background #e06c75
+active_tab_background #98c379
+inactive_tab_foreground #000000 
+tap_bar_margin_color black
+
+map ctrl+shift+enter new_window_width_cwd
+map ctrl+shift+t new_window_width_cwd
+  
+background_opacity 0.95
+```
+
+
+### 1:08:42 - Retocamos el archivo de configuración de PICOM
