@@ -2310,7 +2310,7 @@ ls
 ```
 debemos cambiar el archivo awesome.png
 ``` 
-kitty +kitten icat awesome 
+kitty +kitten icat awesome.png  
 rm awesome.png 
 ```
 
