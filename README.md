@@ -1,30 +1,11 @@
 # arch4hack. 
-## Ayuda para configurar el entorno de trabajo propuesto por s4vitar en abril de 2022. 
-
-
-ASÍ es el ENTORNO de un HACKER https://www.youtube.com/watch?v=fshLf6u8B-w&t=2393s por s4vitar 
-
-[![ASÍ es el ENTORNO de un HACKER](http://img.youtube.com/vi/fshLf6u8B-w/0.jpg)](http://www.youtube.com/watch?v=fshLf6u8B-w "ASÍ es el ENTORNO de un HACKER")
-
-Referencias markdown en https://www.netmentor.es/Entrada/lenguaje-markdown 
-
-Etiquetas de código bash https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md
-
-### 00:00 - Introducción 
-
-### 03:00 - Os hago un tour por el nuevo entorno
-
-### 13:23 - Comenzamos a crear nuestro entorno desde cero
-
-### 13:28 - Descargamos la ISO de Arch y la cargamos en VMWare o VirtualBox
-
-VMWare Workstation Pro 15.5
+## Entorno de trabajo  abril de 2022. 
 
 1. https://archlinux.org/download/
 2. http://ftp.rediris.es/mirror/archlinux/iso/2022.04.05/
 3. http://ftp.rediris.es/mirror/archlinux/iso/2022.04.05/archlinux-2022.04.05-x86_64.iso
 
-### 14:00 - Definimos las propiedades de nuestra máquina virtual
+Propiedades de la máquina virtual (Virtual box)
 Nueva maquina virtual
 - Typical(recomended)
 - Selec=Installer disk image file (iso)
@@ -42,13 +23,10 @@ Nueva maquina virtual
 - Abre modo instalación de Archlinux
 - Selec=Arch Linux install medium (x86_64, BIOS)
 
-Ayuda con la configuración en VirtualBox:
-- Pasando de Noob a Pro de Linux en 20 Minutos https://www.youtube.com/watch?v=VoJOOx2WLy0 por Antonio Sarosi
-- Desarrollando mi Escritorio "Pro" en Arch Linux https://www.youtube.com/watch?v=tJtVDUSyvCY por Antonio Sarosi
 
-Nos abre la consola root@archiso donde seremos el usuario root
+### Nos abre la consola root@archiso donde seremos el usuario root
 
-```console
+```
 whoami 
 ````
 El terminal nos responde: root
@@ -63,7 +41,7 @@ ping -c 1 google.es
 ```
 
 
-### 15:48 - Definimos las particiones del sistema con cfdisk
+### Particiones con cfdisk
 ```console
 cfdisk
 ```
@@ -81,7 +59,7 @@ cfdisk
 - Primary
  -Añade= /dev/sda2
 
-### 17:50 - Definimos la partición correspondiente al SWAP
+### Nuestra partición SWAP
 
 - New 
 - Partition size: 4.5GB
@@ -97,7 +75,7 @@ cfdisk
 ```
 Veremos sda, sda1, sda2, sda3
 
-### 18:25 - Procedemos a formatear las particiones que hemos definido
+### Formatear nuestras particiones
 
 formato a la partición para el arranque
 ```console 
@@ -116,54 +94,23 @@ swapon
 ```
 (se activan los cambios del swap)
 
-### 19:24 - Creamos un par de monturas para posteriormente ingresar a nuestro sistema
+### Montamos sda2 en /mnt y sda1 en /mnt/boot
 
 ```console
 mount /dev/sda2 /mnt
 mkdir /mnt/boot
-```
-
-si no efi
-```console
 mount /dev/sda1 /mnt/boot
 ```
-si efi
-```console
-mkdir /mnt/boot/efi
-mount /dev/sda1 /mnt/boot/efi 
-```
 
-### 19:45 - Instalamos una serie de paquetes necesarios con pacstrap
+### Instalamos algunos paquetes con pacstrap
 
 ```
 pacstrap /mnt linux linux-firmware networkmanager grub wpa_supplicant base base-devel
 ```
-Si efi, ver:
 
-https://bbs.archlinux.org/viewtopic.php?id=252051
 
-https://wiki.archlinux.org/title/EFI_system_partition
 
-https://wiki.archlinux.org/title/GRUB
 
-<s>si efi 
- ```
-pacstrap /mnt efibootmgr
-```
-
-si efi --------------
- ```
-mkinitcpio -p linux
-```
-
-```
-grub-install /dev/sda
-grub-install --target=x86_64-efi /dev/sda
-grub-install --efi-directory=/boot/efi --target=x86_64-efi /dev/sda
-```
- 
-fin si efi --------
- </s>
  
 ### 20:23 - Creamos un archivo fstab
 
@@ -2558,4 +2505,44 @@ neofetch
 ```
 I use arch by the way
 
+ASÍ es el ENTORNO de un HACKER https://www.youtube.com/watch?v=fshLf6u8B-w&t=2393s por s4vitar 
+
+[![ASÍ es el ENTORNO de un HACKER](http://img.youtube.com/vi/fshLf6u8B-w/0.jpg)](http://www.youtube.com/watch?v=fshLf6u8B-w "ASÍ es el ENTORNO de un HACKER")
+
+Referencias markdown en https://www.netmentor.es/Entrada/lenguaje-markdown 
+
+Etiquetas de código bash https://github.com/highlightjs/highlight.js/blob/main/SUPPORTED_LANGUAGES.md
+
+
+Ayuda con la configuración en VirtualBox:
+- Pasando de Noob a Pro de Linux en 20 Minutos https://www.youtube.com/watch?v=VoJOOx2WLy0 por Antonio Sarosi
+- Desarrollando mi Escritorio "Pro" en Arch Linux https://www.youtube.com/watch?v=tJtVDUSyvCY por Antonio Sarosi
+
+Si efi, ver:
+
+https://bbs.archlinux.org/viewtopic.php?id=252051
+
+https://wiki.archlinux.org/title/EFI_system_partition
+
+https://wiki.archlinux.org/title/GRUB
+
+<s>si efi 
+ ```
+pacstrap /mnt efibootmgr
+```
+
+si efi --------------
+ ```
+mkinitcpio -p linux
+```
+```
+grub-install /dev/sda
+grub-install --target=x86_64-efi /dev/sda
+grub-install --efi-directory=/boot/efi --target=x86_64-efi /dev/sda
+```
+ 
+fin si efi --------
+ </s>
 Más información en s4vitar discord
+
+
