@@ -2321,3 +2321,123 @@ y se cambia el icono "a"
 
 ### 1:31:05 - Creamos nuestros propios shortcuts para abrir aplicaciones (rc.lua)
 
+configuramos para abrif firefox con las teclas: Win+Shift+F abrir 
+```
+cd ~/.config/awesome/ 
+nano rc.lua 
+``` 
+
+buscamos en Default Applications
+```
+browser = "firefox" 
+```
+y se deja así
+
+```
+ls
+cd configuration 
+o 
+cd ~/.config/awesome/configuration
+
+nano keys.lua 
+```
+o directamente podriamos hacer:
+
+```
+nano ~/.config/awesome/configuration/keys.lua 
+```
+filtramos por browser y cambiamos 
+```
+awful.key({modkey}, "w", function()
+awful.spawn.with_shell(browser) 
+end,
+```  
+por
+``` 
+awful.key({modkey, "Shift"}, "f", function()
+awful.spawn.with_shell(browser) 
+end, 
+```
+guardamos y salimos
+```
+Win+Ctrl+R 
+``` 
+Recargar la configuración, y haciendo
+```
+Win+Shift+f 
+```
+Se abre firefox
+
+
+
+
+
+### 1:31:56 - Creamos otro shortcut como modo de ejemplo
+
+instalamos un proxy para interceptar peticiones = burpsuite 
+```
+sudo pacman -S burpsuite
+```
+passwd:
+
+Enter (instala 1) jre-openjdk)
+
+ya instalado lo 
+
+abrimos en la segunda ventana
+```
+burpsuite
+```
+Term y conditions  
+
+I Aceppt 
+
+y Delete
+
+close 
+
+next 
+
+start here 
+
+start Burp 
+
+Tema oscuro
+
+User options -> Display -> Theme = Dark , Font-size = 15 
+
+Configurar shortcut 
+```
+cd ~/.config/awesome/ 
+nano rc.lua 
+```
+En 
+
+-- Default Applications
+debajo de browser añadimos una variable por ejemplo 
+```
+burp_proxy = "burpsuite" 
+```
+Guardamos y salimos
+```
+cd ~/.config/awesome/configuration
+nano keys.lua
+o 
+nvim keys.lua 
+```
+filtramos por browser y añadimos 
+``` 
+awful.key({modkey,"Shift"}, "b", function()
+            awful.spawn.with_shell(burp_proxy)
+        end,
+        {description = "open burpsuite", group = "launcher"}),
+```
+o
+```	
+awful.key({modkey, "Shift"}, "b", function()
+awful.spawn.with_shell(burp_proxy) 
+end, 
+{description = "open burpsuite", group = "launcher"}),
+```
+
+### 1:36:00 - Instalamos algunas herramientas de pentesting
