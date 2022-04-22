@@ -109,44 +109,25 @@ pacstrap /mnt linux linux-firmware networkmanager grub wpa_supplicant base base-
 ```
 
 
+###  Creamos un archivo fstab guardando genfstab -U /mnt  en /nmt/etc/fstab
 
-
- 
-### 20:23 - Creamos un archivo fstab
-
-```
-genfstab -U /mnt
-```
-crea un archivo con el siguiente contenido
-
-/dev/sda2 UUID=ee....ee /   ext4  rw,relatime 0,1 
-
-/dev/sda1 UUID=ee....ee /boot   vfat  rw,relatime,fmask=0022,dmask=0022,codepage=437,iocharset=ascii,shortname=mixed,utf8,error=remount-ro 0,2 
-
-
-Esto lo guardamos en el archivo /nmt/etc/fstab
-```
+```console
 genfstab -U /mnt > /mnt/etc/fstab
-
 cat !$
 ```
 cat /mnt/etc/fstab
 
-### 20:58 - Ingresamos a nuestro sistema con arch-chroot
+### Ingresamos a nuestro sistema con arch-chroot
 
 ```
 arch-chroot /mnt
 ```
-[root@archiso /]#
 
-Este va a ser nuestro sistema
-
-### 21:12 - Creamos y definimos las contraseñas de nuestros usuarios
+### Creamos y definimos las contraseñas de nuestros usuarios
 
 ```
 passwd 
 ```
-
 New password: 
 Retype new password: 
 
@@ -156,24 +137,20 @@ Ahora nos creamos nuestro usuario:
 ```
 ls /home/
 ```
-
 en home no hay ningún directorio
 
 Al crear el usuario también nos crea su directorio personal 
-
 ```
 useradd -m s4vitar
 ls /home/ -l
 ```
-
 drwx------ 2 s4vitar s4vitar
-
 ```
 passwd s4vitar
 ```
 dmndjcksn
 
-### 21:51 - Asignamos a nuestro usuario al grupo wheel e instalamos el paquete de sudo
+### Asignamos nuestro usuario al grupo wheel e instalamos los paquetes de sudo, vim y nano
 
 ``` 
 usermod -aG wheel s4vitar
@@ -186,7 +163,7 @@ pacman -S vim nano
 ```
 teclear Y
 
-### 22:47 - Asignamos un privilegio a nivel de sudoers para nuestro usuario
+### Asignamos un privilegio a nivel de sudoers para nuestro usuario
 
 ```
 cp /etc/sudoers /home/s4vitar/Desktop/s4vitar/repos/arch4hack/etc/sudoers 
@@ -234,14 +211,12 @@ exit
 exit
 ```
 
-### 23:27 - Configuramos las regiones
+### Configuramos las regiones
 
 ```
 nano /etc/locale.gen
 ```
-
-ctrl+w y filtrar por en_US y 
-descomentamos
+ctrl+w y filtrar por en_US y descomentamos
 
 en_US.UTF-8 UTF-8
 
@@ -264,14 +239,14 @@ Guardamos Ctrl+O y Salimos Ctrl+X
 
 La proxima vez que se reinicie estará bien el teclado
 
-### 24:20 - Instalamos el bootloader (GRUB)
+### Instalamos el bootloader (GRUB)
 
 ```
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-### 24:52 - Definimos un par de archivos necesarios en el sistema
+### Definimos  /etc/hostname, /etc/hosts. Instalamos neofetch.
 
 ```
 cat /etc/hostname
@@ -304,7 +279,7 @@ exit
 ```
 
 
-### 26:06 - Verificamos que el GRUB ha sido instalado correctamente
+### Verificamos que GRUB está instalado correctamente
 
 Reiniciar
 
@@ -324,7 +299,7 @@ Enter
 
 [s4vitar@hack4u ~]$
 
-### 26:40 - Habilitamos el servicio que nos permitirá tener conexión a internet
+### Habilitamos el servicio para conectar a internet
 
 [s4vitar@hack4u ~]$ 
 
@@ -352,7 +327,7 @@ ping -c 1 google.com
 systemctl enable wpa_supplicant.service
 ```
 
-### 27:33 - Habilitamos AUR para tener acceso a una mayor cantidad de paquetes
+### Habilitamos AUR para tener acceso a una mayor cantidad de paquetes
 
 Repositorio de la cdad arch-chroot
 ```
