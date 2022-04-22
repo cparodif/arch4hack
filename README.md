@@ -2441,3 +2441,121 @@ end,
 ```
 
 ### 1:36:00 - Instalamos algunas herramientas de pentesting
+
+```
+sudo su 
+pacman -S evil-winrm python-pip responder nmap whatweb wfuzz gobuster 
+```
+instalarlos
+```
+pacman -S metasploit
+```
+da error y probamos con 
+``` 
+sudo pacman -Syu metasploit
+```
+funciona  bien
+```
+msfconsole 
+```
+msf6 > 
+```
+search eternalblue 
+exit 
+nmap
+whatweb 
+smbserver.py smbFolder $(pwd) -smb2support 
+```
+
+#### 1:37:33 - Configuramos las teclas Inicio, Fin y Supr
+
+
+Hay que arreglarlo en el zshrc
+```
+# nvim ~/.zshrc 
+o 
+# nano ~/.zshrc 
+```
+al final del archivo hay que añadir:
+```
+bindkey "^[[H" beginning-of-line 
+
+bindkey "^[[F" end-of-line
+bindkey "^[[3~" delete-char 
+```
+
+guardamos y salimos
+
+
+
+
+### 1:39:09 - Optimizamos la movilidad por consola con la definición de nuevos atajos
+```
+nvim ~/.zshrc 
+o 
+nano ~/.zshrc 
+```
+al final del archivo hay que añadir:
+```
+bindkey "^[[1;3C" forwad-word
+bindkey "^[[1;3D" backward-word 
+```
+Alt izda y Alt dcha saltan palabras en un párrafo del terminal
+
+
+guardamos y salimos
+
+Aplican para root y para s4vitar porque están enlazados por un link simbolico 
+
+
+
+
+### 1:40:13 - Instalamos mdcat para la visualización por consola de archivos Markdown
+
+```
+sudo pacman -S mdcat 
+nvim test.md
+```
+Esto es una **prueba**:
+
+
+python 
+```
+#!/usr/bin/python3
+from pwn import *
+print("Hola")  
+```
+
+Este script hace las siguiente cosas.
+
+- Hola
+- Probando
+- Adios
+
+Guardar y salir
+```
+mdcat test.md
+```
+se puede ver por consola
+
+
+### 1:42:04 - Conclusiones finales y despedida
+
+Probar el centro de notificaciones (campana)
+
+click en Icono de inicio abre ventana de estado y hace resize de las otras ventanas
+
+```
+Win+Enter y Win+Enter 
+```
+
+```
+Win+Espacio
+```
+modos de visualizacion de las ventanas de trabajo
+```
+neofetch 
+```
+I use arch by the way
+
+Más información en s4vitar discord
