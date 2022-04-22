@@ -1,5 +1,4 @@
-# arch4hack. 
-## Entorno de trabajo  abril de 2022. 
+# arch4hack.  abril de 2022. 
 
 1. https://archlinux.org/download/
 2. http://ftp.rediris.es/mirror/archlinux/iso/2022.04.05/
@@ -104,7 +103,7 @@ mount /dev/sda1 /mnt/boot
 
 ### Instalamos algunos paquetes con pacstrap
 
-```
+```console
 pacstrap /mnt linux linux-firmware networkmanager grub wpa_supplicant base base-devel
 ```
 
@@ -119,13 +118,13 @@ cat /mnt/etc/fstab
 
 ### Ingresamos a nuestro sistema con arch-chroot
 
-```
+```console
 arch-chroot /mnt
 ```
 
 ### Creamos y definimos las contraseñas de nuestros usuarios
 
-```
+```console
 passwd 
 ```
 New password: 
@@ -134,7 +133,7 @@ Retype new password:
 introducimos el password para el usuario root
 
 Ahora nos creamos nuestro usuario:
-```
+```console
 ls /home/
 ```
 en home no hay ningún directorio
@@ -143,7 +142,7 @@ Al crear el usuario también nos crea su directorio personal
 ```
 useradd -m s4vitar
 ls /home/ -l
-```
+```console
 drwx------ 2 s4vitar s4vitar
 ```
 passwd s4vitar
@@ -152,12 +151,12 @@ dmndjcksn
 
 ### Asignamos nuestro usuario al grupo wheel e instalamos los paquetes de sudo, vim y nano
 
-``` 
+``` console
 usermod -aG wheel s4vitar
 groups s4vitar
 ```
 wheel s4vitar
-```
+```console
 pacman -S sudo
 pacman -S vim nano
 ```
@@ -165,28 +164,26 @@ teclear Y
 
 ### Asignamos un privilegio a nivel de sudoers para nuestro usuario
 
-```
-cp /etc/sudoers /home/s4vitar/Desktop/s4vitar/repos/arch4hack/etc/sudoers 
-
+```console
 nano /etc/sudoers
 ```
 Descomentamos la línea:
 
-- ## Uncomment to allow members of group wheel to execute any command
+- \## Uncomment to allow members of group wheel to execute any command
 
 %wheel ALL=(ALL:ALL) ALL
 
 si hacemos 
-```
+```console
 sudo su 
 ```
 pide la contraseñas
 
 Si descomentamos la línea
-- ## Same thing without a passord
+- \## Same thing without a passord
 %wheel ALL=(ALL:ALL) NOPASSWD: ALL
 cuando hacemos 
-```
+```console
 sudo su 
 ```
 No pide la contraseñas
@@ -196,24 +193,24 @@ Guardamos Ctrl+O y Salimos Ctrl+X
 
 [s4vitar@archiso /]$
 Cambiamos a usuario s4vitar
-```
+```console
 su s4vitar
 id
 ```
 uid=1000(s4vitar) gid=1000(s4vitar) groups=1000(svitar),998(wheel)
-```
+```console
 sudo su
 ```
 [root@archiso /]#
 
-```
+```console
 exit
 exit
 ```
 
 ### Configuramos las regiones
 
-```
+```console
 nano /etc/locale.gen
 ```
 ctrl+w y filtrar por en_US y descomentamos
@@ -226,7 +223,7 @@ es_ES.UTF-8 UTF-8
 
 Guardamos Ctrl+O y Salimos Ctrl+X
 
-```
+```console
 locale-gen
 loadkeys es
 nano /etc/vconsole.conf
@@ -241,23 +238,23 @@ La proxima vez que se reinicie estará bien el teclado
 
 ### Instalamos el bootloader (GRUB)
 
-```
+```console
 grub-install /dev/sda
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 ### Definimos  /etc/hostname, /etc/hosts. Instalamos neofetch.
 
-```
+```console
 cat /etc/hostname
 ```
 no existe
 
-```
+```console
 echo hack4u > /etc/hostname
 ```
 hack4u
-```
+```console
 cat !$
 nano /etc/hosts
 ```
@@ -271,7 +268,7 @@ hack4u.localhost hack4u
 
 Guardamos Ctrl+O y Salimos Ctrl+X
 
-```
+```console
 ls
 pacman -S neofetch
 neofetch
@@ -283,7 +280,7 @@ exit
 
 Reiniciar
 
-```
+```console
 reboot now
 ```
 ...
@@ -303,34 +300,33 @@ Enter
 
 [s4vitar@hack4u ~]$ 
 
-```
+```console
 ping -c 1 google.es
 ```
 
 failure
 
-```
+```console
 sudo systemctl star NetworkManager.service
 ```
 [sudo] password for s4vitar:
 
-```
+```console
 sudo su
 systemctl enable NetworkManager
 ping -c 1 google.com
 ```
 1 packets transmitted, 1 received
 
-```
- systemctl start wpa_supplicant.service
-
+```console
+systemctl start wpa_supplicant.service
 systemctl enable wpa_supplicant.service
 ```
 
 ### Habilitamos AUR para tener acceso a una mayor cantidad de paquetes
 
 Repositorio de la cdad arch-chroot
-```
+```console
 pacman -S git
 ```
 
@@ -340,11 +336,11 @@ Y
 
 Enter
 
-```
+```console
 pwd
 ```
 /home/s4vitar
-```
+```console
 exit
 whoami
 cd
@@ -352,12 +348,12 @@ pwd
 ```
 /home/s4vitar
 
-```
+```console
 mkdir -p Desktop/s4vitar/repos
 cd !$
 ```
 cd Desktop/s4vitar/repos
-```
+```console
 ls
 git clone https://aur.archlinux.org/paru-bin.git
 ls
@@ -366,22 +362,22 @@ ls
 ```
 PKGBUILD
 
-```
+```console
 makepkg -si 
 ```
 [sudo] password for s4vitar:
 
 (Yes/No) Y
 
-### 28:57 - Instalamos los repositorios de BlackArch en Arch Linux
+### Instalamos los repositorios de BlackArch en Arch Linux
 
 [s4vitar@hack4u repos]$
-```
+```console
 mkdir blackarch
 pwd
 ```
 /home/s4vitar/Desktop/s4vitar/repos
-```
+```console
 ls
 blackarch paru-bin
 cd blackarch
@@ -391,11 +387,11 @@ curl -O https://blackarch.org/strap.sh
 ls -l
 ```
 veremos strap.sh (-rw-r--r-- sin permisos de ejecución)
-```
+```console
 chmod +x strap.sh
 ```
 (hemos dado permisos de ejecución)
-```
+```console
 sudo su
 ./strap.sh 
 pacman -Sy
