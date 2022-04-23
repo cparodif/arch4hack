@@ -379,7 +379,9 @@ pwd
 /home/s4vitar/Desktop/s4vitar/repos
 ```console
 ls
+```
 blackarch paru-bin
+```
 cd blackarch
 ls
 curl
