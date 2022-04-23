@@ -1926,7 +1926,7 @@ Ctrl+Win+Q  Panel de bloqueo y nos logueamos
 
 ### 1:17:52 - Instalamos y configuramos la Powerlevel10k
 ```
-cd ~/Desktop/solrac/repos   
+cd ~/Desktop/s4vitar/repos   
 ```
 
 abrimos firefox desde el terminal kitty
@@ -2010,7 +2010,7 @@ Instant Prompt Mode
 Ya está casi configurado
 
 ```
-nano /home/solrac/.p10k.zsh 
+nano /home/s4vitar/.p10k.zsh 
 ```
 o bien: nano ~/.p10k.zsh 
 

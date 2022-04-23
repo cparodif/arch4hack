@@ -403,9 +403,9 @@ pacman -Sy
 - community
 - blackarch
 
-### 30:46 - ¿Cómo podemos instalar herramientas de pentesting?
+### ¿Cómo podemos instalar herramientas de pentesting?
 
-Para listar todas las herramientas contempladas por blackarch (a la izquierda son las categorías y a la derecha son las herramientas)
+Listar todas las herramientas contempladas por blackarch (a la izquierda son las categorías y a la derecha son las herramientas)
 ```
 pacman -Sgg | grep blackarch 
 ```
@@ -1844,7 +1844,7 @@ Ctrl+Win+Q  Panel de bloqueo y nos logueamos
 
 ### 1:17:52 - Instalamos y configuramos la Powerlevel10k
 ```
-cd ~/Desktop/solrac/repos   
+cd ~/Desktop/s4vitar/repos   
 ```
 
 abrimos firefox desde el terminal kitty
@@ -1928,7 +1928,7 @@ Instant Prompt Mode
 Ya está casi configurado
 
 ```
-nano /home/solrac/.p10k.zsh 
+nano /home/s4vitar/.p10k.zsh 
 ```
 o bien: nano ~/.p10k.zsh 
 
@@ -2220,7 +2220,7 @@ nvim +'hi NormalFloat guibg=#1e222a' +PackerSync
 ### 1:30:27 - Configuramos imágenes personalizadas en la barra de tareas
 
 - como usuario s4vitar 
-
+su s4vitar
 vamos a 
 ```
 cd .config/awesome/theme/assets/icons
