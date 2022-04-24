@@ -640,9 +640,13 @@ Buscamos donde está la iso y la montamos en
 /mnt/VBoxGuestAdditions
 ```
 Con locate vitualbox encontramos la iso en:
-``` /usr/lib/virtualbox/additions/VBoxGuestAdditions.iso
+
+``` 
+ /usr/lib/virtualbox/additions/VBoxGuestAdditions.iso
 ```
+
 Ahora 
+
 ```
 cd /usr/lib/virtualbox/additions/
 ls
@@ -1021,7 +1025,7 @@ cd dotfiles
 git log
 ```
 Vamos a volver al commit fix: ui and widgets
-
+https://github.com/rxyhn/dotfiles/tree/c1e2eef2baa91aebd37324891cb282666beae04f
 ```
 xclip
 git log | grep commit 
