@@ -2,25 +2,108 @@
 
 1. https://archlinux.org/download/
 2. http://ftp.rediris.es/mirror/archlinux/iso/2022.04.05/
-3. http://ftp.rediris.es/mirror/archlinux/iso/2022.04.05/archlinux-2022.04.05-x86_64.iso
+3. http://ftp.rediris.es/mirror/archlinux/iso/2022.04.05/archlinux-2022.04.05-x86_64.iso el archivo descargado falla
 
+4. https://mirror.rackspace.com/archlinux/iso/2022.04.05/archlinux-2022.04.05-x86_64.iso el archivo descargado falla
+
+
+5. http://mirror.rackspace.com/archlinux/iso/2022.04.05/
+
+Abrir VirtualBox  
+Archivo -> preferencias
+Idioma= Español
+Pantalla 
+  Tamaño máximo de pantalla de invitado:
+  - Sugerencia
+  Anchura= 1280
+  Altura= 720
+Red
+  Nombre= NatNetwork
+  Red CIDR= 10.0.2.0/24
+  Pociones de red= Soporta DHCP: Si Check
+Extensiones
+  Oracle VM VirtualBox Extension Pack 
+Proxy= Conexion directa a Internet
+
+Máquina -> Nueva 
+nombreNuevaMáquina = archlinux 
 Propiedades de la máquina virtual (Virtual box)
 Nueva maquina virtual
-- Typical(recomended)
-- Selec=Installer disk image file (iso)
-- Selec=Linux
-- Selec=Debian 5 64bit
-- Virtual machine name= Arch Linux Tutorial
-- Max disk size= 20GB (80GB)
-- Selec=Store virtual disk as a single file
-- Customize hardware 
-- Memoria ram= 4GB
-- Procesadores=2
-- Network adapter= Bridgeed: Connected directily to the physical network
-- Selec= Replicate physical network connection state (el router asigna IP)
-- Play (arrancar la máquina virtual)
+
+- NombreMaquinaVirtual= archlinux
+- carpeta= D:\virtualbox
+- Tipo= mLinux
+- Versión= Arch Linux (64-bit)
+-> Siguiente
+- TamañoDeMemoriaRAM= 3072MB
+-> Siguiente
+Disco Duro
+- Crear un disco duro virtual ahora
+-> Crear
+Tipo de archivo de disco duro
+- VDI (VirtualBox Disk Image)
+-> Next
+Almacenamiento en unidad de disco duro física
+- Tamaño fisico
+-> Next
+Ubicación del archivo y tamaño
+- Seleccionar ruta y archivo .vdi (por defecto)
+- Tamaño unidad disco duro virtual = 25GB  
+->Crear
+
+Tarda un tiempo y vemos nuestra máquina virtual que la vamos a configurar:
+-> Configuración
+General
+- Avanzado
+  Compartir portapapeles= Bidireccional
+  Arrastrar y soltar= Bidireccional
+Sistema
+- Placa base 
+  Chipset PIIX3
+  No Habilitar EFI
+- Procesador
+  Procesadores= 2
+- Pantalla
+  Memoria de video= 128 MB
+  Controlador gráfico= VMSVGA
+Almacenamiento 
+  Controlador: IDE
+  - Vacío
+  Controaldor: SATA
+  - archlinux.vdi
+Red
+- Adaptador 1
+  Conectado a: Adaptador puente (bridge)
+  Nombre: Intel(R) ...
+USB
+- Habililtar controlador USB= Si check
+  Seleccionar= Controlador USB 3.0 xHCI
+    
+ 
+- Iniciar (arrancar la máquina virtual)
+Seleccionar disco de inicio:
+  Clic en icono= Seleccionar un archivo de disco óptico virtual.
+  En ventana Selector de disco óptico
+  Clic en Añadir +:
+  Seleccione un archivo de disco ópitco virtual
+  Vamos a Este equipo > Descargas
+  archlinux-2022.04.05-x86_64.iso 
+  -> Abrir 
+  Si falla el archivo de instalación, tendremos que apagar la máquina y buscar otra imagen.
+VirtualBox administrador
+  Maquina archlinux
+  Configuracion
+  Almacenamiento 
+  Controlador Ide
+  Unidad Optica
+  Cargar archlinux-2022.04.05-x86_64.iso 
+->  Iniciar
+  
 - Abre modo instalación de Archlinux
 - Selec=Arch Linux install medium (x86_64, BIOS)
+- Probin EDD ...
+- Se abre un terminal 
+root@archiso~ # 
 
 
 ### Nos abre la consola root@archiso donde seremos el usuario root
@@ -38,7 +121,10 @@ Validar si tenemos internet
 ```console
 ping -c 1 google.es
 ```
-
+```console
+echo $SHELL 
+```
+/usr/bin/zsh 
 
 ### Particiones con cfdisk
 ```console
@@ -52,9 +138,9 @@ cfdisk
 - Añade= /dev/sda1
 
 - Ir a free space
-- Restar 4.5GB al espacio libre 19.5GB=15GB
+- Restar 4.5GB al espacio libre 24.5GB=20GB
 - New 
-- Partition size: 15GB
+- Partition size: 20GB
 - Primary
  -Añade= /dev/sda2
 
@@ -140,25 +226,24 @@ en home no hay ningún directorio
 
 Al crear el usuario también nos crea su directorio personal 
 ```
-useradd -m s4vitar
+useradd -m solr4c
 ls /home/ -l
 ```console
-drwx------ 2 s4vitar s4vitar
+drwx------ 2 solr4c solr4c
 ```
-passwd s4vitar
+passwd solr4c
 ```
-dmndjcksn
+xxxxxxxx
 
 ### Asignamos nuestro usuario al grupo wheel e instalamos los paquetes de sudo, vim y nano
 
 ``` console
-usermod -aG wheel s4vitar
-groups s4vitar
+usermod -aG wheel solr4c
+groups solr4c
 ```
-wheel s4vitar
+wheel solr4c
 ```console
-pacman -S sudo
-pacman -S vim nano
+pacman -Syu sudo vim nano
 ```
 teclear Y
 
@@ -173,6 +258,8 @@ Descomentamos la línea:
 
 %wheel ALL=(ALL:ALL) ALL
 
+
+
 si hacemos 
 ```console
 sudo su 
@@ -182,22 +269,24 @@ pide la contraseñas
 Si descomentamos la línea
 - \## Same thing without a passord
 %wheel ALL=(ALL:ALL) NOPASSWD: ALL
+
+Guardamos Ctrl+O y Salimos Ctrl+X
+
 cuando hacemos 
 ```console
 sudo su 
 ```
 No pide la contraseñas
 
-Guardamos Ctrl+O y Salimos Ctrl+X
 
 
-[s4vitar@archiso /]$
-Cambiamos a usuario s4vitar
+[solr4c@archiso /]$
+Cambiamos a usuario solr4c
 ```console
-su s4vitar
+su solr4c
 id
 ```
-uid=1000(s4vitar) gid=1000(s4vitar) groups=1000(svitar),998(wheel)
+uid=1000(solr4c) gid=1000(solr4c) groups=1000(svitar),998(wheel)
 ```console
 sudo su
 ```
@@ -251,20 +340,23 @@ cat /etc/hostname
 no existe
 
 ```console
-echo hack4u > /etc/hostname
+echo minihost > /etc/hostname
 ```
-hack4u
+minihost
 ```console
 cat !$
+```
+cat /etc/hostname 
+minihost 
+
+```
 nano /etc/hosts
 ```
 127.0.0.1		localhost
 
 ::1				localhost
 
-127.0.0.1		
-
-hack4u.localhost hack4u
+127.0.0.1		minihost.localhost minihost
 
 Guardamos Ctrl+O y Salimos Ctrl+X
 
@@ -277,28 +369,52 @@ exit
 
 
 ### Verificamos que GRUB está instalado correctamente
+estamos en [root@archiso /]#
+exit
+estamos en [root@archiso /]#
+exit
+
+una vez estemos en 
+root@archiso ~ # 
 
 Reiniciar
 
 ```console
-reboot now
+halt 
 ```
-...
-Selec=Arch Linux
-
-Enter
-
-login: savitar
+Extraer 
+VirtualBox administrador
+  Maquina archlinux
+  Configuracion
+  Almacenamiento 
+  Controlador Ide
+  Unidad Optica
+  IDE primario maestro 
+  En disco azul
+  Eliminar disco de la unidad virtual
+  y desaparece
+  archlinux-2022.04.05-x86_64.iso 
+  y queda
+  Vacio
+  -> Aceptar
+  -> Iniciar 
+  Selec=Arch Linux
+  Grub welcom to grub 
+  ArchLinux
+  minihost login:
+  
+  
+login: solr4c
 
 passord: ...
 
 Enter
 
-[s4vitar@hack4u ~]$
+[solr4c@minihost ~]$
 
 ### Habilitamos el servicio para conectar a internet
 
-[s4vitar@hack4u ~]$ 
+[solr4c@minihost ~]$ 
 
 ```console
 ping -c 1 google.es
@@ -307,9 +423,9 @@ ping -c 1 google.es
 failure
 
 ```console
-sudo systemctl star NetworkManager.service
+sudo systemctl start  NetworkManager.service
 ```
-[sudo] password for s4vitar:
+[sudo] password for solr4c:
 
 ```console
 sudo su
@@ -327,7 +443,46 @@ systemctl enable wpa_supplicant.service
 
 Repositorio de la cdad arch-chroot
 ```console
-pacman -S git
+pacman -S git 
+pacman -S impacket
+pacman -S xorg xorg-server
+pacman -S gnome
+pacman -Syu 
+pacman -S gnome
+pacman -S kitty
+pacman -S gtkmm 
+pacman -S virtualbox-guest-iso
+pacman -S firefox
+pacman -Syu cmake 
+pacman -S wget
+pacman -S p7zip
+pacman -S --needed base-devel git
+pacman -S zsh 
+pacman -S locate 
+pacman -S lsd bat 
+pacman -S feh
+pacman -S neovim
+pacman -S python-pip nmap whatweb 
+pacman -S mdcat
+pacman -Syu metasploit
+```
+Reiniciar
+
+minihost login:
+ 
+login: solr4c
+
+passord: ...
+
+Enter
+
+[solr4c@minihost ~]$
+
+
+
+```
+no ----
+
 ```
 
 (Yes/No) 
@@ -339,22 +494,23 @@ Enter
 ```console
 pwd
 ```
-/home/s4vitar
+/home/solr4c
 ```console
 exit
 whoami
 cd
 pwd
 ```
-/home/s4vitar
+/home/solr4c
 
 ```console
-mkdir -p Desktop/s4vitar/repos
+mkdir -p Desktop/solr4c/repos
 cd !$
 ```
-cd Desktop/s4vitar/repos
+cd Desktop/solr4c/repos
 ```console
 ls
+
 git clone https://aur.archlinux.org/paru-bin.git
 ls
 cd paru-bin/
@@ -365,18 +521,19 @@ PKGBUILD
 ```console
 makepkg -si 
 ```
-[sudo] password for s4vitar:
+[sudo] password for solr4c:
 
 (Yes/No) Y
 
 ### Instalamos los repositorios de BlackArch en Arch Linux
 
-[s4vitar@hack4u repos]$
+[solr4c@minihost repos]$
 ```console
+cd ..
 mkdir blackarch
 pwd
 ```
-/home/s4vitar/Desktop/s4vitar/repos
+/home/solr4c/Desktop/solr4c/repos
 ```console
 ls
 ```
@@ -397,6 +554,7 @@ chmod +x strap.sh
 sudo su
 ./strap.sh 
 pacman -Sy
+pacman -Syu
 ```
 :: Sinchronizing package 
 - databases
@@ -404,6 +562,16 @@ pacman -Sy
 - extra
 - community
 - blackarch
+
+pacman -S burpsuite
+pacman -S evil-winrm  responder  whatweb wfuzz gobuster
+
+paru -S asciidoctor
+paru -S ldoc
+paru -S xmlto
+paru -S cmake
+sudo pacman -Syu cmake
+
 
 ### ¿Cómo podemos instalar herramientas de pentesting?
 
@@ -443,25 +611,66 @@ Enter
 
 Ctrl+C no instalar
 
-### 31:40 - Instalamos y cargamos una interfaz gráfica en nuestro sistema
+```
+cd /home/solr4c/Desktop/solr4c/repos
+git clone https://github.com/cparodif/arch4hack.git 
+git clone https://github.com/rxyhn/dotfiles.git
+git clone https://aur.archlinux.org/awesome-git.git 
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k 
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+git clone https://github.com/NvChad/NvChad.git  ~/.config/nvim --depth 1
+```
+
+### Si usamos VirtualBox
+
+Buscamos y descargamos la iso: virtualbox-guest-iso
+
+Ver en youtube [Como Instalar Guest Additions En Archlinux, por Tuxer 76:](https://www.youtube.com/watch?v=Es_L34N6TP4) 
+```
+sudo updatedb 
+```
+sincronizamos todos los ficheros para que locate funcione correctamente
 
 ```
-pacman -S xorg xorg-server
+locate virtualbox-guest-iso
+locate virtualbox 
 ```
-Enter a selection (default=all): 
-Enter
+Buscamos donde está la iso y la montamos en  
+```
+/mnt/VBoxGuestAdditions
+```
+Con locate vitualbox encontramos la iso en:
+``` /usr/lib/virtualbox/additions/VBoxGuestAdditions.iso
+```
+Ahora 
+```
+cd /usr/lib/virtualbox/additions/
+ls
+sudo mkdir /mnt/VBoxGuestAdditions
+sudo chmod +x  VBoxGuestAdditions.iso 
+sudo chmod 777  VBoxGuestAdditions.iso 
+sudo mount VBoxGuestAdditions.iso /mnt/VBoxGuestAdditions
+```
+ejecutamos  VBoxLinuxAdditions.run y reiniciamos 
+```
+ls 
+cd /mnt/VBoxGuestAdditions
+sudo chmod +x  VBoxLinuxAdditions.run  
+sudo su
+su 
+./VBoxLinuxAdditions.run
+reboot now 
+```
 
-:: Proceed with installation? [Y/n]  
 
-Enter
-```
-pacman -S gnome
-```
-Enter Enter Enter Enter Enter Enter
+
+###  cargamos una interfaz gráfica en nuestro sistema
 
 ```
 systemctl start gdm.service 
 ```
+Solicita hacer login:
+
 
 Arranca la interfaz gráfica y podemos hacer login
 
@@ -480,101 +689,19 @@ Nos hacemos root con
 ```
 sudo su
 systemctl enable gdm.service 
-```
 
-### 33:42 - Instalamos la Kitty (La configuraremos después)
-
+sudo systemctl start NetworkManager.service
 ```
-pacman -S kitty
+[sudo] password for solr4c:
 ```
-:: Proceed with installation? [Y/n]
-  
-Enter
-
-```
-reboot now
-```
-Se reinicia
-
-Nos logueamos
-
-### 34:02 - Procedemos a instalar las VMWare-Tools
-
-Abrimos ventana linux Ctrl + Alt + F3
-
-Nos logueamos 
-```
-sudo su
-sudo systemctl star NetworkManager.service
-```
-[sudo] password for s4vitar:
-```
-sudo su
 systemctl enable NetworkManager
 ping -c 1 google.com
 ```
 1 packets transmitted, 1 received
 
-```
-pacman -S gtkmm 
-```
-:: Proceed with installation? [Y/n]  
-Enter
-
-### Alternativa si usamos VMWare
 
 
-```
-pacman -S open-vm-tools
-```
-:: Proceed with installation? [Y/n]  
-Enter
-
-```
-pacman -S xf86-video-vmware xf86-input-vmmouse
-```
-:: Proceed with installation? [Y/n]  
-Enter
-Enter
-```
-systemctl enable vmtoolsd
-```
-### Alternativa si usamos VirtualBox
-
-Buscamos y descargamos la iso: virtualbox-guest-iso
-
-Ver en youtube [Como Instalar Guest Additions En Archlinux, por Tuxer 76:](https://www.youtube.com/watch?v=Es_L34N6TP4) 
-
-
-```
-sudo pacman -S locate 
-locate virtualbox-guest-iso
-sudo pacman -S virtualbox-guest-iso
-locate virtualbox 
-```
-
-buscamos donde está la iso y la montamos en  /mnt/VBoxGuestAdditions
-```
-cd /usr/lib/virtualbox/additions
-ls
-mkdir /mnt/VBoxGuestAdditions
-sudo mount VBoxGuestAdditions.iso /mnt/VBoxGuestAdditions
-sudo chmod +x  VBoxGuestAdditions.iso 
-sudo chmod 777  VBoxGuestAdditions.iso 
-sudo mount VBoxGuestAdditions.iso /mnt/VBoxGuestAdditions
-```
-ejecutamos  VBoxLinuxAdditions.run y reiniciamos 
-```
-ls 
-cd /mnt/VBoxGuestAdditions
-sudo chmod +x  VBoxLinuxAdditions.run  
-sudo su
-su 
-./VBoxLinuxAdditions.run
-reboot now 
-```
-
-### 35:18 - Cargamos el sistema operativo con las proporciones correctas
+### Cargamos el sistema operativo con las proporciones correctas
 
 Nos logueamos y accedemos al entorno
 
@@ -586,7 +713,7 @@ En kitty
 ```
 whoami
 ```
-s4vitar
+solr4c
 
 El guión no funcion
  
@@ -611,8 +738,9 @@ Volvemos a kitty probamos el guión y cerramos kitty con
 ```
 exit
 ```
+Máquina -> Tomar instantanea ->
+Nombre de instantánea= Interfaz gráfica gdm y terminal kitty
 
-Clip derecho -> Maquina virtual Arch linux (Tutorial)-> Snapshot -> Take Snapshot ->poner nombre= Base
 
 Click en botón Activities
 
@@ -625,15 +753,7 @@ sudo su
 nos ponemos como root
 
 
-### 36:40 - Instalamos el navegador Firefox
-
-```
-pacman -S firefox
-```
-Enter
-```
-exit
-```
+### Vemos el navegador Firefox
 
 Click en botón Activities
 
@@ -641,8 +761,7 @@ En type to search buscamos firefox
 
 Abrimos firefox 
 
-### 37:54 - Instalamos AwesomeWM junto con PICOM y otros requerimientos
-
+### Instalamos AwesomeWM junto con PICOM y otros requerimientos
 
 navegar a https://github.com/rxyhn/dotfiles
 Leemos readme.md y vamos a setup
@@ -667,7 +786,7 @@ Versión web:
 ```
 paru -S awesome-git  picom-git alacritty rofi todo-bin acpi acpid \ wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim \ brightnessctl alsa-utils alsa-tools pulseaudio lm_sensors \ mpd mpc mpdris2 ncmpcpp playerctl redshift ffmpeg bluez-utils --needed 
 ```
-Versión s4vitar:
+Versión solr4c:
 ```
 paru -S awesome-git picom-git alacritty rofi todo-bin acpi acpid  \     wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim \ brightnessctl alsa-utils alsa-tools pulseaudio lm_sensors \ mpd mpc mpdris2 ncmpcpp playerctl --needed 
 ```
@@ -677,7 +796,7 @@ Como obtenemos errores en instalación de cmake, brightnessctl, y mpd, para evit
 sudo pacman -Syu cmake 
 ```
 
-[sudo] passwd for s4vitar:
+[sudo] passwd for solr4c:
 
 tecleamos passord
 
@@ -772,7 +891,7 @@ está instalado
 ```
 no está instalado
 
-[root@hack4u fonts]#
+[root@minihost fonts]#
 
 Instalamos 7z
 ```
@@ -801,7 +920,7 @@ find . | grep "\.ttf$"
 pwd 
 /usr/share/fonts 
 ```
-[root@hack4u fonts]#
+[root@minihost fonts]#
 
 ```
 find . | grep "\.ttf$" | while read line; do cp $line .; done
@@ -813,7 +932,7 @@ En firefox descargar icomoon.zip desde el siguiente enlace:
 
 [https://dropbox.com/s/hrkub2yo9iapljz/icomoon.zip?dl=0](https://dropbox.com/s/hrkub2yo9iapljz/icomoon.zip?dl=0)
 ```
-mv /home/s4vitar/Downloads/icomoon.zip .
+mv /home/solr4c/Downloads/icomoon.zip .
 unzip icomoon.zip
 mv icomoon/*.ttf .
 rm -rf icomoon
@@ -821,7 +940,7 @@ ls
 exit
 paru -S nerd-fonts-jetbrains-mono ttf-font-awesome ttf-font-awesome-4 ttf-material-design-icons 
 ```
-[sudo] password for s4vitar:
+[sudo] password for solr4c:
 
 :: Proceed with installation? [Y/n] 
  
@@ -848,20 +967,20 @@ https://github.com/rxyhn/dotfiles
 
 En kitty
 
-[s4vitar@hack4u fonts]$
+[solr4c@minihost fonts]$
 ```
 cd 
 ```
-[s4vitar@hack4u ~]$
+[solr4c@minihost ~]$
 ```
 pwd 
 ```
-/home/s4vitar
+/home/solr4c
 ```
-cd Desktop/s4vitar/repos 
+cd Desktop/solr4c/repos 
 git clone https://github.com/rxyhn/dotfiles.git
 cd dotfiles
-mkdir /home/s4vitar/.local/bin/
+mkdir /home/solr4c/.local/bin/
 cp -r config/* ~/.config/
 cp -r bin/* ~/.local/bin/
 cp -r misc/. ~/
@@ -896,7 +1015,7 @@ Alt + F3
 Nos logueamos
 
 ```
-cd Desktop/s4vitar/repos
+cd Desktop/solr4c/repos
 ls
 cd dotfiles
 git log
@@ -927,7 +1046,7 @@ sudo reboot now
 Reiniciamos
 ```
 sudo pacman -S --needed base-devel git
-cd Desktop/s4vitar/repos
+cd Desktop/solr4c/repos
 git clone https://aur.archlinux.org/awesome-git.git 
 cd awesome-git
 makepkg -fsri
@@ -988,7 +1107,7 @@ Abrimos otra ventana con
 ```
 Ctrl + Alt + F3
 ```
-Nos logueamos como s4vitar
+Nos logueamos como solr4c
 
 ### 48:35 - Cambiamos el tipo de terminal que se lanza por defecto
 ```
@@ -1025,7 +1144,7 @@ Instalamos el lenguaje de scripts zsh
 ```
 sudo pacman -S zsh 
 ```
-[sudo] password for s4vitar:
+[sudo] password for solr4c:
 
 :: Proceed with installation? [Y/n]  
 
@@ -1039,13 +1158,13 @@ echo $SHELL
 ```
 sudo su  
 ```
-[sudo] password for s4vitar:
+[sudo] password for solr4c:
 
 Nos ponemos como root
 
-Configuramos zsh como lenguaje shell por defecto para el usuairo s4vitar
+Configuramos zsh como lenguaje shell por defecto para el usuairo solr4c
 ```
-usermod --shell /usr/bin/zsh s4vitar 
+usermod --shell /usr/bin/zsh solr4c 
 ```
 
 ### 49:49 - Configuramos una ZSH por defecto como tipo de Shell para el usuario no privilegiado
@@ -1068,7 +1187,7 @@ En kitty
 ```
 whoami
 ```
-s4vitar
+solr4c
 ```
 sudo su
 ```
@@ -1115,7 +1234,7 @@ Win + 2
 ```
 En firefox abrimos el sitio:
 
-https://s4vitar.github.io  
+https://solr4c.github.io  
 
 En la segunda página vamos a 
 
@@ -1220,23 +1339,23 @@ pwd
 ```
 /usr/share 
 
-[roo@hack4u share]# 
+[roo@minihost share]# 
 ```
 mkdir zsh-sudo
-chown s4vitar:s4vitar zsh-sudo/
+chown solr4c:solr4c zsh-sudo/
 cd !$ 
 ```
 cd zsh-sudo
 
-[roo@hack4u zsh-sudo]#
+[roo@minihost zsh-sudo]#
 ```
 exit
 ```
-s4vitar@hack4u /usr/share % 
+solr4c@minihost /usr/share % 
 ```
 cd zsh-sudo 
 ```
-s4vitar@hack4u /usr/share/zsh-sudo %
+solr4c@minihost /usr/share/zsh-sudo %
 ```
 wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh 
 ```
@@ -1278,9 +1397,9 @@ ls -l
 sudo su
 cat /etc/passwd
 ```
-Una cosa es la zshrc de root y otra cosa es la zshrc de s4vitar
+Una cosa es la zshrc de root y otra cosa es la zshrc de solr4c
 
-Con un link simbolico vamos a lograr que la zsh de root sea la misma que la de s4vitar 
+Con un link simbolico vamos a lograr que la zsh de root sea la misma que la de solr4c 
 ```
 paru -S scrub
 ```
@@ -1327,8 +1446,8 @@ Cambiamos a terminal kitty
 ```
 sudo su
 cd /usr/share/fonts
-mv /home/s4vitar/Downloads/Hack.zip . 
-mv /home/s4vitar/Descargas/Hack.zip . 
+mv /home/solr4c/Downloads/Hack.zip . 
+mv /home/solr4c/Descargas/Hack.zip . 
 unzip Hack.zip
 ```
 se han extraido en el directorio /usr/share/fonts 
@@ -1787,14 +1906,14 @@ backend = 'xrender';
 
 ### 1:15:32 - Cargamos un nuevo fondo de pantalla
 ```
-cd ~/Desktop/s4vitar
+cd ~/Desktop/solr4c
 ls 
 mkdir images/
 ls
 ```
 arch.jpg es el archivo configurado para fondo de pantalla
 ```
-cd ~/Desktop/s4vitar/images
+cd ~/Desktop/solr4c/images
 wget https://images.wallpapersden.com/image/download/anonymous-hacker-working_bGllZ2mUmZqaraWkpJRmZ21lrWxnZQ.jpg
 ```
 lo podemos abrir con  
@@ -1833,7 +1952,7 @@ nano ~/.config/awesome/rc.lua
 al final del todo añadimos
 ```
 -- Wallpaper
-local wallpaper_cmd="feh --bg-fill /home/s4vitar/Desktop/s4vitar/images/arch.jpg"
+local wallpaper_cmd="feh --bg-fill /home/solr4c/Desktop/solr4c/images/arch.jpg"
 os.execute(wallpaper_cmd)
 ```
 guardar 
@@ -1846,7 +1965,7 @@ Ctrl+Win+Q  Panel de bloqueo y nos logueamos
 
 ### 1:17:52 - Instalamos y configuramos la Powerlevel10k
 ```
-cd ~/Desktop/s4vitar/repos   
+cd ~/Desktop/solr4c/repos   
 ```
 
 abrimos firefox desde el terminal kitty
@@ -1930,7 +2049,7 @@ Instant Prompt Mode
 Ya está casi configurado
 
 ```
-nano /home/s4vitar/.p10k.zsh 
+nano /home/solr4c/.p10k.zsh 
 ```
 o bien: nano ~/.p10k.zsh 
 
@@ -1968,13 +2087,13 @@ sudo su
 
 un link simbolico para que todo lo que hay 
 
-[root@hack4u s4vitar]
+[root@minihost solr4c]
 ```
-ln -s -f /home/s4vitar/.zshrc /root/.zshrc 
+ln -s -f /home/solr4c/.zshrc /root/.zshrc 
 cd 
 ls -la 
 ```
-.zshrc -> /home/s4vitar/.zshrc 
+.zshrc -> /home/solr4c/.zshrc 
 
 cerra y abrir nueva ventana
 
@@ -2064,7 +2183,7 @@ y como root vamos a poner un fuego en
 
 POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE=''
 
-cerramos el terminal, abrimos terminal como s4vitar
+cerramos el terminal, abrimos terminal como solr4c
 
 Abrimos firefox
 ```
@@ -2126,7 +2245,7 @@ Using git
 
 Alternatively, you can "git clone" this repository to any directory and run install script.
 
-- como usuario s4vitar
+- como usuario solr4c
 
 ```
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
@@ -2183,7 +2302,7 @@ https://nvchad.github.io/
 ```
 Vamos a V 1.0 para instalarlo:
 
-- Como usuario s4vitar:
+- Como usuario solr4c:
 ```
 git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 nvim +'hi NormalFloat guibg=#1e222a' +PackerSync
@@ -2221,8 +2340,8 @@ nvim +'hi NormalFloat guibg=#1e222a' +PackerSync
 
 ### 1:30:27 - Configuramos imágenes personalizadas en la barra de tareas
 
-- como usuario s4vitar 
-su s4vitar
+- como usuario solr4c 
+su solr4c
 vamos a 
 ```
 cd .config/awesome/theme/assets/icons
@@ -2425,7 +2544,7 @@ Alt izda y Alt dcha saltan palabras en un párrafo del terminal
 
 guardamos y salimos
 
-Aplican para root y para s4vitar porque están enlazados por un link simbolico 
+Aplican para root y para solr4c porque están enlazados por un link simbolico 
 
 
 
@@ -2478,7 +2597,7 @@ neofetch
 ```
 I use arch by the way
 
-ASÍ es el ENTORNO de un HACKER https://www.youtube.com/watch?v=fshLf6u8B-w&t=2393s por s4vitar 
+ASÍ es el ENTORNO de un HACKER https://www.youtube.com/watch?v=fshLf6u8B-w&t=2393s por solr4c 
 
 [![ASÍ es el ENTORNO de un HACKER](http://img.youtube.com/vi/fshLf6u8B-w/0.jpg)](http://www.youtube.com/watch?v=fshLf6u8B-w "ASÍ es el ENTORNO de un HACKER")
 
@@ -2516,6 +2635,6 @@ grub-install --efi-directory=/boot/efi --target=x86_64-efi /dev/sda
  
 fin si efi --------
  </s>
-Más información en s4vitar discord
+Más información en solr4c discord
 
 

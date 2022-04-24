@@ -25,10 +25,18 @@ pacman -S locate
 pacman -S lsd bat 
 pacman -S feh
 pacman -S neovim
-pacman -S burpsuite
-pacman -S evil-winrm python-pip responder nmap whatweb wfuzz gobuster
+pacman -S python-pip nmap whatweb 
+pacman -S mdcat
 pacman -Syu metasploit
-pacman -S mdcat 
+
+Reiniciar
+
+
+no ----
+pacman -S burpsuite
+pacman -S evil-winrm  responder  whatweb wfuzz gobuster
+
+ 
 
 
 cd /home/s4vitar/Desktop/s4vitar/repos 
