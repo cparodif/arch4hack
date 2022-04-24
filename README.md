@@ -225,10 +225,11 @@ ls /home/
 en home no hay ningún directorio
 
 Al crear el usuario también nos crea su directorio personal 
-```
+
+```console
 useradd -m solr4c
 ls /home/ -l
-```console
+```
 drwx------ 2 solr4c solr4c
 ```
 passwd solr4c
@@ -255,28 +256,22 @@ nano /etc/sudoers
 Descomentamos la línea:
 
 - \## Uncomment to allow members of group wheel to execute any command
-
+```console
 %wheel ALL=(ALL:ALL) ALL
-
-
-
+```
 si hacemos 
 ```console
 sudo su 
 ```
-pide la contraseñas
+nos pedirá la contraseña.
 
-Si descomentamos la línea
+Pero No nos pide contraseña si descomentamos la siguiente línea
+```console
 - \## Same thing without a passord
 %wheel ALL=(ALL:ALL) NOPASSWD: ALL
+```
 
 Guardamos Ctrl+O y Salimos Ctrl+X
-
-cuando hacemos 
-```console
-sudo su 
-```
-No pide la contraseñas
 
 
 
@@ -318,8 +313,9 @@ loadkeys es
 nano /etc/vconsole.conf
 ```
 Añado
-
+```console
 KEYMAP=es
+```
 
 Guardamos Ctrl+O y Salimos Ctrl+X
 
@@ -349,15 +345,16 @@ cat !$
 cat /etc/hostname 
 minihost 
 
-```
+```console
 nano /etc/hosts
 ```
+```console
 127.0.0.1		localhost
 
 ::1				localhost
 
 127.0.0.1		minihost.localhost minihost
-
+``` 
 Guardamos Ctrl+O y Salimos Ctrl+X
 
 ```console
@@ -478,16 +475,7 @@ Enter
 
 [solr4c@minihost ~]$
 
-
-
-```
-no ----
-
-```
-
-(Yes/No) 
-
-Y 
+(Yes/No) Y 
 
 Enter
 
@@ -538,7 +526,7 @@ pwd
 ls
 ```
 blackarch paru-bin
-```
+```console
 cd blackarch
 ls
 curl
@@ -563,6 +551,7 @@ pacman -Syu
 - community
 - blackarch
 
+```console
 pacman -S burpsuite
 pacman -S evil-winrm  responder  whatweb wfuzz gobuster
 
@@ -571,12 +560,12 @@ paru -S ldoc
 paru -S xmlto
 paru -S cmake
 sudo pacman -Syu cmake
-
+```
 
 ### ¿Cómo podemos instalar herramientas de pentesting?
 
 Listar todas las herramientas contempladas por blackarch (a la izquierda son las categorías y a la derecha son las herramientas)
-```
+```console
 pacman -Sgg | grep blackarch 
 ```
 
@@ -587,19 +576,19 @@ pacman -S crackmapexec
 no instalar
 
 Para instalar toda la suite de impacket:
-```
+```console
 pacman -S impacket
 ```
 :: Proceed with installation? [Y/n] Y 
 
 Para listar las categorías: 
-```
+```console
 pacman -Sgg | grep blackarch 
 pacman -Sgg | grep blackarch | awk '{print $1}'
 ```
 lista de categorías
 al filtrar por el primer elemento:
-```
+```console
 pacman -Sgg | grep blackarch | awk '{print $1}' | sort -u | less 
 ```
 Para instalar todas las herramientas que involucren pentesting sobre bluetooth podríamos hacer:
@@ -611,7 +600,7 @@ Enter
 
 Ctrl+C no instalar
 
-```
+```console
 cd /home/solr4c/Desktop/solr4c/repos
 git clone https://github.com/cparodif/arch4hack.git 
 git clone https://github.com/rxyhn/dotfiles.git
@@ -626,28 +615,28 @@ git clone https://github.com/NvChad/NvChad.git  ~/.config/nvim --depth 1
 Buscamos y descargamos la iso: virtualbox-guest-iso
 
 Ver en youtube [Como Instalar Guest Additions En Archlinux, por Tuxer 76:](https://www.youtube.com/watch?v=Es_L34N6TP4) 
-```
+```console
 sudo updatedb 
 ```
 sincronizamos todos los ficheros para que locate funcione correctamente
 
-```
+```console
 locate virtualbox-guest-iso
 locate virtualbox 
 ```
 Buscamos donde está la iso y la montamos en  
-```
+```console
 /mnt/VBoxGuestAdditions
 ```
 Con locate vitualbox encontramos la iso en:
 
-``` 
+```console
  /usr/lib/virtualbox/additions/VBoxGuestAdditions.iso
 ```
 
 Ahora 
 
-```
+```console
 cd /usr/lib/virtualbox/additions/
 ls
 sudo mkdir /mnt/VBoxGuestAdditions
@@ -656,7 +645,7 @@ sudo chmod 777  VBoxGuestAdditions.iso
 sudo mount VBoxGuestAdditions.iso /mnt/VBoxGuestAdditions
 ```
 ejecutamos  VBoxLinuxAdditions.run y reiniciamos 
-```
+```console
 ls 
 cd /mnt/VBoxGuestAdditions
 sudo chmod +x  VBoxLinuxAdditions.run  
@@ -670,7 +659,7 @@ reboot now
 
 ###  cargamos una interfaz gráfica en nuestro sistema
 
-```
+```console
 systemctl start gdm.service 
 ```
 Solicita hacer login:
@@ -690,14 +679,14 @@ Nos abre otra ventana linux
 Nos logueamos con nuestro usuario
 
 Nos hacemos root con
-```
+```console
 sudo su
 systemctl enable gdm.service 
 
 sudo systemctl start NetworkManager.service
 ```
 [sudo] password for solr4c:
-```
+```console
 systemctl enable NetworkManager
 ping -c 1 google.com
 ```
@@ -714,7 +703,7 @@ En type to search buscamos kitty
 Abrimos la kitty (terminal linux)
 
 En kitty 
-```
+```console
 whoami
 ```
 solr4c
@@ -739,7 +728,7 @@ y vamos a borrar el English (tres puntos y remove)
 
 Volvemos a kitty probamos el guión y cerramos kitty con 
 
-```
+```console
 exit
 ```
 Máquina -> Tomar instantanea ->
@@ -751,7 +740,7 @@ Click en botón Activities
 En type to search buscamos kitty 
 
 Abrimos la kitty y con 
-```
+```console
 sudo su
 ```
 nos ponemos como root
@@ -776,7 +765,7 @@ En type to search buscamos kitty
 
 Abrimos la kitty
 
-```
+```console
 paru -S awesome-git 
 ```
 PKGBUILDs
@@ -787,10 +776,10 @@ En otros sistemas, normalmente para copiar y pegar se utiliza: ctrl+C y ctrl+V
 
 
 Versión web: 
-```
+```console
 paru -S awesome-git  picom-git alacritty rofi todo-bin acpi acpid \ wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim \ brightnessctl alsa-utils alsa-tools pulseaudio lm_sensors \ mpd mpc mpdris2 ncmpcpp playerctl redshift ffmpeg bluez-utils --needed 
 ```
-Versión solr4c:
+Versión 27/3/2022:
 ```
 paru -S awesome-git picom-git alacritty rofi todo-bin acpi acpid  \     wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim \ brightnessctl alsa-utils alsa-tools pulseaudio lm_sensors \ mpd mpc mpdris2 ncmpcpp playerctl --needed 
 ```
@@ -1025,7 +1014,9 @@ cd dotfiles
 git log
 ```
 Vamos a volver al commit fix: ui and widgets
+
 https://github.com/rxyhn/dotfiles/tree/c1e2eef2baa91aebd37324891cb282666beae04f
+
 ```
 xclip
 git log | grep commit 
