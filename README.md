@@ -343,6 +343,7 @@ minihost
 cat !$
 ```
 cat /etc/hostname 
+
 minihost 
 
 ```console
@@ -380,24 +381,42 @@ Reiniciar
 halt 
 ```
 Extraer 
+
 VirtualBox administrador
+
   Maquina archlinux
+
   Configuracion
+
   Almacenamiento 
+
   Controlador Ide
+
   Unidad Optica
+
   IDE primario maestro 
+
   En disco azul
+
   Eliminar disco de la unidad virtual
   y desaparece
+
   archlinux-2022.04.05-x86_64.iso 
+
   y queda
+
   Vacio
+
   -> Aceptar
+
   -> Iniciar 
+
   Selec=Arch Linux
+
   Grub welcom to grub 
+
   ArchLinux
+
   minihost login:
   
   
@@ -416,7 +435,6 @@ Enter
 ```console
 ping -c 1 google.es
 ```
-
 failure
 
 ```console
@@ -439,6 +457,9 @@ systemctl enable wpa_supplicant.service
 ### Habilitamos AUR para tener acceso a una mayor cantidad de paquetes
 
 Repositorio de la cdad arch-chroot
+
+Se instalan los paquetes, seleccionando todas las opciones por defecto.
+
 ```console
 pacman -S git 
 pacman -S impacket
@@ -452,6 +473,15 @@ pacman -S virtualbox-guest-iso
 pacman -S firefox
 pacman -Syu cmake 
 pacman -S wget
+```
+```console 
+sudo pacman -S wget
+```
+:: Proceed with installation? [Y/n]  
+
+Enter
+
+```console
 pacman -S p7zip
 pacman -S --needed base-devel git
 pacman -S zsh 
@@ -601,12 +631,19 @@ Enter
 Ctrl+C no instalar
 
 ```console
+
 cd /home/solr4c/Desktop/solr4c/repos
+
 git clone https://github.com/cparodif/arch4hack.git 
+
 git clone https://github.com/rxyhn/dotfiles.git
+
 git clone https://aur.archlinux.org/awesome-git.git 
+
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k 
+
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+
 git clone https://github.com/NvChad/NvChad.git  ~/.config/nvim --depth 1
 ```
 
@@ -775,13 +812,14 @@ Podemos copiar y pegar en kitty con: ctrl+Mayus+C y ctrl+Mayus+V
 En otros sistemas, normalmente para copiar y pegar se utiliza: ctrl+C y ctrl+V
 
 
-Versión web: 
-```console
-paru -S awesome-git  picom-git alacritty rofi todo-bin acpi acpid \ wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim \ brightnessctl alsa-utils alsa-tools pulseaudio lm_sensors \ mpd mpc mpdris2 ncmpcpp playerctl redshift ffmpeg bluez-utils --needed 
-```
 Versión 27/3/2022:
-```
-paru -S awesome-git picom-git alacritty rofi todo-bin acpi acpid  \     wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim \ brightnessctl alsa-utils alsa-tools pulseaudio lm_sensors \ mpd mpc mpdris2 ncmpcpp playerctl --needed 
+```console
+paru -S awesome-git picom-git alacritty rofi todo-bin acpi acpid \     
+wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim \
+
+brightnessctl alsa-utils alsa-tools pulseaudio lm_sensors \ 
+
+mpd mpc mpdris2 ncmpcpp playerctl --needed 
 ```
 
 Como obtenemos errores en instalación de cmake, brightnessctl, y mpd, para evitarlos podemos utilizar pacman -Syu cmake , paru -S brightnessctl --need y paru -S mpd --need como vemos a continuación :
@@ -847,15 +885,9 @@ sudo systemctl enable acpid.service
 sudo systemctl start acpid.service
 ```
 
-### 39:21 - Procedemos con la instalación de algunas fuentes necesarias
+###  Procedemos con la instalación de algunas fuentes necesarias
 
-```
-sudo pacman -S wget
-```
-:: Proceed with installation? [Y/n]  
 
-Enter
-```
 cd /usr/share/fonts
 ls
 sudo su
