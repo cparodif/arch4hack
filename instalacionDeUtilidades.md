@@ -81,10 +81,7 @@ cd /home/s4vitar/Desktop/s4vitar/repos/arch4hack
 cp awesome/usuario/rc.lua ~/.config/awesome
 cp awesome/usuario/configuration/keys.lua ~/.config/awesome/configuration/keys.lua
 cp awesome/usuario/theme/assets/icons/awesome.png ~/.config/awesome/theme/assets/icons/awesome.png
-cp etc/hosts etc/hosts
-cp etc/locale.gen etc/locale.gen
-cp etc/sudoers etc/sudoers
-cp etc/vconsole.conf etc/vconsole.conf
+
 cp kitty/usuario/kitty.conf ~/.config/kitty/kitty.conf
 cp lua/usuario/init.lua ~/.config/awesome/ui/decorations/init.lua
 cp p10k/root/.p10k.zsh /root/.p10k.zsh 

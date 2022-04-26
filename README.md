@@ -590,6 +590,9 @@ paru -S ldoc
 paru -S xmlto
 paru -S cmake
 sudo pacman -Syu cmake
+
+paru -S zsh-syntax-highlighting zsh-autosuggestions 
+paru -S scrub
 ```
 
 ### ¿Cómo podemos instalar herramientas de pentesting?
@@ -702,20 +705,11 @@ systemctl start gdm.service
 Solicita hacer login:
 
 
-Arranca la interfaz gráfica y podemos hacer login
-
-La proporción de pantalla es incorrecta
-
-Nos logueamos y estamos con gnome
-Terminal no abre
+Arranca la interfaz gráfica y podemos hacer login. La proporción de pantalla es incorrecta. Nos logueamos y estamos con gnome. Terminal no abre
 
 Ctrl + Alt + F3
 
-Nos abre otra ventana linux
-
-Nos logueamos con nuestro usuario
-
-Nos hacemos root con
+Nos abre otra ventana linux. Nos logueamos con nuestro usuario. Nos hacemos root con
 ```console
 sudo su
 systemctl enable gdm.service 
@@ -733,37 +727,13 @@ ping -c 1 google.com
 
 ### Cargamos el sistema operativo con las proporciones correctas
 
-Nos logueamos y accedemos al entorno
-
-En type to search buscamos kitty
- 
-Abrimos la kitty (terminal linux)
-
-En kitty 
+Nos logueamos y accedemos al entorno. En type to search buscamos kitty. Abrimos la kitty (terminal linux). En kitty 
 ```console
 whoami
 ```
 solr4c
 
-El guión no funcion
- 
-Click en botón Activities
-
-En type to search buscamos Keyboard
-
-Abrimos Keyboard Change 
-
-Settings - Keyboard
-
-En input source click en +
-
-Add an Input Source
-
-Spanish [Add]
-
-y vamos a borrar el English (tres puntos y remove)
-
-Volvemos a kitty probamos el guión y cerramos kitty con 
+El guión no funciona. Click en botón Activities. En type to search buscamos Keyboard. Abrimos Keyboard Change. Settings - Keyboard. En input source click en +. Add an Input Source. Spanish [Add]. Y vamos a borrar el English (tres puntos y remove). Volvemos a kitty probamos el guión y cerramos kitty con 
 
 ```console
 exit
@@ -772,54 +742,45 @@ Máquina -> Tomar instantanea ->
 Nombre de instantánea= Interfaz gráfica gdm y terminal kitty
 
 
-Click en botón Activities
-
-En type to search buscamos kitty 
-
-Abrimos la kitty y con 
+Click en botón Activities. En type to search buscamos kitty. Abrimos la kitty y con 
 ```console
 sudo su
 ```
 nos ponemos como root
 
-
 ### Vemos el navegador Firefox
 
-Click en botón Activities
-
-En type to search buscamos firefox 
-
-Abrimos firefox 
+Click en botón Activities. En type to search buscamos firefox. Abrimos firefox 
 
 ### Instalamos AwesomeWM junto con PICOM y otros requerimientos
 
 navegar a https://github.com/rxyhn/dotfiles
-Leemos readme.md y vamos a setup
-
-Click en botón Activities
-
-En type to search buscamos kitty 
-
-Abrimos la kitty
+Leemos su readme.md y vamos a setup. Click en botón Activities. En type to search buscamos kitty. Abrimos la kitty
 
 ```console
 paru -S awesome-git 
 ```
 PKGBUILDs
-
+```
+makepkg -fsri
+```
 Podemos copiar y pegar en kitty con: ctrl+Mayus+C y ctrl+Mayus+V
 
 En otros sistemas, normalmente para copiar y pegar se utiliza: ctrl+C y ctrl+V
 
+https://github.com/rxyhn/dotfiles/tree/c1e2eef2baa91aebd37324891cb282666beae04f
 
 Versión 27/3/2022:
 ```console
+sudo pacman -Syu 
+
 paru -S awesome-git picom-git alacritty rofi todo-bin acpi acpid \     
 wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim \
 
 brightnessctl alsa-utils alsa-tools pulseaudio lm_sensors \ 
 
-mpd mpc mpdris2 ncmpcpp playerctl --needed 
+mpd mpc mpdris2 ncmpcpp playerctl --needed
+
 ```
 
 Como obtenemos errores en instalación de cmake, brightnessctl, y mpd, para evitarlos podemos utilizar pacman -Syu cmake , paru -S brightnessctl --need y paru -S mpd --need como vemos a continuación :
@@ -860,13 +821,18 @@ Total Installed Size: ... 125.06 MiB
 Enter
 
 ```
-paru -S brightnessctl --need 
-```
+Si la instalación da problemas:
+paru -S brightnessctl --needed 
+paru -S mpd --needed 
+paru -S wireless_tools --needed 
+paru -S awesome-git picom-git alacritty rofi todo-bin acpi acpid \     
+wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim \
 
+brightnessctl alsa-utils alsa-tools pulseaudio lm_sensors \ 
+
+mpd mpc mpdris2 ncmpcpp playerctl --needed
 ```
-paru -S mpd --need 
-```
-Queda instalado sin ningún error
+Queda instalado awesome sin ningún error
 
 En la kitty
 
@@ -887,56 +853,23 @@ sudo systemctl start acpid.service
 
 ###  Procedemos con la instalación de algunas fuentes necesarias
 
-
+```
 cd /usr/share/fonts
-ls
-sudo su
-ls
-wget http://fontlot.com/downfile/5baeb08d06494fc84dbe36210f6f0ad5.105610 
-```
-Enter
-```
+
+sudo wget http://fontlot.com/downfile/5baeb08d06494fc84dbe36210f6f0ad5.105610 
+
 file 5baeb08d06494fc84dbe36210f6f0ad5.105610 
-```
-Zip ar
-```
-zip
-```
-está instalado
-```
-unzip
-```
-está instalado
-```
-tar
-```
-está instalado 
-```
-7z
-```
-no está instalado
 
-[root@minihost fonts]#
+7z l 5baeb08d06494fc84dbe36210f6f0ad5.105610
+ 
+sudo mv 5baeb08d06494fc84dbe36210f6f0ad5.105610 comprimido.zip
 
-Instalamos 7z
-```
-pacman -S p7zip
-```
-:: Proceed with installation? [Y/n]  
+sudo unzip comprimido.zip  
 
-Enter
+sudo rm comprimido.zip
 
-```
-ls
-7z l 5baeb08d06494fc84dbe36210f6f0ad5.105610 
-```
-vemos varias fuentes .ttf
+sudo  su
 
-```
-mv 5baeb08d06494fc84dbe36210f6f0ad5.105610 comprimido.zip
-unzip comprimido.zip  
-ls
-rm comprimido.zip
 find .
 ```
 Encontramos los recursos
@@ -948,71 +881,96 @@ pwd
 [root@minihost fonts]#
 
 ```
-find . | grep "\.ttf$" | while read line; do cp $line .; done
-rm -r iosevka-2.2.1/
-rm -r iosevka-slab-2.2.1/
-ls
+find . | grep "\.ttf$" | while read line; do sudo cp $line .; done
+
+sudo rm -r iosevka-2.2.1/
+
+sudo rm -r iosevka-slab-2.2.1/
+
 ```
+<s>
 En firefox descargar icomoon.zip desde el siguiente enlace:
 
-[https://dropbox.com/s/hrkub2yo9iapljz/icomoon.zip?dl=0](https://dropbox.com/s/hrkub2yo9iapljz/icomoon.zip?dl=0)
+[https://dropbox.com/s/hrkub2yo9iapljz/icomoon.zip?dl=0]
+(https://dropbox.com/s/hrkub2yo9iapljz/icomoon.zip?dl=0)
 ```
-mv /home/solr4c/Downloads/icomoon.zip .
-unzip icomoon.zip
-mv icomoon/*.ttf .
-rm -rf icomoon
-ls 
-exit
+smv /home/solr4c/Downloads/icomoon.zip .
+```
+</s>
+```
+sudo wget https://dropbox.com/s/hrkub2yo9iapljz/icomoon.zip
+
+sudo unzip icomoon.zip
+
+sudo mv icomoon/*.ttf .
+
+sudo rm -rf icomoon
+
 paru -S nerd-fonts-jetbrains-mono ttf-font-awesome ttf-font-awesome-4 ttf-material-design-icons 
 ```
-[sudo] password for solr4c:
 
-:: Proceed with installation? [Y/n] 
- 
-Enter
+### Instalamos y cargamos la fuente HackNerdFonts
 
-:: Proceed with installation? [Y/n]  
-
-Enter
-
-:: Proceed with installation? [Y/n]  
-
-Enter
-
-### 44:00 - Cargamos la configuración de nuestro entorno en Awesome
-
-
-Click en botón Activities
-
-En type to search buscamos firefox 
-
-Abrimos firefox y vamos a la dirección:
-
-https://github.com/rxyhn/dotfiles
-
-En kitty
-
-[solr4c@minihost fonts]$
+En firefox. Buscamos en google HackNerdFonts y vamos a 
+https://www.nerdfonts.com/
+Es la fuente a configurar en la kitty https://www.nerdfonts.com/font-downloads
+Descargamos 
 ```
-cd 
+cd /usr/share/fonts
+sudo wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
+sudo unzip Hack.zip
+sudo rm Hack.zip
 ```
-[solr4c@minihost ~]$
+
+Buscamos Hack Nerd Font
+
+Cambiamos a terminal kitty
 ```
-pwd 
+sudo su
+cd /usr/share/fonts
+mv /home/solr4c/Downloads/Hack.zip . 
+mv /home/solr4c/Descargas/Hack.zip . 
+unzip Hack.zip
 ```
-/home/solr4c
+se han extraido en el directorio /usr/share/fonts 
 ```
-cd Desktop/solr4c/repos 
-git clone https://github.com/rxyhn/dotfiles.git
-cd dotfiles
+rm Hack.zip
+```
+
+### Cargamos la configuración de nuestro entorno en Awesome
+
+Vamos a volver al commit fix: ui and widgets
+
+https://github.com/rxyhn/dotfiles/tree/c1e2eef2baa91aebd37324891cb282666beae04f
+```
+cd /home/solr4c/Desktop/solr4c/repos/dotfiles
+
+git checkout c1e2eef2b
+
+o 
+
+git checkout c1e2eef2baa91aebd37324891cb282666beae04f
+```
+switching to 'c1e2...'.
+
+
+```
 mkdir /home/solr4c/.local/bin/
+
 cp -r config/* ~/.config/
+
 cp -r bin/* ~/.local/bin/
+
 cp -r misc/. ~/
+
+cd /home/solr4c/Desktop/solr4c/repos/awesome-git
+
+makepkg -fsri
+
 sudo reboot now 
 ```
 
-### 45:12 - Migramos a Awesome
+###  Migramos a Awesome
 
 Arrancamos ArchLinux, hacemos click en usuario, y antes de loguearnos, en la rueda dentada abajo a la derecha podemos activar awesome:
 
@@ -1028,11 +986,15 @@ GNOME on Xorg
 
 Seleccionamos awesome y nos logueamos.
 
-Como no funciona bien el escritorio, continuamos haciendo modificaciones.
+Como no funciona bien el escritorio, copiamos nuevos ficheros de configuración:
+
+
+
+
 
 ### 45:44 - Arreglamos un pequeño problema en la visualización migrando a un commit
 
-
+<s>
 Abrimos ventana de texto con
 ```
 Alt + F3
@@ -1042,13 +1004,13 @@ Nos logueamos
 ```
 cd Desktop/solr4c/repos
 ls
-cd dotfiles
+cd Desktop/solr4c/repos/dotfiles
 git log
 ```
 Vamos a volver al commit fix: ui and widgets
 
 https://github.com/rxyhn/dotfiles/tree/c1e2eef2baa91aebd37324891cb282666beae04f
-
+<s>
 ```
 xclip
 git log | grep commit 
@@ -1058,8 +1020,13 @@ git log | grep commit | grep "c1" | awk 'NR==3' | awk 'NF{print $NF}'
 git log | grep commit | grep "c1" | awk 'NR==3' | awk 'NF{print $NF}' | xclip -sel clip  
 ```
 error
+
 ```
 git checkout $(git log | grep commit | grep "c1" | awk 'NR==3' | awk 'NF{print $NF}')
+```
+</s>
+```
+git checkout c1e2eef2baa91aebd37324891cb282666beae04f
 ```
 switching to 'c1e2...'.
 ```
@@ -1071,6 +1038,8 @@ cp -r misc/ ~/
 sudo reboot now 
 ```
 Reiniciamos
+
+
 ```
 sudo pacman -S --needed base-devel git
 cd Desktop/solr4c/repos
@@ -1120,26 +1089,66 @@ sudo pacman -Syu cmake
 ```
 si se instaló awesome-git 
 
+</s>
 
+### Tenemos el entorno de AwesomeWM funcionando correctamente
 
-### 47:55 - Tenemos el entorno de AwesomeWM funcionando correctamente
-
-Nos logueamos
-
-Funciona el volumen
-
-Funciona el área de notificaciones
-
-Abrimos otra ventana con
+Nos logueamos. Funciona el volumen. Funciona el área de notificaciones. Abrimos otra ventana con
 ```
 Ctrl + Alt + F3
 ```
 Nos logueamos como solr4c
+### Configuramos una ZSH por defecto como tipo de Shell para el usuario no privilegiado
 
-### 48:35 - Cambiamos el tipo de terminal que se lanza por defecto
+Configuramos zsh como lenguaje shell por defecto para el usuario solr4c y para root 
 ```
+sudo usermod --shell /usr/bin/zsh solr4c 
+sudo usermod --shell /usr/bin/zsh root 
+echo $SHELL
+```
+un link simbolico para que todo lo que hay 
+
+[root@minihost solr4c]
+```
+ls -lah /home/solr4c/.zshrc
+sudo ls -lah /root/.zshrc 
+
+sudo ln -s -f /home/solr4c/.zshrc /root/.zshrc 
+
+sudo ls -lah /root/.zshrc 
+
+``` 
+.zshrc -> /home/solr4c/.zshrc
+
+
+### Definimos la distribución del teclado con entorno gráfico
+
+En kitty
+```
+sudo localectl set-x11-keymap es  
+```
+cerramos kitty tecleando:
+```
+Crtl + Win + Q 
+```
+
+
+###  Cambiamos el tipo de terminal que se lanza por defecto
+
+Archivos de configuraciones originales, que vamos a modificar:
+
+nano ~/.config/awesome/rc.lua
+nano ~/.zshrc 
+nano ~/.config/kitty/kitty.conf
+nano ~/.config/awesome/theme/picom.conf
+nano ~/.config/awesome/ui/decorations/init.lua
+nano ~/.config/awesome/configuration/keys.lua 
+nano /home/solr4c/.p10k.zsh 
+nano /root/.p10k.zsh 
+cd ls ~/.config/awesome/theme/assets/icons/awesome.png
+
 Windows + Enter
-```
+
 no abre consola de terminal
 ```
 cd ~/.config/awesome
@@ -1177,6 +1186,8 @@ sudo pacman -S zsh
 
 Enter
 
+</s>
+
 Cambiamos termina kitty
 ```
 echo $SHELL
@@ -1189,10 +1200,7 @@ sudo su
 
 Nos ponemos como root
 
-Configuramos zsh como lenguaje shell por defecto para el usuairo solr4c
-```
-usermod --shell /usr/bin/zsh solr4c 
-```
+
 
 ### 49:49 - Configuramos una ZSH por defecto como tipo de Shell para el usuario no privilegiado
 
@@ -1447,40 +1455,6 @@ rmk file.txt
 ```
 scrub .... lo borra y es mejor que un rm
 
-### 58:43 - Instalamos y cargamos la fuente HackNerdFonts
-
-En firefox
- 
-Buscamos en google
-
-HackNerdFonts
-
-y vamos a 
-
-https://www.nerdfonts.com/
-
-Es la fuente a configurar en la kitty
-
-https://www.nerdfonts.com/font-downloads
-
-Descargamos 
-
-https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
-
-Buscamos Hack Nerd Font
-
-Cambiamos a terminal kitty
-```
-sudo su
-cd /usr/share/fonts
-mv /home/solr4c/Downloads/Hack.zip . 
-mv /home/solr4c/Descargas/Hack.zip . 
-unzip Hack.zip
-```
-se han extraido en el directorio /usr/share/fonts 
-```
-rm Hack.zip
-```
 
 ### 59:54 - Cargamos un archivo de configuración para la Kitty
 ```
