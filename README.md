@@ -784,7 +784,7 @@ mpd mpc mpdris2 ncmpcpp playerctl --needed
 ```
 
 Como obtenemos errores en instalación de cmake, brightnessctl, y mpd, para evitarlos podemos utilizar pacman -Syu cmake , paru -S brightnessctl --need y paru -S mpd --need como vemos a continuación :
-```
+```console
 sudo pacman -Syu cmake 
 ```
 
@@ -820,7 +820,7 @@ Total Installed Size: ... 125.06 MiB
 :: Proceed with installation? [Y/n]  
 Enter
 
-```
+```console
 Si la instalación da problemas:
 paru -S brightnessctl --needed 
 paru -S mpd --needed 
@@ -840,20 +840,20 @@ ctrl + Shift
 
 For automatically launching mpd on login
 
-```
+```console
 systemctl --user enable mpd.service
 systemctl --user start mpd.service
 ```
 For charger plug/unplug events (if you have a battery)
 
-```
+```console
 sudo systemctl enable acpid.service
 sudo systemctl start acpid.service
 ```
 
 ###  Procedemos con la instalación de algunas fuentes necesarias
 
-```
+```console
 cd /usr/share/fonts
 
 sudo wget http://fontlot.com/downfile/5baeb08d06494fc84dbe36210f6f0ad5.105610 
@@ -873,14 +873,14 @@ sudo  su
 find .
 ```
 Encontramos los recursos
-```
+```console
 find . | grep "\.ttf$" 
 pwd 
 /usr/share/fonts 
 ```
 [root@minihost fonts]#
 
-```
+```console
 find . | grep "\.ttf$" | while read line; do sudo cp $line .; done
 
 sudo rm -r iosevka-2.2.1/
@@ -893,11 +893,13 @@ En firefox descargar icomoon.zip desde el siguiente enlace:
 
 [https://dropbox.com/s/hrkub2yo9iapljz/icomoon.zip?dl=0]
 (https://dropbox.com/s/hrkub2yo9iapljz/icomoon.zip?dl=0)
+```console
+mv /home/solr4c/Downloads/icomoon.zip .
 ```
-smv /home/solr4c/Downloads/icomoon.zip .
-```
+......
 </s>
-```
+Descargar: 
+```console
 sudo wget https://dropbox.com/s/hrkub2yo9iapljz/icomoon.zip
 
 sudo unzip icomoon.zip
@@ -915,23 +917,23 @@ En firefox. Buscamos en google HackNerdFonts y vamos a
 https://www.nerdfonts.com/
 Es la fuente a configurar en la kitty https://www.nerdfonts.com/font-downloads
 Descargamos 
-```
+```console
 cd /usr/share/fonts
 sudo wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
 sudo unzip Hack.zip
 sudo rm Hack.zip
 ```
 
-Buscamos Hack Nerd Font
+Buscamos Hack Nerd Font. Cambiamos a terminal kitty
 
-Cambiamos a terminal kitty
-```
+```console
 sudo su
 cd /usr/share/fonts
 mv /home/solr4c/Downloads/Hack.zip . 
 mv /home/solr4c/Descargas/Hack.zip . 
 unzip Hack.zip
 ```
+
 se han extraido en el directorio /usr/share/fonts 
 ```
 rm Hack.zip
