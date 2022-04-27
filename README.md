@@ -637,7 +637,7 @@ Ctrl+C no instalar
 
 ```console
 cd /home/solr4c/Desktop/solr4c/repos
-git clone https://github.com/cparodif/arch4hack.git 
+
 git clone https://github.com/rxyhn/dotfiles.git
 git clone https://aur.archlinux.org/awesome-git.git 
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k 
@@ -901,6 +901,8 @@ sudo reboot now
 ### Actualizamos los archivos de configuración de zsh, awesome, kitty y p10k.
 En la siguiente ubicación, disponemos de nuestros archivos de configuración que utilizaremos, para ello copia de seguridad de archivos de configuración que tenemos en estos momentos:
 ```console 
+cd /home/solr4c/Desktop/solr4c/repos
+git clone https://github.com/cparodif/arch4hack.git 
 cd /home/solr4c/Desktop/s4vitar/repos/arch4hack 
 ```
 ### Preparamos los archivos de imagenes de icono awesome y del fondo de pantalla.
