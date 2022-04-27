@@ -636,13 +636,14 @@ Ctrl+C no instalar
 ### Clonamos varios repositorios de github
 
 ```console
-cd /home/solr4c/Desktop/solr4c/repos
 
+cd /home/solr4c/Desktop/solr4c/repos
 git clone https://github.com/rxyhn/dotfiles.git
 git clone https://aur.archlinux.org/awesome-git.git 
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k 
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 git clone https://github.com/NvChad/NvChad.git  ~/.config/nvim --depth 1
+
 ```
 
 ### Buscamos, descargamos e instalamos la iso: virtualbox-guest-iso
@@ -894,73 +895,104 @@ cd /home/solr4c/Desktop/solr4c/repos/awesome-git
 makepkg -fsri
 sudo reboot now 
 ```
+### Descargamos el archivo de configuración kitty.conf y color.ini  desde rxyhn bspdots.
+```console 
+cd /home/solr4c/.config/kitty/
 
+wget https://github.com/rxyhn/bspdots/blob/main/config/kitty/color.ini 
 
+wget https://raw.githubusercontent.com/rxyhn/bspdots/main/config/kitty/kitty.conf
+```
 
-
-### Actualizamos los archivos de configuración de zsh, awesome, kitty y p10k.
-En la siguiente ubicación, disponemos de nuestros archivos de configuración que utilizaremos, para ello copia de seguridad de archivos de configuración que tenemos en estos momentos:
+### Clonamos el repositorio arch4hack 
+En la siguiente ubicación, disponemos de nuestros archivos de configuración que utilizaremos
 ```console 
 cd /home/solr4c/Desktop/solr4c/repos
+
 git clone https://github.com/cparodif/arch4hack.git 
-cd /home/solr4c/Desktop/s4vitar/repos/arch4hack 
+
+cd /home/solr4c/Desktop/solr4c/repos/arch4hack 
 ```
-### Preparamos los archivos de imagenes de icono awesome y del fondo de pantalla.
+Vamos a actualizamos los archivos de configuración de zsh, awesome, kitty y p10k.
+ para ello haremos copia de seguridad de archivos de configuración que tenemos en estos momentos:
+ 
+### Archivos de imagenes de icono awesome y del fondo de pantalla.
 
 ```console 
 cp awesome/usuario/theme/assets/icons/awesome.png /home/solr4c/.config/awesome/theme/assets/icons/awesome.png
+
 mkdir /home/solr4c/Desktop/solr4c/images/
-cp /home/solr4c/.config/awesome/fondo_1280x720.jpg /home/solr4c/Desktop/solr4c/images/arch.jpg
-rm /home/solr4c/.config/awesome/fondo_1280x720.jpg
-kitty +kitten icat arch.jpg
+
+cp awesome/fondo_1280x720.jpg /home/solr4c/Desktop/solr4c/images/arch.jpg
+
+kitty +kitten icat /home/solr4c/Desktop/solr4c/images/arch.jpg
 ```
 
 ### Archivo de configuración de awesome 
 ```console 
 cp /home/solr4c/.config/awesome/rc.lua awesome/usuario/original-rc.lua
+
 cp awesome/usuario/rc.lua /home/solr4c/.config/awesome/rc.lua
+
 nano /home/solr4c/.config/awesome/rc.lua
 
 cp /home/solr4c/.config/awesome/theme/picom.conf picom/usuario/original-picom.conf
+
 cp picom/usuario/picom.conf /home/solr4c/.config/awesome/theme/picom.conf 
+
 nano /home/solr4c/.config/awesome/theme/picom.conf
 
 cp /home/solr4c/.config/awesome/ui/decorations/init.lua lua/usuario/original-init.lua
+
 cp lua/usuario/init.lua /home/solr4c/.config/awesome/ui/decorations/init.lua
+
 nano /home/solr4c/.config/awesome/ui/decorations/init.lua
 
 cp /home/solr4c/.config/awesome/configuration/keys.lua awesome/usuario/configuration/original-keys.lua
+
 cp awesome/usuario/configuration/keys.lua /home/solr4c/.config/awesome/configuration/keys.lua 
+
 nano /home/solr4c/.config/awesome/configuration/keys.lua 
 
 ```
 ### Archivo de configuración de zsh
 ```console 
 cp /home/solr4c/.zshrc  zsh/usuario/.original-zshrc
+
 cp zsh/usuario/.zshrc /home/solr4c/.zshrc
+
 nano /home/solr4c/.zshrc 
 ```
 
 ### Archivo de configuración de kitty
 ```console 
+
 cp /home/solr4c/.config/kitty/kitty.conf  kitty/usuario/original-kitty.conf
+
 cp kitty/usuario/kitty.conf  /home/solr4c/.config/kitty/kitty.conf
+
 nano /home/solr4c/.config/kitty/kitty.conf
 ```
-### Archivo de configuración de p10k del usuario no privilegiado
+### Archivo de configuración de p10k del usuario no privilegiado y del root 
 ```console 
-cp /home/solr4c/.p10k.zsh  p10k/usuario/.original-p10k.zsh
+sudo cp -r /home/solr4c/powerlevel10k/  /root/powerlevel10k/
+#### /root/powerlevel10k/powerlevel10k.zsh-theme
+cp /home/solr4c/powerlevel10k/internal/p10k.zsh  p10k/usuario/.original-p10k.zsh
+
 cp p10k/usuario/.p10k.zsh  /home/solr4c/.p10k.zsh 
+
 nano /home/solr4c/.p10k.zsh 
+
+sudo cp p10k/root/.p10k.zsh  /root/.p10k.zsh
+
+sudo nano /root/.p10k.zsh 
+
 ```
-### Archivo de configuración de p10k del usuario root 
+### Volver a configurar p10k  
 
 ```console 
-cp /root/.p10k.zsh  p10k/root/.original-p10k.zsh
-cp p10k/root/.p10k.zsh  /root/.p10k.zsh 
-nano /root/.p10k.zsh 
+p10k configure
 ```
-
 
 ### Configuramos una ZSH por defecto como tipo de Shell para el usuario no privilegiado y para el root 
 
@@ -978,9 +1010,40 @@ ls -lah /home/solr4c/.zshrc
 sudo ls -lah /root/.zshrc 
 sudo ln -s -f /home/solr4c/.zshrc /root/.zshrc 
 sudo ls -lah /root/.zshrc 
-``` 
-.zshrc -> /home/solr4c/.zshrc
+```
+/root/.zshrc -> /home/solr4c/.zshrc
 
+### Definimos la distribución del teclado con entorno gráfico
+
+En kitty
+
+```
+sudo localectl set-x11-keymap es  
+``` 
+
+### instalamos plugin zsh-sudo
+
+```
+cd /usr/share 
+sudo mkdir /usr/share/zsh-sudo
+sudo chown solr4c:solr4c zsh-sudo/
+cd /usr/share/zsh-sudo
+wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh 
+```
+
+### Verificamos que la configuración de la carga del fondo de pantalla en /home/solr4c/.config/awesome/rc.lua
+
+```
+feh --bg-fill /home/solr4c/Desktop/solr4c/images/arch.jpg
+
+nano /home/solr4c/.config/awesome/rc.lua
+```
+al final del todo añadimos
+```
+-- Wallpaper
+local wallpaper_cmd="feh --bg-fill /home/solr4c/Desktop/solr4c/images/arch.jpg"
+os.execute(wallpaper_cmd)
+```
 
 ### AwesomeWM-3: Migramos a Awesome
 
@@ -1005,876 +1068,20 @@ Nos logueamos como solr4c
 
 
 
-### Definimos la distribución del teclado con entorno gráfico
 
-En kitty
-```
-sudo localectl set-x11-keymap es  
-```
-cerramos kitty tecleando:
-```
-Crtl + Win + Q 
-```
 
 ###  ********************************************************
 ###  *********** Pdte de actualizar *************************
 ###  ********************************************************
 
-Windows + Enter
 
-
-
-
-
-no abre consola de terminal
-
-###  Cambiamos el tipo de terminal que se lanza por defecto de alacritty a kitty 
-```
-cd ~/.config/awesome
-ls
-nano rc.lua
-```
-cambiamos
-```
-terminal = "alacritty"
-por
-terminal = "kitty"
-```
-
-Guardamos Ctrl+O y Salimos Ctrl+X
-```
-Ctrl + Windows + R 
-```
-Recargamos la configuración de los terminales y
-```
-Windows + Enter
-```
-abre consola de terminal kitty 
-
-Vamos a la ventana 3
-```
-Ctrl + Alt + F3
-```
-Instalamos el lenguaje de scripts zsh 
-```
-sudo pacman -S zsh 
-```
-[sudo] password for solr4c:
-
-:: Proceed with installation? [Y/n]  
-
-Enter
-
-</s>
-
-Cambiamos termina kitty
-```
-echo $SHELL
-``` 
-/bin/bash
-```
-sudo su  
-```
-[sudo] password for solr4c:
-
-Nos ponemos como root
-
-
-
-### 49:49 - Configuramos una ZSH por defecto como tipo de Shell para el usuario no privilegiado
-
-Cerramos kitty y volvemos a abrir
-```
-Windows + Enter
-```
-abre consola de terminal kitty
-
-Y ahora ya está zsh por defecto
-```
-echo $SHELL
-``` 
-/bin/zsh 
-
-### 50:22 - Definimos la distribución del teclado con entorno gráfico
-
-En kitty
-```
-whoami
-```
-solr4c
-```
-sudo su
-```
-[sudo] password:
-
-Nos ponemos como root
-```
-localectl set-x11-keymap es  
-```
-
-cerramos kitty tecleando:
-```
-Crtl + Win + Q 
-```
-
-Vamos al panel de bloqueo
-
-Nos indentificamos
-```
-Win+Enter
-```
-probamos que funciona el guión la coma y otros
-```
-cat ~/.zshrc 
-```
-
-### 51:01 - Configuramos el archivo zshrc de nuestro usuario
-
-Click en botón Activities
-
-En type to search buscamos firefox 
-
-Abrimos firefox 
-
-Win + 1
-
-Win + 2
-
-Win + 3 
-
-Nos movemos a la segunda pestaña con 
-```
-Win + 2
-```
-En firefox abrimos el sitio:
-
-https://solr4c.github.io  
-
-En la segunda página vamos a 
-
-Archivos de configuración de Bspwm
-
-Buscamos zshrc 
-
-instalar ese archivo de configuración de zshrc 
-
-```
-vim ~/.zshrc 
-```
-10000 dd
-
-borra todas las líneas
-
-pegamos la nueva configuración
-
-Guardar y cerrar
-
-Cerrar kitty tecleando
-```
-Win + Q
-```
-
-### 52:54 - Instalamos una serie de plugins para la ZSH
-```
-paru -S zsh-syntax-highlighting zsh-autosuggestions 
-```
-passwd:
-```
-sudo pacman -S locate 
-```
-:: Proceed with installation? [Y/n]  
-
-Enter
-```
-sudo updatedb 
-```
-sincronizamos todos los ficheros para que locate funcione correctamente
-```
-locate zsh-syntax-highlighting.zsh 
-```
-/usr/share/zsh/plugins/zsh-sintax-highlighting/zsh-sintax-highlighting.zsh
-```
-locate zsh-autosuggestions.zsh 
-```
-/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-```
-nano ~/.zshrc 
-```
-filtramos por source (tres veces) y llegamos a 
-
-* Plugins
-
-cambiamos
-```
-source /usr/share/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-por 
-source /usr/share/zsh/plugins/zsh-sintax-highlighting/zsh-sintax-highlighting.zsh
-```
-y cambiamos 
-```
-source /usr/share/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-por 
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-```
-Salimos de kitty y abrimos una nueva terminal
-```
-whoami
-```
-y ahora hacemos 
-```
-who 
-```
-está detectando la palabra mediante autosugestion
-```
-cat /etc/passw | grep "osidnf" NO-ENTER 
-```
-tambien nos detecta los colorines
-```
-whoami ESC ESC 
-```
-se cambia a 
-```
-sudo su whoami
-```
-buscar en google el texto: zsh sudo github 
-
-y vamos a 
-
-https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/sudo/sudo.plugin.zsh
-
-vemos el archivo en raw y lo copiamos
-```
-cd /usr/share 
-sudo su 
-```
-passwd: 
-```
-pwd
-```
-/usr/share 
-
-[roo@minihost share]# 
-```
-mkdir zsh-sudo
-chown solr4c:solr4c zsh-sudo/
-cd !$ 
-```
-cd zsh-sudo
-
-[roo@minihost zsh-sudo]#
-```
-exit
-```
-solr4c@minihost /usr/share % 
-```
-cd zsh-sudo 
-```
-solr4c@minihost /usr/share/zsh-sudo %
-```
-wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/sudo/sudo.plugin.zsh 
-```
-Cierro con Win + Q 
-
-y abro con Win + Enter
-
-tenemos una nueva terminal kitty
-```
-whoami 
-```
-Esc Esc
-
-y aparece sudo porque ya funciona
-```
-sudo whoami
-```
-
-###  56:42 - Instalamos lsd y bat
-
-```
-pacman -S lsd bat
-```
- Esc Esc
-```
-sudo pacman -S lsd bat 
-```
-passwd:
-
-:: Proceed with installation? [Y/n]  
-
-Enter
-
-Ahora las cosas se ven mejor presentadas
-```
-cat /etc/passwd
-/bin/cat /etc/passwd 
-ls -l
-sudo su
-cat /etc/passwd
-```
-Una cosa es la zshrc de root y otra cosa es la zshrc de solr4c
-
-Con un link simbolico vamos a lograr que la zsh de root sea la misma que la de solr4c 
-```
-paru -S scrub
-```
-:: Proceed with installation? [Y/n]  
-
-Enter
-
-Sirve para borrar archivos con mayor seguridad. Más información:
-
-https://github.com/chaos/scrub/
-
-```
-wich rmk
-cd Desktop
-touch file.txt
-echo "hola" > file.txt
-rmk file.txt
-```
-scrub .... lo borra y es mejor que un rm
-
-
-### 59:54 - Cargamos un archivo de configuración para la Kitty
-```
-cd ~/.config/kitty/
-```
-<s>
-```
-wget https://raw.githubusercontent.com/rxyhn/bspdots/main/config/kitty/kitty.conf
-```
-*** hecho ya  ***
-```
-nano ~/.config/kitty/kitty.conf
-```
-(que no existe)
-
-En firefox
- 
-Buscamos en google rxyhn
-
-abrimos 
-
-https://github.com/rxyhn
-
-vamos a bspdots 
-
-https://github.com/rxyhn/bspdots
-
-vamos a kitty 
-
-https://github.com/rxyhn/bspdots/tree/main/config/kitty
-
-Abrimos 
-
-https://github.com/rxyhn/bspdots/blob/main/config/kitty/kitty.conf
-
-abrir en modo raw 
-
-Copiamos el contenido de 
-
-kitty.conf 
-
-***fin hecho ya ***
-</s>
-este es le contenido de kitty.conf 
-```
-
-enable_audio_bell no
-
-include color.ini
-
-font_family      Cartograph CF Italic
-
-font_size 11
-
-disable_ligatures never
-
-url_color #fff
-
-url_style curly
-
-shell zsh
-```
-
-Vamos al terminal kitty
- 
-El contenido de kitty.conf lo pegamos en 
-```
-nano ~/.config/kitty/kitty.conf
-cd ~/.config/kitty 
-```
-Descargamos color.ini desde
-``` 
-wget https://github.com/rxyhn/bspdots/blob/main/config/kitty/color.ini 
-ls 
-```
-
-### 1:00:28 - Definimos una serie de configuraciones para la Kitty
-
-```
-nano kitty.conf 
-```
-cambiamos
-
-```
-font_family Cartograph CF Italic
-por 
-font_family HackNerdFonts 
-```
-cambiamos 
-```
-font_size 11
-por 
-font_size 13
-```
-cambiamos
-```
-url_color #fff
-por
-url_color #61afef  
-```
-En terminal kitty
-``` 
-Con Ctrl + Shif + Enter  Abrimos otro nuevo terminal
-Con Ctrl + Arriba (cambiar arriba)
-y Con Ctrl + Abajo (cambiar abajo)
-Ctrl + Shift + W cierra la ventana 
-Ctrl + Shift + R resizear la ventana 
-(Con s small hace más pequeña la ventana)
-Resize this windows
-Press one of the following keys:
-W - Wider
-N - Narrower
-T - Taller
-S - Shorter
-R - Reset 
-Press Esc to quit resize mode
-Hold donw Ctrl to double step size
-Con q paramos 
-
-Con Crtl + Shif + L reorganiza las ventanas
-```
-continuamos modificando kitty.conf 
-```
-nano kitty.conf 
-```
-debajo de 
-
-url_style curly 
-
-añadimos
-```
-map ctrl+left neighboring_window left 
-map ctrl+right neighboring_window right
-map ctrl+up neighboring_window up
-map ctrl+down neighboring_window down 
- 
-map f1 copy_to_buffer a 
-map f2 paste_from_buffer a 
-
-map f3 copy_to_buffer b 
-map f4 paste_from_buffer b 
- 
-cursor_shape beam
-cursor_beam_tickness 1.8
- 
-mouse_hide_wait 3.0 
-detect_urls yes 
-
-repaint_delay 10
-input_delay 3
-sync_to_monitor yes 
-
-map ctrl+shif+z toggle_layout stack 
-tap_bar_style powerline
-
-inactive_tab_background #e06c75
-active_tab_background #98c379
-inactive_tab_foreground #000000 
-tap_bar_margin_color black
-```
-
-Ctrl + Shif + T
-```
-map ctrl+shift+enter new_window_width_cwd
-map ctrl+shift+t new_window_width_cwd
-```
-Cierro terminal y vuelvo a abrir nueva ventana
-
-Ctrl + Shif + Enter
-
-mantiene el directorio al abrir la nueva ventana
-```  
-background_opacity 0.95
-```
-
-Copiar/pegar
-Crtl + Shift + C 
-Crtl + Shift + V 
-
-Crtl+Shift+Alt+T cambiamos en nombre del terminal kitty  
-Ctrl+Shift+Izda Cambia de terminal
-Crtl+Shift+Dcha
-Crtl+Shift+punto
-``` 
-nano kitty.conf 
-```
-Añadir debajo de 
-
-url_style curly 
-```
-map ctrl+left neighboring_window left 
-map ctrl+right neighboring_window right
-map ctrl+up neighboring_window up
-map ctrl+down neighboring_window down 
- 
-map f1 copy_to_buffer a 
-map f2 paste_from_buffer a 
-
-map f3 copy_to_buffer b 
-map f4 paste_from_buffer b 
- 
-cursor_shape beam
-cursor_beam_tickness 1.8
- 
-mouse_hide_wait 3.0 
-detect_urls yes 
-
-repaint_delay 10
-input_delay 3
-sync_to_monitor yes 
-
-map ctrl+shif+z toggle_layout stack 
-tap_bar_style powerline
-
-inactive_tab_background #e06c75
-active_tab_background #98c379
-inactive_tab_foreground #000000 
-tap_bar_margin_color black
-
-map ctrl+shift+enter new_window_width_cwd
-map ctrl+shift+t new_window_width_cwd
-  
-background_opacity 0.95
-```
-
-
-### 1:08:42 - Retocamos el archivo de configuración de PICOM
-
-```
-cd ~/.config/awesome/theme 
-ls
-```
-<s>se le olvidó</s>
-```
-rm picom.conf
-```
-lo descargamos
- ```
-wget https://raw.githubusercontent.com/rxyhn/bspdots/main/config/picom/picom.conf
-```
-<s>fin se le olvidó</s>
-```
-nano ~/.config/awesome/theme/picom.conf 
-```
-filtramos por vsync
-
-En General Settings, cambiamos 
-```
-vsync = true;
-por 
-vsync = false;
-```
-
-filtramos por use-damage
-En General Settings cambiamos 
-```
-use-damage = true;
-por 
-use-damage = false;
-```
-comprobamos que funciona con
-```
-picom --config picom.conf 
-```
-da varios errores
-```
-nano picom.conf 
-```
-filtramos por refresh-rate
-En General Settings. eliminamos
-``` 
-refresh-rate = 0;
-```
-guardamos y volvemos a abrir:
-```
-picom --config picom.conf 
-```
-da otros errores más  
-```
-nano picom.conf 
-```
-filtramos por blur
-
-En Blurring, comentamos todo el  párrafo (12 líneas) 
-
-Guardar y salir
-
-Salimos del sistema, 
-```
-Ctrl+Win+Q 
-```
-Volvemos a entrar en el sistema en el awesome
-
-nos logueamos 
-```
-Win+Enter
-```
-para abrir nuevo terminal kitty
-```
-cd ~/.config/awesome/ui/decorations 
-```
-
-### 1:10:08 - Quitamos la decoración que trae consigo la terminal
-```
-ls 
-nano init.lua 
-nano ~/.config/awesome/ui/decorations/init.lua 
-```
-
-comentar las dos últimas líneas:
-```
-require("ui.decorations.titlebar")
-require("ui.decorations.music")
-```
-cambiamos por
-```
--- require("ui.decorations.titlebar")
--- require("ui.decorations.music")
-```
-cerramos y abrimos una nueva ventana de terminal
-
-Ctrl+Win+R para recargar y releer las configuraciones.
-
-Win+Enter Win+Enter Win+Enter va abriendo tres terminales
-
-### 1:11:09 - Cargamos una nueva configuración para PICOM
-
-abrimos firefox desde el terminal kitty
-```
-firefox &> /dev/null &
-```
-volvemos a 
-
-https://github.com/rxyhn/bspdots/blob/main/config/picom/
-
-Abrimos pico.conf 
-```
-https://github.com/rxyhn/bspdots/blob/main/config/picom/picom.conf
-```
-pasamos a formato raw
-
-Seleccionamos código y copiamos 
-
-cambiamos al directorio 
-```
-cd ~/.config/awesome/theme
-```
-Abrimos
-
-<s> saltar </s>
-```
-nano picom.conf 
-```
-mejor abrimos con vim 
-```
-vim picom.conf 
-```
- borro su contenido
-```
-10000 dd 
-```
-salir
-
-<s> fin saltar </s>
-```
-rm picom.conf
-```
-lo descargamos
-``` 
-wget https://raw.githubusercontent.com/rxyhn/bspdots/main/config/picom/picom.conf
-```
-El archivo descargado en ~/.config/awesome/theme lo abrimos con nano:
-```
-nano ~/.config/awesome/theme/picom.conf 
-```
-
-filtramos por VSync y cambiamos
-```
-vsync = true;
-por 
-vsync = false;
-```
-filtramos por menu-opacity y cambiamos
-```
-menu-opacity = 1.0
-por 
-opacity = 1.0
-```
-filtramos por blur, En BLUR comentamos todo el  párrafo (12 líneas o más) 
-
-filtramos por use-damage, en General Settings cambiamos:
-``` 
-use-damage = true;
-por 
-use-damage = false;
-```
-filtramos por round-borders, en CORNERS cambiamos
-``` 
-round-borders = 1;
-por 
-round-borders = 20;
-```
-filtramos por corner-radius, en CORNERS cambiamos
-``` 
-corner-radius = 0;
-por 
-corner-radius = 20;
-```
-guardamos
-```
-picom --config picom.conf 
-```
-Fatal error
-
-filtramos por refresh-rate, en General Settings comentamos
-```  
-refresh-rate = 0;
-# refresh-rate = 0;
-```
-guardamos
-```
-picom --config picom.conf 
-```
-Ctrl+Win+R 
-```
-pkill picom
-picom --config picom.conf 
-```
-Win+Shift+S 
-
-Win+ clicDerecho podemos resizear la ventana
-
-Win+clicIzquierdo podemos mover la ventana
-
-Win+Ctrl+Q
-
-Pantalla de bloqueo y nos logueamos
-
-### 1:12:40 - Configuramos los bordeados de las ventanas
-```
-nano ~/.config/awesome/theme/picom.conf 
-```
-
-filtramos por glx, en GENERAL cambiamos
-```   
-backend = 'glx';
-por
-backend = 'xrender';
-```
-
-### 1:15:32 - Cargamos un nuevo fondo de pantalla
-```
-cd ~/Desktop/solr4c
-ls 
-mkdir images/
-ls
-```
-arch.jpg es el archivo configurado para fondo de pantalla
-```
-cd ~/Desktop/solr4c/images
-wget https://images.wallpapersden.com/image/download/anonymous-hacker-working_bGllZ2mUmZqaraWkpJRmZ21lrWxnZQ.jpg
-```
-lo podemos abrir con  
-```
-kitty +kitten icat arch.jpg
-```
-kitty +kitten icat es para visualizar imagenes por pantalla 
-
-tambien puede abrir con gif
-
-para configurar el fondo
-```
-sudo pacman -S feh
-```
-pass:
-
-:: Proceed with installation? [Y/n]  
-
-Enter
-```
-feh --bg-fill arch.jpg
-```
-
-queda la imagen en el fondo 
-
-Tecleando Win+Enter abre el terminal y aplica la transparencia
-
-Tecleando Ctrl+Win+R se aplica la configuración correcta 
-
-### 1:16:47 - Configuramos el fondo de pantalla definiendo la carga en rc.lua
-
-```
-nano ~/.config/awesome/rc.lua
-```
-
-al final del todo añadimos
-```
--- Wallpaper
-local wallpaper_cmd="feh --bg-fill /home/solr4c/Desktop/solr4c/images/arch.jpg"
-os.execute(wallpaper_cmd)
-```
-guardar 
- 
-Ctrl+Win+R 
-
-Vemos que funciona
-
-Ctrl+Win+Q  Panel de bloqueo y nos logueamos
-
-### 1:17:52 - Instalamos y configuramos la Powerlevel10k
-```
-cd ~/Desktop/solr4c/repos   
-```
-
-abrimos firefox desde el terminal kitty
-```
-firefox &> /dev/null &
-```
-buscamos en google: powerlevel10k y abrimos:
-```
-https://github.com/romkatv/powerlevel10k
-```
-En readme bajamos
-  
-Manual 
-
-git clone ...
-
-Copiamos los dos comandos 
-```
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k 
-
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-
+```console 
 zsh 
 ```
-
 entramos en modo configuración de zsh 
 
-Pregunta:
-~~~
+Preguntas:
+
 - Ves un diamante
 Yes 
 
@@ -1925,191 +1132,9 @@ y Yes
 
 Instant Prompt Mode
 1 Verbose
-~~~
+
 Ya está casi configurado
 
-```
-nano /home/solr4c/.p10k.zsh 
-```
-o bien: nano ~/.p10k.zsh 
-
-o bien: vim ~/.p10k.zsh 
-
-buscar POWERLEVEL9K_LEFT_PROMPT_ELEMENTS y en 
-
-typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-
-añadir debajo de vcs
-``` 
-vcs
-command_execution_time
-context
-# prompt_char 
-)
-```
-buscar POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS y en
-
-en typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-comentado todo para que no salga nada a la derecha
-```
-status 
-por
-#status
-etc ...
-```
-
-guardar 
-
-hacer lo mismo para usuario root 
-```
-sudo su
-```
-
-un link simbolico para que todo lo que hay 
-
-[root@minihost solr4c]
-```
-ln -s -f /home/solr4c/.zshrc /root/.zshrc 
-cd 
-ls -la 
-```
-.zshrc -> /home/solr4c/.zshrc 
-
-cerra y abrir nueva ventana
-
-```
-sudo su
-usermod --shell /usr/bin/zsh root 
-```
-salimos
-
-abrimos nuevo terminal
-```
-sudo su
-```
-
-Ahora NO debemos configurar las p10k
-
-decimos que no
-
-abrimos firefox desde el terminal kitty
-```
-firefox &> /dev/null &
-sudo su 
-cd 
-rm -r /root/powerlevel10k 
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k 
-echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc
-nano /root/.zshrc 
-```
-
-eliminar si al final o por la mitan se ha duplicado varias veces  
-~~~
-source ~/powerlevel10k/powerlevel10k.zsh-theme
-~~~
-(hay una línea por el centro y varias al final, pero eliminamos todas esas líneas excepto la del final )
-
-ahora estando en root haremos:
-```
-p10k configure
-```
-para voverla a reconfigurar
-
-modificamos el archivo de configuración 
-```
-nano /root/.p10k.zsh 
-```
-
-```
-nano ~/.p10k.zsh 
-o 
-vim ~/.p10k.zsh 
-```
-
-en typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-añadir debajo de vcs
-```
-vcs
-command_execution_time
-context
-# prompt_char 
-)
-```
-en typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-comentado todo para que no salga nada a la derecha
-```
-status 
-por
-#status
-etc ...
-``` 
-
-guardar 
-
-tambien queremos saber cuando estamos comoo root
-
-estamos en nano
-
-buscamos:
-
-POWERLEVEL9K_CONTEXT_PREFIX
-
-Y LA VAMOS A COMENTAR
-```
- typeset -g POWERLEVEL9K_CONTEXT_PREFIX='%246Fwith '
-  # typeset -g POWERLEVEL9K_CONTEXT_PREFIX='%246Fwith '
-```
-y como root vamos a poner un fuego en
-
-POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE=''
-
-cerramos el terminal, abrimos terminal como solr4c
-
-Abrimos firefox
-```
-firefox &> /dev/null &
-```
-y hacemos un 
-```
-disown 
-```
-para que no dependa de ningún terminal
-e
-n google vamos a HackNerdFont 
-
-en la página vamos a
-
-Cheat Sheet
-
-buscamo la llama (está en la quinta o sexta fila) 
-```
-nf_dev_codeigniter , e780 ,  , '~^~@'
-```
-
-en Nos lo copiamos:
-
-seleccionamos en Icon y lo copiamos y luego 
-
-abrimos un terminal y nos ponemos como root
-```
-nano /root/.p10k.zsh
-```
-buscamos 
-```
-POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE=' 
-```
-pegamos en 
-
-Context format when running with privileges: bold user@hostname.
-
-typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE='%B%n@%m'
-```  
-typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE='~^~@'
-```
-tecleamos en el terminal kitty:
-```
-zsh 
-```
  
 
 ### 1:26:10 - Instalamos y configuramos la FZF
@@ -2218,80 +1243,11 @@ git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 nvim +'hi NormalFloat guibg=#1e222a' +PackerSync
 ```
 
-### 1:30:27 - Configuramos imágenes personalizadas en la barra de tareas
-
-- como usuario solr4c 
-su solr4c
-vamos a 
-```
-cd .config/awesome/theme/assets/icons
-ls 
-```
-debemos cambiar el archivo awesome.png
-``` 
-kitty +kitten icat awesome.png  
-rm awesome.png 
-```
-
-copiar otro logo con ese nombre de archivo
-
-y se cambia el icono "a"
-
-
-### 1:31:05 - Creamos nuestros propios shortcuts para abrir aplicaciones (rc.lua)
-
-configuramos para abrif firefox con las teclas: Win+Shift+F abrir 
-```
-cd ~/.config/awesome/ 
-nano rc.lua 
-``` 
-
-buscamos en Default Applications
-```
-browser = "firefox" 
-```
-y se deja así
-
-```
-ls
-cd configuration 
-o 
-cd ~/.config/awesome/configuration
-
-nano keys.lua 
-```
-o directamente podriamos hacer:
-
-```
-nano ~/.config/awesome/configuration/keys.lua 
-```
-filtramos por browser y cambiamos 
-```
-awful.key({modkey}, "w", function()
-awful.spawn.with_shell(browser) 
-end,
-```  
-por
-``` 
-awful.key({modkey, "Shift"}, "f", function()
-awful.spawn.with_shell(browser) 
-end, 
-```
-guardamos y salimos
-```
-Win+Ctrl+R 
-``` 
-Recargar la configuración, y haciendo
-```
-Win+Shift+f 
-```
-Se abre firefox
 
 
 
 
-
-### 1:31:56 - Creamos otro shortcut como modo de ejemplo
+### instalar burpsuite
 
 instalamos un proxy para interceptar peticiones = burpsuite 
 ```
@@ -2386,46 +1342,6 @@ whatweb
 smbserver.py smbFolder $(pwd) -smb2support 
 ```
 
-#### 1:37:33 - Configuramos las teclas Inicio, Fin y Supr
-
-
-Hay que arreglarlo en el zshrc
-```
-# nvim ~/.zshrc 
-o 
-# nano ~/.zshrc 
-```
-al final del archivo hay que añadir:
-```
-bindkey "^[[H" beginning-of-line 
-
-bindkey "^[[F" end-of-line
-bindkey "^[[3~" delete-char 
-```
-
-guardamos y salimos
-
-
-
-
-### 1:39:09 - Optimizamos la movilidad por consola con la definición de nuevos atajos
-```
-nvim ~/.zshrc 
-o 
-nano ~/.zshrc 
-```
-al final del archivo hay que añadir:
-```
-bindkey "^[[1;3C" forwad-word
-bindkey "^[[1;3D" backward-word 
-```
-Alt izda y Alt dcha saltan palabras en un párrafo del terminal
-
-
-guardamos y salimos
-
-Aplican para root y para solr4c porque están enlazados por un link simbolico 
-
 
 
 
@@ -2458,20 +1374,6 @@ mdcat test.md
 se puede ver por consola
 
 
-### 1:42:04 - Conclusiones finales y despedida
-
-Probar el centro de notificaciones (campana)
-
-click en Icono de inicio abre ventana de estado y hace resize de las otras ventanas
-
-```
-Win+Enter y Win+Enter 
-```
-
-```
-Win+Espacio
-```
-modos de visualizacion de las ventanas de trabajo
 ```
 neofetch 
 ```
@@ -2489,32 +1391,4 @@ Etiquetas de código bash https://github.com/highlightjs/highlight.js/blob/main/
 Ayuda con la configuración en VirtualBox:
 - Pasando de Noob a Pro de Linux en 20 Minutos https://www.youtube.com/watch?v=VoJOOx2WLy0 por Antonio Sarosi
 - Desarrollando mi Escritorio "Pro" en Arch Linux https://www.youtube.com/watch?v=tJtVDUSyvCY por Antonio Sarosi
-
-Si efi, ver:
-
-https://bbs.archlinux.org/viewtopic.php?id=252051
-
-https://wiki.archlinux.org/title/EFI_system_partition
-
-https://wiki.archlinux.org/title/GRUB
-
-<s>si efi 
- ```
-pacstrap /mnt efibootmgr
-```
-
-si efi --------------
- ```
-mkinitcpio -p linux
-```
-```
-grub-install /dev/sda
-grub-install --target=x86_64-efi /dev/sda
-grub-install --efi-directory=/boot/efi --target=x86_64-efi /dev/sda
-```
- 
-fin si efi --------
- </s>
-Más información en solr4c discord
-
 

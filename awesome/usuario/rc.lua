@@ -53,5 +53,5 @@ collectgarbage("setpause", 110)
 collectgarbage("setstepmul", 1000)
 
 -- Wallpaper
-local wallpaper_cmd="feh --bg-fill /home/solrac/Desktop/solrac/images/arch.jpg"
+local wallpaper_cmd="feh --bg-fill /home/solr4c/Desktop/solr4c/images/arch.jpg"
 os.execute(wallpaper_cmd)
