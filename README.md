@@ -581,6 +581,8 @@ pacman -Syu
 - community
 - blackarch
 
+### Instalamos varios paquetes necesarios
+
 ```console
 pacman -S burpsuite
 pacman -S evil-winrm  responder  whatweb wfuzz gobuster
@@ -619,13 +621,11 @@ Para listar las categorías:
 pacman -Sgg | grep blackarch 
 pacman -Sgg | grep blackarch | awk '{print $1}'
 ```
-lista de categorías
-al filtrar por el primer elemento:
+lista de categorías al filtrar por el primer elemento:
 ```console
 pacman -Sgg | grep blackarch | awk '{print $1}' | sort -u | less 
 ```
 Para instalar todas las herramientas que involucren pentesting sobre bluetooth podríamos hacer:
-
 
 pacman -S blackarch-bluetooth 
 
@@ -633,26 +633,19 @@ Enter
 
 Ctrl+C no instalar
 
+### Clonamos varios repositorios de github
+
 ```console
-
 cd /home/solr4c/Desktop/solr4c/repos
-
 git clone https://github.com/cparodif/arch4hack.git 
-
 git clone https://github.com/rxyhn/dotfiles.git
-
 git clone https://aur.archlinux.org/awesome-git.git 
-
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k 
-
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-
 git clone https://github.com/NvChad/NvChad.git  ~/.config/nvim --depth 1
 ```
 
-### Si usamos VirtualBox
-
-Buscamos y descargamos la iso: virtualbox-guest-iso
+### Buscamos, descargamos e instalamos la iso: virtualbox-guest-iso
 
 Ver en youtube [Como Instalar Guest Additions En Archlinux, por Tuxer 76:](https://www.youtube.com/watch?v=Es_L34N6TP4) 
 ```console
@@ -695,15 +688,12 @@ su
 reboot now 
 ```
 
-
-
-###  cargamos una interfaz gráfica en nuestro sistema
+###  cargamos y activamos una interfaz gráfica y el servicio NetworkManager en nuestro sistema
 
 ```console
 systemctl start gdm.service 
 ```
 Solicita hacer login:
-
 
 Arranca la interfaz gráfica y podemos hacer login. La proporción de pantalla es incorrecta. Nos logueamos y estamos con gnome. Terminal no abre
 
@@ -713,16 +703,11 @@ Nos abre otra ventana linux. Nos logueamos con nuestro usuario. Nos hacemos root
 ```console
 sudo su
 systemctl enable gdm.service 
-
 sudo systemctl start NetworkManager.service
-```
-[sudo] password for solr4c:
-```console
 systemctl enable NetworkManager
 ping -c 1 google.com
 ```
 1 packets transmitted, 1 received
-
 
 
 ### Cargamos el sistema operativo con las proporciones correctas
@@ -733,15 +718,22 @@ whoami
 ```
 solr4c
 
+Comprobamos que la ventana de la máquina virtual se amplia correctamente.
+
+### Activities -> Keyboard Change -> Settings - Keyboard -> imput source -> + -> Spanish
 El guión no funciona. Click en botón Activities. En type to search buscamos Keyboard. Abrimos Keyboard Change. Settings - Keyboard. En input source click en +. Add an Input Source. Spanish [Add]. Y vamos a borrar el English (tres puntos y remove). Volvemos a kitty probamos el guión y cerramos kitty con 
 
 ```console
 exit
 ```
+
+### Tomamos una instantanea de la máquina virtual
+
 Máquina -> Tomar instantanea ->
 Nombre de instantánea= Interfaz gráfica gdm y terminal kitty
 
 
+### Abrimos kitty
 Click en botón Activities. En type to search buscamos kitty. Abrimos la kitty y con 
 ```console
 sudo su
@@ -752,7 +744,49 @@ nos ponemos como root
 
 Click en botón Activities. En type to search buscamos firefox. Abrimos firefox 
 
-### Instalamos AwesomeWM junto con PICOM y otros requerimientos
+###  Procedemos con la instalación de algunas fuentes necesarias
+
+```console
+cd /usr/share/fonts
+sudo wget http://fontlot.com/downfile/5baeb08d06494fc84dbe36210f6f0ad5.105610 
+file 5baeb08d06494fc84dbe36210f6f0ad5.105610 
+7z l 5baeb08d06494fc84dbe36210f6f0ad5.105610
+sudo mv 5baeb08d06494fc84dbe36210f6f0ad5.105610 comprimido.zip
+sudo unzip comprimido.zip  
+sudo rm comprimido.zip
+sudo  su
+find .
+find . | grep "\.ttf$" 
+pwd 
+/usr/share/fonts 
+find . | grep "\.ttf$" | while read line; do sudo cp $line .; done
+sudo rm -r iosevka-2.2.1/
+sudo rm -r iosevka-slab-2.2.1/
+sudo wget https://dropbox.com/s/hrkub2yo9iapljz/icomoon.zip
+sudo unzip icomoon.zip
+sudo mv icomoon/*.ttf .
+sudo rm -rf icomoon
+paru -S nerd-fonts-jetbrains-mono ttf-font-awesome ttf-font-awesome-4 ttf-material-design-icons 
+```
+
+### Instalamos y cargamos la fuente HackNerdFonts
+
+```console
+cd /usr/share/fonts
+sudo wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
+sudo unzip Hack.zip
+sudo rm Hack.zip
+sudo su
+cd /usr/share/fonts
+mv /home/solr4c/Downloads/Hack.zip . 
+mv /home/solr4c/Descargas/Hack.zip . 
+unzip Hack.zip
+rm Hack.zip
+```
+
+
+
+### AwesomeWM-1: Instalamos AwesomeWM junto con PICOM y otros requerimientos
 
 navegar a https://github.com/rxyhn/dotfiles
 Leemos su readme.md y vamos a setup. Click en botón Activities. En type to search buscamos kitty. Abrimos la kitty
@@ -773,14 +807,10 @@ https://github.com/rxyhn/dotfiles/tree/c1e2eef2baa91aebd37324891cb282666beae04f
 Versión 27/3/2022:
 ```console
 sudo pacman -Syu 
-
 paru -S awesome-git picom-git alacritty rofi todo-bin acpi acpid \     
 wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim \
-
 brightnessctl alsa-utils alsa-tools pulseaudio lm_sensors \ 
-
 mpd mpc mpdris2 ncmpcpp playerctl --needed
-
 ```
 
 Como obtenemos errores en instalación de cmake, brightnessctl, y mpd, para evitarlos podemos utilizar pacman -Syu cmake , paru -S brightnessctl --need y paru -S mpd --need como vemos a continuación :
@@ -827,9 +857,7 @@ paru -S mpd --needed
 paru -S wireless_tools --needed 
 paru -S awesome-git picom-git alacritty rofi todo-bin acpi acpid \     
 wireless_tools jq inotify-tools polkit-gnome xdotool xclip maim \
-
 brightnessctl alsa-utils alsa-tools pulseaudio lm_sensors \ 
-
 mpd mpc mpdris2 ncmpcpp playerctl --needed
 ```
 Queda instalado awesome sin ningún error
@@ -838,141 +866,121 @@ En la kitty
 
 ctrl + Shift
 
-For automatically launching mpd on login
+For automatically launching mpd on login. For charger plug/unplug events (if you have a battery)
 
 ```console
 systemctl --user enable mpd.service
 systemctl --user start mpd.service
-```
-For charger plug/unplug events (if you have a battery)
-
-```console
 sudo systemctl enable acpid.service
 sudo systemctl start acpid.service
 ```
 
-###  Procedemos con la instalación de algunas fuentes necesarias
 
-```console
-cd /usr/share/fonts
+### AwesomeWM-2: Volvemos a cargamos la configuración de nuestro entorno en Awesome
 
-sudo wget http://fontlot.com/downfile/5baeb08d06494fc84dbe36210f6f0ad5.105610 
-
-file 5baeb08d06494fc84dbe36210f6f0ad5.105610 
-
-7z l 5baeb08d06494fc84dbe36210f6f0ad5.105610
- 
-sudo mv 5baeb08d06494fc84dbe36210f6f0ad5.105610 comprimido.zip
-
-sudo unzip comprimido.zip  
-
-sudo rm comprimido.zip
-
-sudo  su
-
-find .
-```
-Encontramos los recursos
-```console
-find . | grep "\.ttf$" 
-pwd 
-/usr/share/fonts 
-```
-[root@minihost fonts]#
-
-```console
-find . | grep "\.ttf$" | while read line; do sudo cp $line .; done
-
-sudo rm -r iosevka-2.2.1/
-
-sudo rm -r iosevka-slab-2.2.1/
-
-```
-<s>
-En firefox descargar icomoon.zip desde el siguiente enlace:
-
-[https://dropbox.com/s/hrkub2yo9iapljz/icomoon.zip?dl=0]
-(https://dropbox.com/s/hrkub2yo9iapljz/icomoon.zip?dl=0)
-```console
-mv /home/solr4c/Downloads/icomoon.zip .
-```
-......
-</s>
-Descargar: 
-```console
-sudo wget https://dropbox.com/s/hrkub2yo9iapljz/icomoon.zip
-
-sudo unzip icomoon.zip
-
-sudo mv icomoon/*.ttf .
-
-sudo rm -rf icomoon
-
-paru -S nerd-fonts-jetbrains-mono ttf-font-awesome ttf-font-awesome-4 ttf-material-design-icons 
-```
-
-### Instalamos y cargamos la fuente HackNerdFonts
-
-En firefox. Buscamos en google HackNerdFonts y vamos a 
-https://www.nerdfonts.com/
-Es la fuente a configurar en la kitty https://www.nerdfonts.com/font-downloads
-Descargamos 
-```console
-cd /usr/share/fonts
-sudo wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip
-sudo unzip Hack.zip
-sudo rm Hack.zip
-```
-
-Buscamos Hack Nerd Font. Cambiamos a terminal kitty
-
-```console
-sudo su
-cd /usr/share/fonts
-mv /home/solr4c/Downloads/Hack.zip . 
-mv /home/solr4c/Descargas/Hack.zip . 
-unzip Hack.zip
-```
-
-se han extraido en el directorio /usr/share/fonts 
-```
-rm Hack.zip
-```
-
-### Cargamos la configuración de nuestro entorno en Awesome
-
-Vamos a volver al commit fix: ui and widgets
+Intento 2: Vamos a volver al commit fix: ui and widgets
 
 https://github.com/rxyhn/dotfiles/tree/c1e2eef2baa91aebd37324891cb282666beae04f
 ```
 cd /home/solr4c/Desktop/solr4c/repos/dotfiles
-
 git checkout c1e2eef2b
-
 o 
-
 git checkout c1e2eef2baa91aebd37324891cb282666beae04f
-```
-switching to 'c1e2...'.
-
-
-```
 mkdir /home/solr4c/.local/bin/
-
 cp -r config/* ~/.config/
-
 cp -r bin/* ~/.local/bin/
-
 cp -r misc/. ~/
-
 cd /home/solr4c/Desktop/solr4c/repos/awesome-git
-
 makepkg -fsri
-
 sudo reboot now 
 ```
 
-###  Migramos a Awesome
+
+
+
+### Actualizamos los archivos de configuración de zsh, awesome, kitty y p10k.
+En la siguiente ubicación, disponemos de nuestros archivos de configuración que utilizaremos, para ello copia de seguridad de archivos de configuración que tenemos en estos momentos:
+```console 
+cd /home/solr4c/Desktop/s4vitar/repos/arch4hack 
+```
+### Preparamos los archivos de imagenes de icono awesome y del fondo de pantalla.
+
+```console 
+cp awesome/usuario/theme/assets/icons/awesome.png /home/solr4c/.config/awesome/theme/assets/icons/awesome.png
+mkdir /home/solr4c/Desktop/solr4c/images/
+cp /home/solr4c/.config/awesome/fondo_1280x720.jpg /home/solr4c/Desktop/solr4c/images/arch.jpg
+rm /home/solr4c/.config/awesome/fondo_1280x720.jpg
+kitty +kitten icat arch.jpg
+```
+
+### Archivo de configuración de awesome 
+```console 
+cp /home/solr4c/.config/awesome/rc.lua awesome/usuario/original-rc.lua
+cp awesome/usuario/rc.lua /home/solr4c/.config/awesome/rc.lua
+nano /home/solr4c/.config/awesome/rc.lua
+
+cp /home/solr4c/.config/awesome/theme/picom.conf picom/usuario/original-picom.conf
+cp picom/usuario/picom.conf /home/solr4c/.config/awesome/theme/picom.conf 
+nano /home/solr4c/.config/awesome/theme/picom.conf
+
+cp /home/solr4c/.config/awesome/ui/decorations/init.lua lua/usuario/original-init.lua
+cp lua/usuario/init.lua /home/solr4c/.config/awesome/ui/decorations/init.lua
+nano /home/solr4c/.config/awesome/ui/decorations/init.lua
+
+cp /home/solr4c/.config/awesome/configuration/keys.lua awesome/usuario/configuration/original-keys.lua
+cp awesome/usuario/configuration/keys.lua /home/solr4c/.config/awesome/configuration/keys.lua 
+nano /home/solr4c/.config/awesome/configuration/keys.lua 
+
+```
+### Archivo de configuración de zsh
+```console 
+cp /home/solr4c/.zshrc  zsh/usuario/.original-zshrc
+cp zsh/usuario/.zshrc /home/solr4c/.zshrc
+nano /home/solr4c/.zshrc 
+```
+
+### Archivo de configuración de kitty
+```console 
+cp /home/solr4c/.config/kitty/kitty.conf  kitty/usuario/original-kitty.conf
+cp kitty/usuario/kitty.conf  /home/solr4c/.config/kitty/kitty.conf
+nano /home/solr4c/.config/kitty/kitty.conf
+```
+### Archivo de configuración de p10k del usuario no privilegiado
+```console 
+cp /home/solr4c/.p10k.zsh  p10k/usuario/.original-p10k.zsh
+cp p10k/usuario/.p10k.zsh  /home/solr4c/.p10k.zsh 
+nano /home/solr4c/.p10k.zsh 
+```
+### Archivo de configuración de p10k del usuario root 
+
+```console 
+cp /root/.p10k.zsh  p10k/root/.original-p10k.zsh
+cp p10k/root/.p10k.zsh  /root/.p10k.zsh 
+nano /root/.p10k.zsh 
+```
+
+
+### Configuramos una ZSH por defecto como tipo de Shell para el usuario no privilegiado y para el root 
+
+Configuramos zsh como lenguaje shell por defecto para el usuario solr4c y para root 
+```console 
+sudo usermod --shell /usr/bin/zsh solr4c 
+sudo usermod --shell /usr/bin/zsh root 
+echo $SHELL
+```
+un link simbolico para que todo lo que hay 
+
+[root@minihost solr4c]
+```console 
+ls -lah /home/solr4c/.zshrc
+sudo ls -lah /root/.zshrc 
+sudo ln -s -f /home/solr4c/.zshrc /root/.zshrc 
+sudo ls -lah /root/.zshrc 
+``` 
+.zshrc -> /home/solr4c/.zshrc
+
+
+### AwesomeWM-3: Migramos a Awesome
 
 Arrancamos ArchLinux, hacemos click en usuario, y antes de loguearnos, en la rueda dentada abajo a la derecha podemos activar awesome:
 
@@ -986,141 +994,13 @@ GNOME Classic
 
 GNOME on Xorg
 
-Seleccionamos awesome y nos logueamos.
-
-Como no funciona bien el escritorio, copiamos nuevos ficheros de configuración:
-
-
-
-
-
-### 45:44 - Arreglamos un pequeño problema en la visualización migrando a un commit
-
-<s>
-Abrimos ventana de texto con
-```
-Alt + F3
-```
-Nos logueamos
-
-```
-cd Desktop/solr4c/repos
-ls
-cd Desktop/solr4c/repos/dotfiles
-git log
-```
-Vamos a volver al commit fix: ui and widgets
-
-https://github.com/rxyhn/dotfiles/tree/c1e2eef2baa91aebd37324891cb282666beae04f
-<s>
-```
-xclip
-git log | grep commit 
-git log | grep commit | grep "^c1" | awk 'NR==3'  
-git log | grep commit | grep "c1" | awk 'NR==3' 
-git log | grep commit | grep "c1" | awk 'NR==3' | awk 'NF{print $NF}'
-git log | grep commit | grep "c1" | awk 'NR==3' | awk 'NF{print $NF}' | xclip -sel clip  
-```
-error
-
-```
-git checkout $(git log | grep commit | grep "c1" | awk 'NR==3' | awk 'NF{print $NF}')
-```
-</s>
-```
-git checkout c1e2eef2baa91aebd37324891cb282666beae04f
-```
-switching to 'c1e2...'.
-```
-ls 
-history 
-cp -r config/* ~/.config/
-cp -r bin/* ~/.local/bin/
-cp -r misc/ ~/
-sudo reboot now 
-```
-Reiniciamos
-
-
-```
-sudo pacman -S --needed base-devel git
-cd Desktop/solr4c/repos
-git clone https://aur.archlinux.org/awesome-git.git 
-cd awesome-git
-makepkg -fsri
-```
-Obteniendo los paquetes...
-
-ERROR: «pacman» ha fallado al instalar las dependencias que faltaban.
-
-==> Dependencias que faltan:
-
-  -> asciidoctor
-
-  -> cmake
-
-  -> ldoc
-
-  -> xmlto
-
-==> ERROR: No se pudieron resolver todas las dependencias.
-
-
-no se pudo descargar cmake-3.23.0-1-x86_64.pkg.tar.zst
-
-Total (1/4)            10,5 MiB  1250 KiB/s 00:09 [#######################] 100%
-
-error: no se pudo obtener el archivo «cmake-3.23.0-1-x86_64.pkg.tar.zst
-
-pacman -S cmake
-
-no se pudo descargar cmake-3.23.0-1-x86_64.pkg.tar.zst
-
-
-```
-paru -S asciidoctor
-paru -S ldoc
-paru -S xmlto
-paru -S cmake
-sudo pacman -Syu cmake
-makepkg -fsri
-```
-ahora que hemos utilizamos 
-```
-sudo pacman -Syu cmake
-```
-si se instaló awesome-git 
-
-</s>
-
-### Tenemos el entorno de AwesomeWM funcionando correctamente
-
-Nos logueamos. Funciona el volumen. Funciona el área de notificaciones. Abrimos otra ventana con
+Seleccionamos awesome y nos logueamos. Funciona el volumen. Funciona el área de notificaciones. Abrimos otra ventana con
 ```
 Ctrl + Alt + F3
 ```
 Nos logueamos como solr4c
-### Configuramos una ZSH por defecto como tipo de Shell para el usuario no privilegiado
 
-Configuramos zsh como lenguaje shell por defecto para el usuario solr4c y para root 
-```
-sudo usermod --shell /usr/bin/zsh solr4c 
-sudo usermod --shell /usr/bin/zsh root 
-echo $SHELL
-```
-un link simbolico para que todo lo que hay 
 
-[root@minihost solr4c]
-```
-ls -lah /home/solr4c/.zshrc
-sudo ls -lah /root/.zshrc 
-
-sudo ln -s -f /home/solr4c/.zshrc /root/.zshrc 
-
-sudo ls -lah /root/.zshrc 
-
-``` 
-.zshrc -> /home/solr4c/.zshrc
 
 
 ### Definimos la distribución del teclado con entorno gráfico
@@ -1134,24 +1014,19 @@ cerramos kitty tecleando:
 Crtl + Win + Q 
 ```
 
-
-###  Cambiamos el tipo de terminal que se lanza por defecto
-
-Archivos de configuraciones originales, que vamos a modificar:
-
-nano ~/.config/awesome/rc.lua
-nano ~/.zshrc 
-nano ~/.config/kitty/kitty.conf
-nano ~/.config/awesome/theme/picom.conf
-nano ~/.config/awesome/ui/decorations/init.lua
-nano ~/.config/awesome/configuration/keys.lua 
-nano /home/solr4c/.p10k.zsh 
-nano /root/.p10k.zsh 
-cd ls ~/.config/awesome/theme/assets/icons/awesome.png
+###  ********************************************************
+###  *********** Pdte de actualizar *************************
+###  ********************************************************
 
 Windows + Enter
 
+
+
+
+
 no abre consola de terminal
+
+###  Cambiamos el tipo de terminal que se lanza por defecto de alacritty a kitty 
 ```
 cd ~/.config/awesome
 ls
