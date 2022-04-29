@@ -990,6 +990,9 @@ sudo nano /root/.p10k.zsh
 ```
 
 ### Copia de seguridad de los archivos de configuración
+
+```console   
+
 mkdir /home/solr4c/Desktop/solr4c/repos/arch4hack/copiaSeguridadConfig 
 cd /home/solr4c/Desktop/solr4c/repos/arch4hack/copiaSeguridadConfig 
 mkdir -p awesome/usuario/theme/assets/icons
@@ -1000,8 +1003,7 @@ mkdir -p zsh/usuario
 mkdir -p kitty/usuario
 mkdir -p p10k/usuario
 mkdir -p p10k/root 
- 
-```console 
+
 cp /home/solr4c/.config/awesome/theme/assets/icons/awesome.png awesome/usuario/theme/assets/icons/awesome.png 
 
 cp  /home/solr4c/Desktop/solr4c/images/arch.jpg awesome/fondo_1280x720.jpg
