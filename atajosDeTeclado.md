@@ -1,5 +1,4 @@
-
-
+Tecleando Win+Enter abre el terminal 
 ```
 Win+Enter y Win+Enter 
 ```
@@ -13,7 +12,7 @@ modos de visualizacion de las ventanas de trabajo
 Ctrl+Win+Q  Panel de bloqueo y nos logueamos
 
 
-Tecleando Win+Enter abre el terminal y aplica la transparencia
+y aplica la transparencia
 
 Tecleando Ctrl+Win+R se aplica la configuración correcta 
 

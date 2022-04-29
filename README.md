@@ -988,6 +988,43 @@ sudo cp p10k/root/.p10k.zsh  /root/.p10k.zsh
 sudo nano /root/.p10k.zsh 
 
 ```
+
+### Copia de seguridad de los archivos de configuración
+mkdir /home/solr4c/Desktop/solr4c/repos/arch4hack/copiaSeguridadConfig 
+cd /home/solr4c/Desktop/solr4c/repos/arch4hack/copiaSeguridadConfig 
+mkdir -p awesome/usuario/theme/assets/icons
+mkdir -p awesome/usuario/configuration/keys
+mkdir -p picom/usuario
+mkdir -p lua/usuario
+mkdir -p zsh/usuario
+mkdir -p kitty/usuario
+mkdir -p p10k/usuario
+mkdir -p p10k/root 
+ 
+```console 
+cp /home/solr4c/.config/awesome/theme/assets/icons/awesome.png awesome/usuario/theme/assets/icons/awesome.png 
+
+cp  /home/solr4c/Desktop/solr4c/images/arch.jpg awesome/fondo_1280x720.jpg
+
+cp /home/solr4c/.config/awesome/rc.lua awesome/usuario/rc.lua
+
+cp /home/solr4c/.config/awesome/theme/picom.conf picom/usuario/picom.conf 
+
+cp /home/solr4c/.config/awesome/ui/decorations/init.lua lua/usuario/init.lua
+
+cp /home/solr4c/.config/awesome/configuration/keys.lua awesome/usuario/configuration/keys.lua
+
+cp /home/solr4c/.zshrc zsh/usuario/.zshrc 
+
+cp /home/solr4c/.config/kitty/kitty.conf kitty/usuario/kitty.conf 
+
+cp /home/solr4c/.p10k.zsh p10k/usuario/.p10k.zsh  
+
+sudo cp /root/.p10k.zsh p10k/root/.p10k.zsh 
+
+```
+
+
 ### Volver a configurar p10k  
 
 ```console 
@@ -1186,7 +1223,7 @@ y hace una busqueda inteligente
 whoami y Ctrl + T
 who -q  y Ctrl + T 
 ```
-
+  
 ### 1:27:48 - Instalamos y configuramos Neovim (NvChad)
 ```
 sudo pacman -S neovim

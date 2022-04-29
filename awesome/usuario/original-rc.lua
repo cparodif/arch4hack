@@ -20,11 +20,10 @@ dpi = beautiful.xresources.apply_dpi
 beautiful.init(gfs.get_configuration_dir() .. "theme/theme.lua")
 
 -- Default Applications
-terminal = "kitty"
+terminal = "alacritty"
 editor = terminal .. " -e " .. os.getenv("EDITOR")
 vscode = "code"
 browser = "firefox"
-burp_proxy = "burpsuite"
 launcher = "rofi -show drun -theme " .. theme_dir .. "rofi.rasi"
 file_manager = "nautilus"
 music_client = terminal .. " --class music -e ncmpcpp"
@@ -52,7 +51,3 @@ require("ui")
 collectgarbage("setpause", 110)
 collectgarbage("setstepmul", 1000)
 
--- Wallpaper
-local wallpaper_cmd="feh --bg-fill /home/solr4c/Desktop/solr4c/images/arch.jpg"
-os.execute(wallpaper_cmd)
- 
