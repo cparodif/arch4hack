@@ -1186,7 +1186,7 @@ y hace una busqueda inteligente
 whoami y Ctrl + T
 who -q  y Ctrl + T 
 ```
-
+  
 ### 1:27:48 - Instalamos y configuramos Neovim (NvChad)
 ```
 sudo pacman -S neovim
