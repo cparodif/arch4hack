@@ -584,7 +584,6 @@ pacman -Syu
 ### Instalamos varios paquetes necesarios
 
 ```console
-pacman -S burpsuite
 pacman -S evil-winrm  responder  whatweb wfuzz gobuster
 
 paru -S asciidoctor
@@ -596,6 +595,43 @@ sudo pacman -Syu cmake
 paru -S zsh-syntax-highlighting zsh-autosuggestions 
 paru -S scrub
 ```
+
+
+### instalar burpsuite
+
+instalamos un proxy para interceptar peticiones = burpsuite 
+```
+sudo pacman -S burpsuite
+```
+passwd:
+
+Enter (instala 1) jre-openjdk)
+
+ya instalado lo 
+
+abrimos en la segunda ventana
+```
+burpsuite
+```
+Term y conditions  
+Deseleccionar Help improve Burp ...
+I Aceppt 
+
+y Delete
+
+close 
+
+next 
+
+start here 
+
+start Burp 
+
+Tema oscuro
+
+User options -> Display -> Theme = Dark , Font-size = 15 
+
+Burp -> User options -> Save user options -> 
 
 ### ¿Cómo podemos instalar herramientas de pentesting?
 
@@ -634,7 +670,7 @@ Enter
 Ctrl+C no instalar
 
 ### Clonamos varios repositorios de github
-
+Estando en kitty, como usuario solr4c 
 ```console
 
 cd /home/solr4c/Desktop/solr4c/repos
@@ -645,7 +681,13 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 git clone https://github.com/NvChad/NvChad.git  ~/.config/nvim --depth 1
 
 ```
-
+estando en kitty, como usuario root:
+```console
+sudo su 
+cd /root 
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+```
 ### Buscamos, descargamos e instalamos la iso: virtualbox-guest-iso
 
 Ver en youtube [Como Instalar Guest Additions En Archlinux, por Tuxer 76:](https://www.youtube.com/watch?v=Es_L34N6TP4) 
@@ -903,6 +945,66 @@ wget https://github.com/rxyhn/bspdots/blob/main/config/kitty/color.ini
 
 wget https://raw.githubusercontent.com/rxyhn/bspdots/main/config/kitty/kitty.conf
 ```
+### Configuración zsh 
+```console 
+zsh 
+```
+entramos en modo configuración de zsh 
+
+Preguntas:
+
+- Ves un diamante
+Yes 
+
+- Ves un candado 
+Yes 
+
+- Ves el logo debian 
+Yes 
+
+- Ves los iconos separados sin que se crucen unos con otros, sin overlap
+Yes 
+
+Pront Style
+2 Clasic
+
+Character Set 
+1 Unicode
+
+Prompt Color
+3 Dark 
+
+Show current time?
+1 no 
+
+Prompt Separators
+1 Angled 
+
+Prompt Heads
+1 Sharp
+
+Prompt Tails
+4 Slanted
+
+Prompt Height
+1 One line
+
+Prompot Spacing
+2 Sparce
+
+Icons
+2 Many icons 
+
+Prompt Flow
+2 Fluent
+
+Enable Transient Prompt 
+y Yes 
+
+Instant Prompt Mode
+1 Verbose
+
+Ya está casi configurado
 
 ### Clonamos el repositorio arch4hack 
 En la siguiente ubicación, disponemos de nuestros archivos de configuración que utilizaremos
@@ -1105,132 +1207,58 @@ Ctrl + Alt + F3
 Nos logueamos como solr4c
 
 
+### Instalamos y configuramos la FZF
 
-
-
-
-###  ********************************************************
-###  *********** Pdte de actualizar *************************
-###  ********************************************************
-
+Es para buscar archivos rapidamente. Buscar en google FZF Github. En kitty, como usuario solr4c:
 
 ```console 
-zsh 
-```
-entramos en modo configuración de zsh 
-
-Preguntas:
-
-- Ves un diamante
-Yes 
-
-- Ves un candado 
-Yes 
-
-- Ves el logo debian 
-Yes 
-
-- Ves los iconos separados sin que se crucen unos con otros, sin overlap
-Yes 
-
-Pront Style
-2 Clasic
-
-Character Set 
-1 Unicode
-
-Prompt Color
-3 Dark 
-
-Show current time?
-1 no 
-
-Prompt Separators
-1 Angled 
-
-Prompt Heads
-1 Sharp
-
-Prompt Tails
-4 Slanted
-
-Prompt Height
-1 One line
-
-Prompot Spacing
-2 Sparce
-
-Icons
-2 Many icons 
-
-Prompt Flow
-2 Fluent
-
-Enable Transient Prompt 
-y Yes 
-
-Instant Prompt Mode
-1 Verbose
-
-Ya está casi configurado
-
- 
-
-### 1:26:10 - Instalamos y configuramos la FZF
-
-Es para buscar archivos rapidamente.
-
-Buscar en google FZF Github
-```
-https://github.com/junegunn/fzf
-```
-
-Using git
-
-Alternatively, you can "git clone" this repository to any directory and run install script.
-
-- como usuario solr4c
+whoami 
+~/.fzf/install
 
 ```
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+y, y, y, 
+```console 
+Update /home/solr4c/.bashrc:
+  - [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+    + Added
+
+Update /home/solr4c/.zshrc:
+  - [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+    - Already exists: line #63 
+
+Finished. Restart your shell or reload config file.
+   source ~/.bashrc  # bash
+   source ~/.zshrc   # zsh
+
+Use uninstall script to remove fzf.
+
+For more information, see: https://github.com/junegunn/fzf 
+```
+En kitty, como usuario root 
+
+```console 
+sudo su
+cd /root  
 ~/.fzf/install
 ```
-y 
-y 
-y 
+y, y, y 
 
+archivos de configuración
+~/.fzf.bash
+~/.fzf.zsh 
 
-- como usuario root 
-
-```
-sudo su 
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
-```
-y 
-y 
-y 
-
-Aabrir nueva terminal. Vamos a la raiz del sistema.
+Abrir nueva terminal. Vamos a la raiz del sistema.
 ```
 cat
 ``` 
-y hacer Ctrl+T hace una bussqueda de ficheros en el sistema
-
-en el simbolo > pones passwd
- 
-y hace una busqueda inteligente
+y hacer Ctrl+T hace una busqueda de ficheros en el sistema. en el simbolo > pones passwd, y hace una busqueda inteligente.
 
 ```
 whoami y Ctrl + T
 who -q  y Ctrl + T 
 ```
   
-### 1:27:48 - Instalamos y configuramos Neovim (NvChad)
-```
-sudo pacman -S neovim
-```
-y lo instalamos
+### Configuramos Neovim (NvChad)
 
 abrimos firefox desde el terminal kitty
 ```
@@ -1248,7 +1276,6 @@ Vamos a V 1.0 para instalarlo:
 
 - Como usuario solr4c:
 ```
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 nvim +'hi NormalFloat guibg=#1e222a' +PackerSync
 ```
 se instala lo que necesitamos
@@ -1278,98 +1305,16 @@ lo mismo para instalarlo:
 - Como usuario root:
 ```
 sudo su
-git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
 nvim +'hi NormalFloat guibg=#1e222a' +PackerSync
 ```
 
+ 
 
+### Instalamos algunas herramientas de pentesting
 
-
-
-### instalar burpsuite
-
-instalamos un proxy para interceptar peticiones = burpsuite 
-```
-sudo pacman -S burpsuite
-```
-passwd:
-
-Enter (instala 1) jre-openjdk)
-
-ya instalado lo 
-
-abrimos en la segunda ventana
-```
-burpsuite
-```
-Term y conditions  
-
-I Aceppt 
-
-y Delete
-
-close 
-
-next 
-
-start here 
-
-start Burp 
-
-Tema oscuro
-
-User options -> Display -> Theme = Dark , Font-size = 15 
-
-Configurar shortcut 
-```
-cd ~/.config/awesome/ 
-nano rc.lua 
-```
-En 
-
--- Default Applications
-debajo de browser añadimos una variable por ejemplo 
-```
-burp_proxy = "burpsuite" 
-```
-Guardamos y salimos
-```
-cd ~/.config/awesome/configuration
-nano keys.lua
-o 
-nvim keys.lua 
-```
-filtramos por browser y añadimos 
-``` 
-awful.key({modkey,"Shift"}, "b", function()
-            awful.spawn.with_shell(burp_proxy)
-        end,
-        {description = "open burpsuite", group = "launcher"}),
-```
-o
-```	
-awful.key({modkey, "Shift"}, "b", function()
-awful.spawn.with_shell(burp_proxy) 
-end, 
-{description = "open burpsuite", group = "launcher"}),
-```
-
-### 1:36:00 - Instalamos algunas herramientas de pentesting
-
-```
-sudo su 
-pacman -S evil-winrm python-pip responder nmap whatweb wfuzz gobuster 
-```
-instalarlos
-```
-pacman -S metasploit
-```
-da error y probamos con 
 ``` 
 sudo pacman -Syu metasploit
-```
-funciona  bien
-```
+
 msfconsole 
 ```
 msf6 > 
@@ -1378,16 +1323,12 @@ search eternalblue
 exit 
 nmap
 whatweb 
-smbserver.py smbFolder $(pwd) -smb2support 
+sudo smbserver.py smbFolder $(pwd) -smb2support 
 ```
 
-
-
-
-### 1:40:13 - Instalamos mdcat para la visualización por consola de archivos Markdown
+### Instalamos mdcat para la visualización por consola de archivos Markdown
 
 ```
-sudo pacman -S mdcat 
 nvim test.md
 ```
 Esto es una **prueba**:
@@ -1412,11 +1353,15 @@ mdcat test.md
 ```
 se puede ver por consola
 
-
 ```
 neofetch 
 ```
 I use arch by the way
+
+
+###  ********************************************************
+###  *********** Fuentes de información *********************
+###  ********************************************************
 
 ASÍ es el ENTORNO de un HACKER https://www.youtube.com/watch?v=fshLf6u8B-w&t=2393s por solr4c 
 

@@ -2,12 +2,14 @@ Tecleando Win+Enter abre el terminal
 ```
 Win+Enter y Win+Enter 
 ```
-
+Ctrl+C copia
+Ctrl+Mayuscula+V pega en kitty
 ```
 Win+Espacio
 ```
-modos de visualizacion de las ventanas de trabajo
+Cambia los modos de visualizacion de las ventanas de trabajo
 
+Win+May+B abrir burpsuite
 
 Ctrl+Win+Q  Panel de bloqueo y nos logueamos
 
