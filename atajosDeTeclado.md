@@ -5,7 +5,14 @@ Tecla Win modificadora principal, teclas adicionales: Alt, Mayus y Ctrl
 
 ```console 
 Combinación de teclas ----> Evento
+************* Awesome *********************************************
+Win + F1 -----------------> Mostrar ayuda de atajos de teclado
+Win + Ctrl + q -----------> Cerrar awesome
+Win + Ctrl + r -----------> Releer configuración awesome
+************* Cliente *********************************************
 Win + Enter --------------> Generar terminal 
+
+************* Lanzador ********************************************
 Win + grave --------------> Generar el cliente de música
 Win + Mayus + w ----------> Generar Navegador web
 Win + Mayus + x ----------> Generar Selector de color
