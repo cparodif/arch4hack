@@ -1,117 +1,81 @@
-Tecleando Win+Enter abre el terminal 
+
+### Atajos de teclado
+
+Tecla Win modificadora principal, teclas adicionales: Alt, Mayus y Ctrl
+
+```console 
+Combinación de teclas ----> Evento
+Win + Enter --------------> Generar terminal 
+Win + grave --------------> Generar el cliente de música
+Win + Mayus + w ----------> Generar Navegador web
+Win + Mayus + x ----------> Generar Selector de color
+Win + Mayus + f ----------> Generar Administrador de archivos 
+Win + Mayus + b ----------> Generar Burpsuite
+
+Win + Mayus + d ----------> Alternar panel central
+Win + Mayus + t ----------> Alternar bandeja del sistema
+Win + Ctrl + r -----------> Actualiza la configuración del terminal kitty
+Win + q ------------------> Cerrar cliente
+Win + x ------------------> Salir de la pantalla
+Win + Ctrl + l -----------> Pantalla de bloqueo
+Win + [1-0] --------------> Cambiar el espacio de trabajo 
+Win + 1 ------------------> Cambiar el espacio de trabajo 1
+Win + 2 ------------------> Cambiar el espacio de trabajo 2
+Win + 3 ------------------> Cambiar el espacio de trabajo 3
+Win + Mayus + [1-0] ------> Mover cliente - enfocado a etiqueta
+Win + Espacio ------------> Seleccionar siguiente distribución de ventanas 
+Win + s ------------------> Establecer diseño de mosaico
+Win + Mayus + s ----------> Establecer diseño flotante
+Win + c ------------------> Centro cliente flotante
+Win + [teclas de flecha] -> Cambiar el enfoque por dirección
+Win + f ------------------> Alternar pantalla completa
+Win + m ------------------> Alternar maximizar
+Win + n ------------------> Minimizar
+Win + Ctrl + n -----------> Restaurar minimizado
+Alt + tabulador ----------> Cambiar entre ventanas
+
+Ctrl + Shif + Enter ------> Abrir otro terminal nuevo
+Ctrl + Arriba ------------> Cambiar a la ventana de arriba
+Ctrl + Abajo -------------> Cambiar a la ventana de abajo
+Ctrl + Mayus + W ---------> Cerrar la ventana 
+
+Ctrl + Mayus + R ---------> Cambiar tamaño de la ventana 
+---> Presionar una de las siguitentes teclas:
+---> W - Wider
+---> N - Narrower
+---> T - Taller
+---> S - Shorter
+---> R - Reset 
+---> Presionar Esc para salir del modo de cambio de tamaño.
+---> Mantenga presionada la tecla Ctrl para duplicar el tamaño del paso
+---> q para terminar 
+Ctrl + Mayus + s ---------> Hacer más pequeño el tamaño de la ventana 
+Crtl + Mayus + L ---------> Reorganiza las ventanas
+Ctrl + Mayus + Izda ------> Cambiar de terminal
+Crtl + Mayus + Dcha ------> 
+Crtl + Mayus + punto -----> 
+
+Ctrl + Alt + F3 ----------> Ir al espacio de trabajo 3
+
+Ctrl + C -----------------> Copiar objeto seleccionado
+Ctrl + V -----------------> Pegar objeto seleccionado
+Ctrl + Mayus + C ---------> Copiar objeto seleccionado en kitty
+Ctrl + Mayus + V ---------> Pegar objeto seleccionado en kitty
+
+Ratón en el escritorio:
+
+Win + ClicDerecho --------------> Permite modificar tamaño de la ventana
+Win + ClicIzquierdo ------------> Permite mover la ventana
+Crtl + Mayus + Alt + T ---------> Cambiar nombre del terminal kitty  
+Clic izquierdo -----------------> Descartar todas las notificaciones
+Clic derecho -------------------> menú principal
+Clic central -------------------> Alternar panel central
+Cesplazarse hacia arriba/abajo -> Recorrer las etiquetas
 ```
-Win+Enter y Win+Enter 
-```
-Ctrl+C copia
-Ctrl+Mayuscula+V pega en kitty
-```
-Win+Espacio
-```
-Cambia los modos de visualizacion de las ventanas de trabajo
-
-Win+May+B abrir burpsuite
-
-Ctrl+Win+Q  Panel de bloqueo y nos logueamos
+Para obtener más información, consulte en keys.lua
 
 
-y aplica la transparencia
-
-Tecleando Ctrl+Win+R se aplica la configuración correcta 
-
-
-Win+Shift+S 
-
-Win+ clicDerecho podemos resizear la ventana
-
-Win+clicIzquierdo podemos mover la ventana
-
-Win+Ctrl+Q
-
-
-cerramos y abrimos una nueva ventana de terminal
-
-Ctrl+Win+R para recargar y releer las configuraciones.
-
-Win+Enter Win+Enter Win+Enter va abriendo tres terminales
-
-
-Copiar/pegar
-Crtl + Shift + C 
-Crtl + Shift + V 
-
-Crtl+Shift+Alt+T cambiamos en nombre del terminal kitty  
-Ctrl+Shift+Izda Cambia de terminal
-Crtl+Shift+Dcha
-Crtl+Shift+punto
-
-
-cerramos kitty tecleando:
-```
-Crtl + Win + Q 
-```
-
-
-```
-Ctrl + Windows + R 
-```
-Recargamos la configuración de los terminales y
-```
-Windows + Enter
-```
-abre consola de terminal kitty 
-
-Vamos a la ventana 3
-```
-Ctrl + Alt + F3
-```
-
-
-cerramos kitty tecleando:
-```
-Crtl + Win + Q 
-```
-Windows + Enter abre nueva consola de terminal
-Cierro con Win + Q 
-
-y abro con Win + Enter
-
-Abrimos firefox 
-
-Win + 1
-
-Win + 2
-
-Win + 3 
-
-Nos movemos a la segunda pestaña con 
-```
-Win + 2
-```
-
-Con Ctrl + Shif + Enter  Abrimos otro nuevo terminal
-Con Ctrl + Arriba (cambiar arriba)
-y Con Ctrl + Abajo (cambiar abajo)
-Ctrl + Shift + W cierra la ventana 
-Ctrl + Shift + R resizear la ventana 
-(Con s small hace más pequeña la ventana)
-Resize this windows
-Press one of the following keys:
-W - Wider
-N - Narrower
-T - Taller
-S - Shorter
-R - Reset 
-Press Esc to quit resize mode
-Hold donw Ctrl to double step size
-Con q paramos 
-
-Con Crtl + Shif + L reorganiza las ventanas
-
-
-Sirve para borrar archivos con mayor seguridad. Más información:
-
-https://github.com/chaos/scrub/
-
+#Scrub sirve para borrar archivos con mayor seguridad y mejor que rm. 
 ```console
 wich rmk
 cd Desktop
@@ -119,4 +83,5 @@ touch file.txt
 echo "hola" > file.txt
 rmk file.txt
 ```
-scrub .... lo borra y es mejor que un rm
+Más información: https://github.com/chaos/scrub/
+ 
