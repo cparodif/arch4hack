@@ -1,6 +1,6 @@
 ### Videos
  
-[![MÁS COMANDOS de LINUX para MANEJAR tu SERVER - PARTE 2! 18:07min 8/6/2021 (http://img.youtube.com/vi/LbR83223zdM/0.jpg)](https://youtu.be/LbR83223zdM "MÁS COMANDOS de LINUX para MANEJAR tu SERVER - PARTE 2! 18:07min 8/6/2021")
+[![MÁS COMANDOS de LINUX para MANEJAR tu SERVER - PARTE 2! 18:07min 8/6/2021] (http://img.youtube.com/vi/LbR83223zdM/0.jpg)](https://youtu.be/LbR83223zdM "MÁS COMANDOS de LINUX para MANEJAR tu SERVER - PARTE 2! 18:07min 8/6/2021")
 
 ### Comandos frecuentes linux
 ```console
