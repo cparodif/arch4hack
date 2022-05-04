@@ -1,10 +1,10 @@
 ### Videos
  
-1.- (https://www.youtube.com/watch?v=0BA4k3jweaE "MAS DE 30 COMANDOS en LINUX para manejar tu SERVER! 19:20min 27/4/2021")
+1.-[MAS DE 30 COMANDOS en LINUX para manejar tu SERVER! 19:20min 27/4/2021] (https://www.youtube.com/watch?v=0BA4k3jweaE)
 
 [![MAS DE 30 COMANDOS en LINUX para manejar tu SERVER! 19:20min 27/4/2021](http://img.youtube.com/vi/0BA4k3jweaE/0.jpg)](https://www.youtube.com/watch?v=0BA4k3jweaE "MAS DE 30 COMANDOS en LINUX para manejar tu SERVER! 19:20min 27/4/2021")
 
-2.- (http://www.youtube.com/watch?v=LbR83223zdM "MÁS COMANDOS de LINUX para MANEJAR tu SERVER - PARTE 2! 18:07min 8/6/2021") 
+2.- [MÁS COMANDOS de LINUX para MANEJAR tu SERVER - PARTE 2! 18:07min 8/6/2021](http://www.youtube.com/watch?v=LbR83223zdM) 
 
 [![MÁS COMANDOS de LINUX para MANEJAR tu SERVER - PARTE 2! 18:07min 8/6/2021](http://img.youtube.com/vi/LbR83223zdM/0.jpg)](http://www.youtube.com/watch?v=LbR83223zdM "MÁS COMANDOS de LINUX para MANEJAR tu SERVER - PARTE 2! 18:07min 8/6/2021")
 
