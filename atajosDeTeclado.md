@@ -11,6 +11,7 @@ Win + Ctrl + q -----------> Cerrar awesome
 Win + Ctrl + r -----------> Releer configuración awesome
 ************* Cliente *********************************************
 Win + Enter --------------> Generar terminal 
+Win + q ------------------> Cerrar cliente
 
 ************* Lanzador ********************************************
 Win + grave --------------> Generar el cliente de música
@@ -22,7 +23,7 @@ Win + Mayus + b ----------> Generar Burpsuite
 Win + Mayus + d ----------> Alternar panel central
 Win + Mayus + t ----------> Alternar bandeja del sistema
 Win + Ctrl + r -----------> Actualiza la configuración del terminal kitty
-Win + q ------------------> Cerrar cliente
+
 Win + x ------------------> Salir de la pantalla
 Win + Ctrl + l -----------> Pantalla de bloqueo
 Win + [1-0] --------------> Cambiar el espacio de trabajo 
