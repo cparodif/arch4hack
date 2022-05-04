@@ -1,6 +1,6 @@
 ### Videos
  
-1.-[MAS DE 30 COMANDOS en LINUX para manejar tu SERVER! 19:20min 27/4/2021] (https://www.youtube.com/watch?v=0BA4k3jweaE)
+1.- [MAS DE 30 COMANDOS en LINUX para manejar tu SERVER! 19:20min 27/4/2021] (https://www.youtube.com/watch?v=0BA4k3jweaE)
 
 [![MAS DE 30 COMANDOS en LINUX para manejar tu SERVER! 19:20min 27/4/2021](http://img.youtube.com/vi/0BA4k3jweaE/0.jpg)](https://www.youtube.com/watch?v=0BA4k3jweaE "MAS DE 30 COMANDOS en LINUX para manejar tu SERVER! 19:20min 27/4/2021")
 
