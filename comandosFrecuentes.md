@@ -215,43 +215,75 @@ sudo pacman -S tree
 ```
 ### MÁS COMANDOS de LINUX para MANEJAR tu SERVER - PARTE 2!
 
-netstat Estadisticas de red
+```console
+netstat 
+```
+Estadisticas de red
+```console
 sudo pacman -Syu net-tools
 sudo paru -Syu
 netstat -nr
 netstat -i
 netstat -natup
+```
 Ver conexiones
+```console
 service nginx start
 sudo pacman -Syu tcpdump
 sudo tcpdump -i any -p tcp port 80
 sudo tcpdump -i any host   192.168.1.1
 sudo tcpdump -i any host   192.168.1.2  
-
+```
+```console
 nano
+```
+```console
 vim
 i (o tecla insert)
 Esc
 :wq (salir guardando)
 :q! (salir sin guardar)
-
+```
+```console
 updatedb
 locate
-
-screen -> Nueva sesion de terminal especial
+```
+```console
+screen 
+```
+-> Nueva sesion de terminal especial
+```console
 sleep 1d
+```
 ctrl + a + d -> sale de screen sin matar la terminal
-screen ls -> lista las screen
-screen -r 2808 -> volver a screen 2808 es el identificador del screen
+```console
+screen ls 
+```
+-> lista las screen
+```console
+screen -r 2808
+```
+ -> volver a screen 2808 es el identificador del screen
+```console
 ps fax
+```
+```console
 tmux
-https://youtu.be/LbR83223zdM
-MAC LOVER
-top -> administrador de tareas 
-Mayus + P -> Orden por uso de CPU
-Mayus + M -> Orden por uso de memoria
+```
 
-htop -> alternativa a top 
+```console
+top
+```
+ -> administrador de tareas 
+
+Mayus + P -> Orden por uso de CPU
+
+Mayus + M -> Orden por uso de memoria
+```console
+htop 
+```
+-> alternativa a top 
+```console
 sudo pacman -S htop
 htop
 
@@ -260,54 +292,75 @@ locate .log
 less
 less /var/log/pacman.log
 less /var/log/vboxadd-install.log
+```
 Teclas: avpag repag etc
+
 Buscar, teclear barra / y texto a buscar
+
 con n nos lleva a la siguiente coincidencia
+
 :q salir
+
 y 
+```console
 more
 
 tail archivo
+```
 
 ver las 10 últimas líneas del archivo.
+```console
 tail /var/log/pacman.log
 tail -f /var/log/pacman.log
+```
 con -f queda esperando a ver si el archivo se actualiza
-
+```console
 tail -n1 /var/log/pacman.log
+```
 muestra una línea
-
+```console
 head archivo
+```
 ver las 10 primeras líneas del archivo.
+```console
 head /var/log/pacman.log
-
-SSH 
+```
+SSH - 
 video ssh en 8 minutos
-
+```console
 ssh root@ip 
-
+```
+```console
 touch archivo
+```
 toca un archivo si existe le cambia la fecha de modificación
 si no, crea un archivo nuevo
-
+```console
 df -h
 free   (en bytes)
 free -m (en megabytes)
 free -g (en gigas)
+```
+```console
+nmap 
+```
 
-nmap puertos abiertos en un servidor
+puertos abiertos en un servidor
 o puertos abiertos en el router:
+```console
 nmap 192.168.0.1
 nmap IPdelRouter
-
+```
+```console
 cat /proc/cpuinfo
+```
 número de procesadores
 
 con un procesador, el
 load average (mide la carga del servidor) debe ser menor que uno. (Siempre debe ser menor que la cantidad de procesadores que tiene, si es mayor quiere decir que está sobrecargado)
-
+```console
 cat /proc/loadavg
-
+```
 
 ### Videos
  
@@ -324,8 +377,34 @@ cat /proc/loadavg
 
 ### Por hacer (ToDo)
 SSH
-Docker
-Git
-LINUX
-https://www.youtube.com/watch?v=JdBO8zNmnc8&list=PLPC-uborOKn2AYrTz74s-rz_Vspv0wndl
 
+Docker
+
+Git
+
+LINUX
+
+Bash
+
+
+💀 Pablo Fredrikson (Pelado Nerd)
+[https://github.com/pablokbs](https://github.com/pablokbs)
+
+[Monitoreo de INTERNET con tu RASPBERRY!](https://youtu.be/C8pcbFyN7og)
+
+[Tu propio PROXY de GOOGLE - Pero SEGURO](https://youtu.be/MrFC8dYmjg8)
+
+[Instala tu PROPIA VPN GRATIS - Wireguard en Docker](https://youtu.be/G_Pv9XEzfUY)
+
+[JITSI en DOCKER! - Alternativa OPEN SOURCE a ZOOM y GOOGLE HANGOUTS!](https://youtu.be/4sMItcdvZfE)
+
+[BLOQUEA ADS y MALWARE en TODOS tus dispositivos - PI-HOLE / V2M](https://youtu.be/qc8mkWtwY9c)
+
+[ESTO TENDRIA QUE VENIR POR DEFECTO EN LINUX - V2M / Fail2Ban](https://youtu.be/PAK7I1cKwzA)
+
+[POR QUE LOS SRE USAN MAC ? Mis herramientas de trabajo (Parte 2)](https://youtu.be/7gmpjacFoHM)
+
+
+Lea_cyber
+
+[CALENTANDO MOTORES - Cyber Threat Hunting en Español #0](https://www.youtube.com/watch?v=JdBO8zNmnc8&list=PLPC-uborOKn2AYrTz74s-rz_Vspv0wndl)
